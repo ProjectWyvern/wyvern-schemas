@@ -1,0 +1,66 @@
+{
+  "name": "ERC721",
+  "description": "ERC721 Nonfungible Token Standard (Draft)",
+  "abis": {
+    "transfer": {
+      "constant": false,
+      "inputs": [
+        {   
+          "name": "_to",
+          "type": "address",
+          "replaceable": true
+        },  
+        {   
+          "name": "_tokenId",
+          "type": "uint256",
+          "asset": true
+        }   
+      ],  
+      "name": "transfer",
+      "outputs": [], 
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    "approve": {
+      "constant": false,
+      "inputs": [
+        {   
+          "name": "_to",
+          "type": "address",
+          "replaceable": true
+        },  
+        {   
+          "name": "_tokenId",
+          "type": "uint256",
+          "asset": true
+        }   
+      ],  
+      "name": "transfer",
+      "outputs": [], 
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    "owner": {
+      "constant": true,
+      "inputs": [
+        {   
+          "name": "_tokenId",
+          "type": "uint256",
+          "asset": true
+        }   
+      ],  
+      "name": "ownerOf",
+      "outputs": [
+        {   
+          "name": "owner",
+          "type": "address"
+        }   
+      ],  
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  }
+}
