@@ -1,6 +1,10 @@
 {
-  "name": "ERC721",
-  "description": "ERC721 Nonfungible Token Standard (Draft)",
+  "name": "CryptoKitties",
+  "description": "Virtual breedable and tradeable kittens.",
+  "thumbnail": "https://www.cryptokitties.co/images/kitty-eth.svg",
+  "social": {
+    "website": "https://www.cryptokitties.co"
+  },
   "abis": {
     "transfer": {
       "constant": false,

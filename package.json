@@ -3,6 +3,7 @@
     "jsonlint": "^1.6.2"
   },
   "scripts": {
-    "lint": "scripts/lint.sh"
+    "lint": "scripts/lint.sh",
+    "build": "node scripts/build.js"
   }
 }
