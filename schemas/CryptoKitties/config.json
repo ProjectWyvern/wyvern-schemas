@@ -7,6 +7,7 @@
   },
   "abis": {
     "transfer": {
+      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
       "constant": false,
       "inputs": [
         {   
@@ -27,6 +28,7 @@
       "type": "function"
     },
     "approve": {
+      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
       "constant": false,
       "inputs": [
         {   
@@ -47,6 +49,7 @@
       "type": "function"
     },
     "owner": {
+      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
       "constant": true,
       "inputs": [
         {   
@@ -65,6 +68,33 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
+    }
+  },
+  "events": {
+    "transfer": {
+      "anonymous": false,
+      "inputs": [
+        {   
+          "source": true,
+          "indexed": true,
+          "name": "from",
+          "type": "address"
+        },  
+        {   
+          "destination": true,
+          "indexed": true,
+          "name": "to",
+          "type": "address"
+        },  
+        {   
+          "asset": true,
+          "indexed": false,
+          "name": "tokenId",
+          "type": "uint256"
+        }   
+      ],  
+      "name": "Transfer",
+      "type": "event"
     }
   }
 }

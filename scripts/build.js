@@ -14,3 +14,4 @@ schemas = schemas.map(name => {
 
 fs.writeFileSync('./build/schemas.json', JSON.stringify(schemas))
 fs.writeFileSync('./build/tokens.json', JSON.stringify(JSON.parse(fs.readFileSync('./tokens/tokens.json'))))
+fs.writeFileSync('./build/schemaFunctions.js', fs.readFileSync('./src/schemaFunctions.js'))
