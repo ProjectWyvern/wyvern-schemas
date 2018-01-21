@@ -1,14 +1,14 @@
 {
-  "name": "CryptoKitties",
-  "description": "Virtual breedable and tradeable kittens.",
-  "thumbnail": "https://www.cryptokitties.co/images/kitty-eth.svg",
-  "network": "main",
+  "name": "TestRinkebyNFT",
+  "description": "Rinkeby ERC721 NFT for Wyvern Exchange testing.",
+  "thumbnail": "http://files.coinmarketcap.com.s3-website-us-east-1.amazonaws.com/static/img/coins/200x200/ethereum.png",
+  "network": "rinkeby",
   "social": {
-    "website": "https://www.cryptokitties.co"
+    "website": "https://www.projectwyvern.com"
   },
   "abis": {
     "transfer": {
-      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+      "target": "0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb",
       "constant": false,
       "inputs": [
         {   
@@ -29,7 +29,7 @@
       "type": "function"
     },
     "approve": {
-      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+      "target": "0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb",
       "constant": false,
       "inputs": [
         {   
@@ -50,7 +50,7 @@
       "type": "function"
     },
     "owner": {
-      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+      "target": "0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb",
       "constant": true,
       "inputs": [
         {   
@@ -62,51 +62,37 @@
       "name": "ownerOf",
       "outputs": [
         {   
-          "name": "owner",
+          "name": "_owner",
           "type": "address"
         }   
       ],  
       "payable": false,
       "stateMutability": "view",
       "type": "function"
-    },
-    "assets": {
-      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
-      "constant": true,
-      "inputs": [
-        {"type": "address", "name": "_owner"}
-      ],
-      "name": "tokensOfOwner",
-      "outputs": [
-        {"type": "uint256[]", "name": "ownerTokens"}
-      ],
-      "stateMutability": "view",
-      "payable": false,
-      "type": "function"
     }
   },
   "events": {
     "transfer": {
-      "index": false,
-      "target": "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+      "index": true,
+      "target": "0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb",
       "anonymous": false,
       "inputs": [
         {   
           "source": true,
-          "indexed": false,
-          "name": "from",
+          "indexed": true,
+          "name": "_from",
           "type": "address"
         },  
         {   
           "destination": true,
-          "indexed": false,
-          "name": "to",
+          "indexed": true,
+          "name": "_to",
           "type": "address"
         },  
         {   
           "asset": true,
           "indexed": false,
-          "name": "tokenId",
+          "name": "_tokenId",
           "type": "uint256"
         }   
       ],  

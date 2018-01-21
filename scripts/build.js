@@ -1,12 +1,12 @@
 const fs = require('fs')
 
-if (!fs.existsSync('./build')) {
-  fs.mkdirSync('./build')
-}
+fs.mkdirSync('./build')
+fs.mkdirSync('./build/templates')
 
 var schemas = fs.readdirSync('./schemas')
 schemas = schemas.map(name => {
   const config = JSON.parse(fs.readFileSync('./schemas/' + name + '/config.json'))
+  fs.copyFileSync('./schemas/' + name + '/template.vue', './build/templates/' + config.name + '.vue')
   return {
     config: config
   }
