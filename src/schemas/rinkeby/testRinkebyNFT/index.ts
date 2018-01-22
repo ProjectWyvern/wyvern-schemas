@@ -32,7 +32,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8ab',
+      target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256'},
@@ -49,7 +49,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       payable: false,
       constant: true,
       stateMutability: StateMutability.View,
-      target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8ab',
+      target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
       inputs: [
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256'},
       ],
