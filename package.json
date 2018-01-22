@@ -1,9 +1,24 @@
 {
-  "dependencies": {
-    "jsonlint": "^1.6.2"
-  },
+  "name": "wyvern-schemas",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
   "scripts": {
     "lint": "scripts/lint.sh",
-    "build": "rm -rf build && node scripts/build.js"
+    "dev": "scripts/dev.sh",
+    "build": "scripts/build.sh"
+  },
+  "devDependencies": {
+    "types-bn": "^0.0.1",
+    "types-ethereumjs-util": "^0.0.5",
+    "web3": "^0.20.4",
+    "web3-typescript-typings": "^0.9.4",
+    "@types/node": "^9.3.0",
+    "buffer": "^5.0.8",
+    "ethereumjs-abi": "^0.6.5",
+    "jsonlint": "^1.6.2",
+    "ts-loader": "^3.3.0",
+    "tslint": "^5.9.1",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "^2.6.2"
   }
 }

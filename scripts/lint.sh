@@ -2,6 +2,6 @@
 
 set -e
 
-yarn run jsonlint -q schemas/**/*.json
+yarn run tslint --project . 'src/**/*.ts' --fix
 
 echo "Lint OK!"

@@ -1,0 +1,20 @@
+{
+  "include": [
+    "./src/**/*",
+    "./node_modules/web3-typescript-typings/index.d.ts",
+    "./node_modules/types-bn/index.d.ts",
+    "./node_modules/types-ethereumjs-util/index.d.ts"
+  ],
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "declaration": true,
+    "module": "commonjs",
+    "target": "es5",
+    "pretty": true,
+    "strict": true,
+    "noImplicitReturns": true
+  }
+}
