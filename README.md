@@ -30,6 +30,10 @@ Run the lint script:
 yarn lint
 ```
 
+#### Testing
+
+This repository is tested as part of [wyvern-ethereum](https://github.com/ProjectWyvern/wyvern-ethereum)'s testsuite. Please follow the instructions on that repository.
+
 #### General Contribution
 
 Contributions welcome! Please use GitHub issues for suggestions/concerns - if you prefer to express your intentions in code, feel free to submit a pull request.

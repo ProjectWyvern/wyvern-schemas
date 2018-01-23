@@ -14,7 +14,7 @@
     "web3-typescript-typings": "^0.9.4",
     "@types/node": "^9.3.0",
     "buffer": "^5.0.8",
-    "ethereumjs-abi": "^0.6.5",
+    "ethereumjs-abi": "https://github.com/ProjectWyvern/ethereumjs-abi.git",
     "jsonlint": "^1.6.2",
     "ts-loader": "^3.3.0",
     "tslint": "^5.9.1",
