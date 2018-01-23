@@ -55,7 +55,9 @@ export type ReplacementEncoder<T> = (abi: AnnotatedFunctionABI<T>) => string;
 export const encodeReplacementPattern: ReplacementEncoder<any> = abi => {
   const allowReplaceBit = '1';
   const doNotAllowReplaceBit = '0';
-  const maskArr: string[] = [];
+  /* Four bytes for method ID. */
+  const maskArr: string[] = [doNotAllowReplaceBit, doNotAllowReplaceBit,
+    doNotAllowReplaceBit, doNotAllowReplaceBit];
   /* This DOES NOT currently support dynamic-length data (arrays). */
   abi.inputs.map(i => {
     const type = ethABI.elementaryName(i.type);
