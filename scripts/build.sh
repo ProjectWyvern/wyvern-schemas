@@ -1,4 +1,4 @@
 #!/bin/sh
 
 rm -rf dist
-yarn run tsc --prod
+yarn run tsc

@@ -20,7 +20,7 @@ yarn
 
 #### Adding an Asset Schema
 
-TODO
+Expect the schema format to undergo several revisions prior to release of the Exchange. For now, please submit a Github issue with the asset information.
 
 #### Linting & Schema Validation
 
