@@ -4,10 +4,44 @@ import * as Web3 from 'web3';
 import {
   AnnotatedFunctionABI,
   FunctionInputKind,
+  NetworkTokens,
+  Schema,
 } from './types';
+
+import {
+  canonicalWETHBalanceABI,
+  canonicalWETHDepositABI,
+  canonicalWETHWithdrawABI,
+} from './aux';
 
 const failWith = (msg: string): any => {
   throw new Error(msg);
+};
+
+export interface LimitedCallSpec {
+  target: string;
+  calldata: string;
+}
+
+export const encodeWETHBalance = (tokens: NetworkTokens, address: string): LimitedCallSpec => {
+  return {
+    calldata: encodeCall(canonicalWETHBalanceABI, [address]),
+    target: tokens.canonicalWrappedEther.address,
+  };
+};
+
+export const encodeWETHDeposit = (tokens: NetworkTokens): LimitedCallSpec => {
+  return {
+    calldata: encodeCall(canonicalWETHDepositABI, []),
+    target: tokens.canonicalWrappedEther.address,
+  };
+};
+
+export const encodeWETHWithdrawal = (tokens: NetworkTokens, amount: number): LimitedCallSpec => {
+  return {
+    calldata: encodeCall(canonicalWETHWithdrawABI, [amount.toString()]),
+    target: tokens.canonicalWrappedEther.address,
+  };
 };
 
 export const encodeCall = (abi: Web3.MethodAbi, parameters: any[]): string => {
@@ -35,6 +69,41 @@ const generateDefaultValue = (type: string): any => {
     default:
       failWith('Default value not yet implemented for type: ' + type);
   }
+};
+
+export interface CallSpec {
+  target: string;
+  calldata: string;
+  replacementPattern: string;
+}
+
+export type SellEncoder<T> = (schema: Schema<T>, asset: T) => CallSpec;
+
+export const encodeSell: SellEncoder<any> = (schema, nft) => {
+  const transfer = schema.functions.transfer(nft);
+  return {
+    target: transfer.target,
+    calldata: encodeDefaultCall(transfer),
+    replacementPattern: encodeReplacementPattern(transfer),
+  };
+};
+
+export type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
+
+export const encodeBuy: BuyEncoder<any> = (schema, nft, address) => {
+  const transfer = schema.functions.transfer(nft);
+  const matching = transfer.inputs.filter(i => i.kind === FunctionInputKind.Replaceable);
+  if (matching.length !== 1) {
+    failWith('Only 1 input can match transfer destination, but instead ' + matching.length + ' did');
+  }
+  matching[0].value = address;
+  const calldata = encodeCall(transfer, transfer.inputs.map(i => i.value.toString()));
+  const replacementLength = encodeReplacementPattern(transfer).length;
+  return {
+    target: transfer.target,
+    calldata,
+    replacementPattern: '0x' + ('0' as any).repeat(replacementLength - 2),
+  };
 };
 
 export type DefaultCallEncoder = (abi: AnnotatedFunctionABI) => string;

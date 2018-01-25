@@ -7,7 +7,16 @@ Web3.AbiType = {
   Event: 'event',
 };
 
-export { encodeCall, encodeDefaultCall, encodeReplacementPattern } from './schemaFunctions';
+export {
+  encodeWETHBalance,
+  encodeWETHDeposit,
+  encodeWETHWithdrawal,
+  encodeBuy,
+  encodeSell,
+  encodeCall,
+  encodeDefaultCall,
+  encodeReplacementPattern,
+} from './schemaFunctions';
 export { schemas } from './schemas/index';
 export { tokens } from './tokens/index';
 
