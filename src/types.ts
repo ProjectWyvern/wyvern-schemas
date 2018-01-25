@@ -101,11 +101,20 @@ export interface FormatInfo {
   url: string;
 }
 
+export interface SchemaField {
+  name: string;
+  type: string;
+  description: string;
+}
+
 export interface Schema<T> {
   name: string;
   description: string;
   thumbnail: string;
   website: string;
+  fields: SchemaField[];
+  unifyFields?: (fields: any) => any;
+  nftFromFields: (fields: any) => T;
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
   formatter: (obj: T) => FormatInfo;

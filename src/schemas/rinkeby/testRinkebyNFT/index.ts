@@ -1,7 +1,6 @@
 import * as Web3 from 'web3';
 
 import {
-  ABIType,
   EventInputKind,
   FunctionInputKind,
   FunctionOutputKind,
@@ -16,14 +15,18 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
   description: 'Rinkeby ERC721 non-fungible token for Wyvern Exchange testing',
   thumbnail: 'http://files.coinmarketcap.com.s3-website-us-east-1.amazonaws.com/static/img/coins/200x200/ethereum.png',
   website: 'https://projectwyvern.com',
+  fields: [
+    {name: 'ID', type: 'uint256', description: 'Token identification number.'},
+  ],
+  nftFromFields: (fields: any) => fields.ID,
   formatter:
-    nftNumber => {
+    nftID => {
       return {
         thumbnail: 'http://files.coinmarketcap.com.s3-website-us-east-1.amazonaws.com/static/img/coins/200x200/ethereum.png',
-        title: 'TestRinkebyNFT #' + nftNumber,
+        title: 'TestRinkebyNFT #' + nftID,
         description: 'A useless NFT!',
         url: 'https://www.projectwyvern.com',
-    };
+      };
   },
   functions: {
     transfer: {
@@ -38,10 +41,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256'},
       ],
       outputs: [],
-      nftToInputs:
-      nft => {
-        return {_tokenId: nft};
-      },
+      nftToInputs: nft => ({_tokenId: nft }),
     },
     ownerOf: {
       type: Web3.AbiType.Function,
@@ -56,10 +56,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       outputs: [
         {kind: FunctionOutputKind.Owner, name: '_owner', type: 'address'},
       ],
-      nftToInputs:
-      nft => {
-        return {_tokenId: nft};
-      },
+      nftToInputs: nft => ({_tokenId: nft }),
     },
   },
   events: {
@@ -73,9 +70,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
         {kind: EventInputKind.Destination, indexed: true, name: '_to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: '_tokenId', type: 'uint256'},
       ],
-      nftFromInputs: (inputs: any) => {
-        return inputs._tokenId;
-      },
+      nftFromInputs: (inputs: any) => inputs._tokenId,
     },
   },
 };
