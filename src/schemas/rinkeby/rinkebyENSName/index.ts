@@ -44,10 +44,11 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
   website: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md',
   fields: [
     {name: 'Name', type: 'string', description: 'ENS Name'},
-    {name: 'NodeHash', type: 'bytes32', description: 'ENS Node Hash'},
-    {name: 'NameHash', type: 'bytes32', description: 'ENS Name Hash'},
+    {name: 'NodeHash', type: 'bytes32', description: 'ENS Node Hash', readOnly: true},
+    {name: 'NameHash', type: 'bytes32', description: 'ENS Name Hash', readOnly: true},
   ],
   unifyFields: (fields: any) => ({
+    Name: fields.Name,
     NodeHash: nodehash(fields.Name),
     NameHash: namehash(fields.Name),
   }),

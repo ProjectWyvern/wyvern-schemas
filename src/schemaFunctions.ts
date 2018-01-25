@@ -22,6 +22,8 @@ const generateDefaultValue = (type: string): any => {
   switch (type) {
     case 'address':
       return '0x0000000000000000000000000000000000000000';
+    case 'bytes32':
+      return '0x0000000000000000000000000000000000000000000000000000000000000000';
     case 'bool':
       return false;
     case 'int':
@@ -49,9 +51,9 @@ export const encodeDefaultCall: DefaultCallEncoder = abi => {
   return encodeCall(abi, parameters);
 };
 
-export type ReplacementEncoder<T> = (abi: AnnotatedFunctionABI) => string;
+export type ReplacementEncoder = (abi: AnnotatedFunctionABI) => string;
 
-export const encodeReplacementPattern: ReplacementEncoder<any> = abi => {
+export const encodeReplacementPattern: ReplacementEncoder = abi => {
   const allowReplaceBit = '1';
   const doNotAllowReplaceBit = '0';
   /* Four bytes for method ID. */

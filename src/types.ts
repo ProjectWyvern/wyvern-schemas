@@ -105,6 +105,7 @@ export interface SchemaField {
   name: string;
   type: string;
   description: string;
+  readOnly?: boolean;
 }
 
 export interface Schema<T> {
