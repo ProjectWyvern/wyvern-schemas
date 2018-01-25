@@ -1,3 +1,4 @@
+import { sha3 } from 'ethereumjs-util';
 import * as Web3 from 'web3';
 
 import {
@@ -10,9 +11,31 @@ import {
 } from '../../../types';
 
 export interface RinkebyENSNameType {
-  node: string;
+  nodeHash: string;
+  nameHash?: string;
   name?: string;
 }
+
+const namehash = (name: string) => {
+  let node = '0000000000000000000000000000000000000000000000000000000000000000';
+  if (name !== '') {
+    const labels = name.split('.');
+    for (let i = labels.length - 1; i >= 0; i--) {
+      const labelHash = sha3(labels[i]).toString('hex');
+      node = sha3(new Buffer(node + labelHash, 'hex')).toString('hex');
+    }
+  }
+  return '0x' + node.toString();
+};
+
+const nodehash = (name: string) => {
+  const label = name.split('.')[0];
+  if (label) {
+    return '0x' + sha3(label).toString('hex');
+  } else {
+    return '';
+  }
+};
 
 export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
   name: 'RinkebyENSName',
@@ -21,21 +44,24 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
   website: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md',
   fields: [
     {name: 'Name', type: 'string', description: 'ENS Name'},
-    {name: 'Node', type: 'bytes32', description: 'ENS Node Hash'},
+    {name: 'NodeHash', type: 'bytes32', description: 'ENS Node Hash'},
+    {name: 'NameHash', type: 'bytes32', description: 'ENS Name Hash'},
   ],
   unifyFields: (fields: any) => ({
-    Node: fields.Name,
+    NodeHash: nodehash(fields.Name),
+    NameHash: namehash(fields.Name),
   }),
   nftFromFields: (fields: any) => ({
-    node: fields.Node,
     name: fields.Name,
+    nodeHash: fields.NodeHash,
+    nameHash: fields.NameHash,
   }),
   formatter:
     nft => {
       return {
         thumbnail: 'http://ens.domains/img/ens.svg',
         title: 'ENS Name ' + nft.name,
-        description: '(ENS node ' + nft.node + ')',
+        description: '(ENS node ' + nft.nodeHash + ')',
         url: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md',
       };
   },
@@ -52,7 +78,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
         {kind: FunctionInputKind.Replaceable, name: 'owner', type: 'address'},
       ],
       outputs: [],
-      nftToInputs: nft => ({ node: nft.node }),
+      nftToInputs: nft => ({ node: nft.nodeHash }),
     },
     ownerOf: {
       type: Web3.AbiType.Function,
@@ -67,7 +93,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
       outputs: [
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
       ],
-      nftToInputs: nft => ({ node: nft.node }),
+      nftToInputs: nft => ({ node: nft.nodeHash }),
     },
   },
   events: {
@@ -80,7 +106,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
         {kind: EventInputKind.Asset, indexed: true, name: 'node', type: 'bytes32'},
         {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
       ],
-      nftFromInputs: (inputs: any) => ({ node: inputs.node }),
+      nftFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
     },
   },
 };
