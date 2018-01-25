@@ -39,6 +39,7 @@ export interface AnnotatedFunctionInput {
   name: string;
   type: string;
   kind: FunctionInputKind;
+  value?: any;
 }
 
 export enum FunctionOutputKind {
@@ -51,7 +52,7 @@ export interface AnnotatedFunctionOutput {
   kind: FunctionOutputKind;
 }
 
-export interface AnnotatedFunctionABI<T> {
+export interface AnnotatedFunctionABI {
   type: Web3.AbiType.Function;
   name: string;
   target: string;
@@ -60,7 +61,6 @@ export interface AnnotatedFunctionABI<T> {
   constant: boolean;
   stateMutability: StateMutability;
   payable: boolean;
-  nftToInputs: (nft: T) => any;
 }
 
 export enum EventInputKind {
@@ -86,12 +86,12 @@ export interface AnnotatedEventABI<T> {
 }
 
 export interface SchemaFunctions<T> {
-  transfer: AnnotatedFunctionABI<T>;
-  ownerOf: AnnotatedFunctionABI<T>;
+  transfer: (nft: T) => AnnotatedFunctionABI;
+  ownerOf: (nft: T) => AnnotatedFunctionABI;
 }
 
 export interface SchemaEvents<T> {
-  transfer: AnnotatedEventABI<T>;
+  transfer?: AnnotatedEventABI<T>;
 }
 
 export interface FormatInfo {

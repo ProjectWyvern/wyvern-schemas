@@ -35,14 +35,13 @@ const generateDefaultValue = (type: string): any => {
   }
 };
 
-export type DefaultCallEncoder<T> = (abi: AnnotatedFunctionABI<T>, asset: T) => string;
+export type DefaultCallEncoder = (abi: AnnotatedFunctionABI) => string;
 
-export const encodeDefaultCall: DefaultCallEncoder<any> = (abi, asset) => {
-  const assetParameters = abi.nftToInputs(asset);
+export const encodeDefaultCall: DefaultCallEncoder = abi => {
   const parameters = abi.inputs.map(input => {
     switch (input.kind) {
       case FunctionInputKind.Asset:
-        return assetParameters[input.name];
+        return input.value;
       case FunctionInputKind.Replaceable:
         return generateDefaultValue(input.type);
     }
@@ -50,7 +49,7 @@ export const encodeDefaultCall: DefaultCallEncoder<any> = (abi, asset) => {
   return encodeCall(abi, parameters);
 };
 
-export type ReplacementEncoder<T> = (abi: AnnotatedFunctionABI<T>) => string;
+export type ReplacementEncoder<T> = (abi: AnnotatedFunctionABI) => string;
 
 export const encodeReplacementPattern: ReplacementEncoder<any> = abi => {
   const allowReplaceBit = '1';

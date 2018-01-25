@@ -29,7 +29,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       };
   },
   functions: {
-    transfer: {
+    transfer: nft => ({
       type: Web3.AbiType.Function,
       name: 'transfer',
       payable: false,
@@ -38,12 +38,11 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
-        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256'},
+        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: nft},
       ],
       outputs: [],
-      nftToInputs: nft => ({_tokenId: nft }),
-    },
-    ownerOf: {
+    }),
+    ownerOf: nft => ({
       type: Web3.AbiType.Function,
       name: 'ownerOf',
       payable: false,
@@ -51,13 +50,12 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       stateMutability: StateMutability.View,
       target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256'},
+        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: nft},
       ],
       outputs: [
         {kind: FunctionOutputKind.Owner, name: '_owner', type: 'address'},
       ],
-      nftToInputs: nft => ({_tokenId: nft }),
-    },
+    }),
   },
   events: {
     transfer: {

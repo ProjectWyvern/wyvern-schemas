@@ -66,7 +66,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
       };
   },
   functions: {
-    transfer: {
+    transfer: nft => ({
       type: Web3.AbiType.Function,
       name: 'setOwner',
       payable: false,
@@ -74,13 +74,12 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
       stateMutability: StateMutability.Nonpayable,
       target: '0xe7410170f87102df0055eb195163a03b7f2bff4a',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32'},
+        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: nft.nodeHash },
         {kind: FunctionInputKind.Replaceable, name: 'owner', type: 'address'},
       ],
       outputs: [],
-      nftToInputs: nft => ({ node: nft.nodeHash }),
-    },
-    ownerOf: {
+    }),
+    ownerOf: nft => ({
       type: Web3.AbiType.Function,
       name: 'owner',
       payable: false,
@@ -88,13 +87,12 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
       stateMutability: StateMutability.View,
       target: '0xe7410170f87102df0055eb195163a03b7f2bff4a',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32'},
+        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: nft.nodeHash},
       ],
       outputs: [
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
       ],
-      nftToInputs: nft => ({ node: nft.nodeHash }),
-    },
+    }),
   },
   events: {
     transfer: {
