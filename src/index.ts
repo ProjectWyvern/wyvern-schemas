@@ -8,9 +8,6 @@ Web3.AbiType = {
 };
 
 export {
-  encodeWETHBalance,
-  encodeWETHDeposit,
-  encodeWETHWithdrawal,
   encodeBuy,
   encodeSell,
   encodeCall,

@@ -8,12 +8,6 @@ import {
   Schema,
 } from './types';
 
-import {
-  canonicalWETHBalanceABI,
-  canonicalWETHDepositABI,
-  canonicalWETHWithdrawABI,
-} from './aux';
-
 const failWith = (msg: string): any => {
   throw new Error(msg);
 };
@@ -22,27 +16,6 @@ export interface LimitedCallSpec {
   target: string;
   calldata: string;
 }
-
-export const encodeWETHBalance = (tokens: NetworkTokens, address: string): LimitedCallSpec => {
-  return {
-    calldata: encodeCall(canonicalWETHBalanceABI, [address]),
-    target: tokens.canonicalWrappedEther.address,
-  };
-};
-
-export const encodeWETHDeposit = (tokens: NetworkTokens): LimitedCallSpec => {
-  return {
-    calldata: encodeCall(canonicalWETHDepositABI, []),
-    target: tokens.canonicalWrappedEther.address,
-  };
-};
-
-export const encodeWETHWithdrawal = (tokens: NetworkTokens, amount: number): LimitedCallSpec => {
-  return {
-    calldata: encodeCall(canonicalWETHWithdrawABI, [amount.toString()]),
-    target: tokens.canonicalWrappedEther.address,
-  };
-};
 
 export const encodeCall = (abi: Web3.MethodAbi, parameters: any[]): string => {
   const inputTypes = abi.inputs.map(i => i.type);
