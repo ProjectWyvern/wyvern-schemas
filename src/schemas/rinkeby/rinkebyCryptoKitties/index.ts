@@ -90,7 +90,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
         {kind: EventInputKind.Destination, indexed: true, name: 'to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: true, name: 'tokenId', type: 'uint256'},
       ],
-      nftFromInputs: (inputs: any) => inputs._tokenId,
+      nftFromInputs: (inputs: any) => inputs.tokenId,
     },
   },
 };
