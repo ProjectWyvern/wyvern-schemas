@@ -33,6 +33,8 @@ export enum StateMutability {
 export enum FunctionInputKind {
   Replaceable = 'replaceable',
   Asset = 'asset',
+  Owner = 'owner',
+  Index = 'index',
 }
 
 export interface AnnotatedFunctionInput {
@@ -44,6 +46,7 @@ export interface AnnotatedFunctionInput {
 
 export enum FunctionOutputKind {
   Owner = 'owner',
+  Asset = 'asset',
 }
 
 export interface AnnotatedFunctionOutput {
@@ -61,6 +64,10 @@ export interface AnnotatedFunctionABI {
   constant: boolean;
   stateMutability: StateMutability;
   payable: boolean;
+}
+
+export interface AnnotatedFunctionABIReturning<T> extends AnnotatedFunctionABI {
+  nftFromOutputs: (outputs: any) => T;
 }
 
 export enum EventInputKind {
@@ -87,7 +94,8 @@ export interface AnnotatedEventABI<T> {
 
 export interface SchemaFunctions<T> {
   transfer: (nft: T) => AnnotatedFunctionABI;
-  ownerOf: (nft: T) => AnnotatedFunctionABI;
+  ownerOf?: (nft: T) => AnnotatedFunctionABI;
+  tokensOfOwnerByIndex?: AnnotatedFunctionABIReturning<T>;
 }
 
 export interface SchemaEvents<T> {
