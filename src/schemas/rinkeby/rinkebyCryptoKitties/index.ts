@@ -79,8 +79,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
       },
     },
   },
-  events: {},
-/*
+  events: {
     transfer: {
       type: Web3.AbiType.Event,
       name: 'Transfer',
@@ -94,5 +93,4 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
       nftFromInputs: (inputs: any) => inputs._tokenId,
     },
   },
-*/
 };
