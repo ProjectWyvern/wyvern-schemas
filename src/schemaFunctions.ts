@@ -71,11 +71,10 @@ export const encodeBuy: BuyEncoder<any> = (schema, nft, address) => {
   }
   matching[0].value = address;
   const calldata = encodeCall(transfer, transfer.inputs.map(i => i.value.toString()));
-  const replacementLength = encodeReplacementPattern(transfer).length;
   return {
     target: transfer.target,
     calldata,
-    replacementPattern: '0x' + ('0' as any).repeat(replacementLength - 2),
+    replacementPattern: '0x',
   };
 };
 
