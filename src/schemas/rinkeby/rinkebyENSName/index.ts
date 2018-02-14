@@ -40,7 +40,7 @@ const nodehash = (name: string) => {
 export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
   name: 'RinkebyENSName',
   description: 'Rinkeby Ethereum Name Service (EIP 137)',
-  thumbnail: 'http://ens.domains/img/ens.svg',
+  thumbnail: 'https://ens.domains/img/ens.svg',
   website: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md',
   fields: [
     {name: 'Name', type: 'string', description: 'ENS Name'},
@@ -60,7 +60,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
   formatter:
     nft => {
       return {
-        thumbnail: 'http://ens.domains/img/ens.svg',
+        thumbnail: 'https://ens.domains/img/ens.svg',
         title: 'ENS Name ' + nft.name,
         description: '(ENS node ' + nft.nodeHash + ')',
         url: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md',

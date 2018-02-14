@@ -8,21 +8,22 @@ import {
   StateMutability,
 } from '../../../types';
 
-export type TestRinkebyNFTType = number;
+export type TestRinkebyNFTType = string;
 
 export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
   name: 'TestRinkebyNFT',
   description: 'Rinkeby ERC721 non-fungible token for Wyvern Exchange testing',
-  thumbnail: 'http://files.coinmarketcap.com.s3-website-us-east-1.amazonaws.com/static/img/coins/200x200/ethereum.png',
+  thumbnail: 'https://cointelegraph.com/storage/uploads/view/f88e17e41f607dc0aef238230dd40cc6.png',
   website: 'https://projectwyvern.com',
   fields: [
     {name: 'ID', type: 'uint256', description: 'Token identification number.'},
   ],
   nftFromFields: (fields: any) => fields.ID,
+  nftToFields: nft => ({ID: nft}),
   formatter:
     nftID => {
       return {
-        thumbnail: 'http://files.coinmarketcap.com.s3-website-us-east-1.amazonaws.com/static/img/coins/200x200/ethereum.png',
+        thumbnail: 'https://cointelegraph.com/storage/uploads/view/f88e17e41f607dc0aef238230dd40cc6.png',
         title: 'TestRinkebyNFT #' + nftID,
         description: 'A useless NFT!',
         url: 'https://www.projectwyvern.com',
@@ -68,7 +69,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
         {kind: EventInputKind.Destination, indexed: true, name: '_to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: '_tokenId', type: 'uint256'},
       ],
-      nftFromInputs: (inputs: any) => inputs._tokenId,
+      nftFromInputs: (inputs: any) => inputs._tokenId.toString(),
     },
   },
 };

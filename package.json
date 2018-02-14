@@ -2,11 +2,27 @@
   "name": "wyvern-schemas",
   "version": "0.1.0",
   "main": "./dist/index.js",
+  "description": "Nonfungible asset schemas for the Wyvern Protocol",
   "scripts": {
     "lint": "scripts/lint.sh",
     "dev": "scripts/dev.sh",
     "build": "scripts/build.sh"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectWyvern/wyvern-schemas.git"
+  },
+  "keywords": [
+    "ethereum",
+    "project-wyvern",
+    "smart-contracts"
+  ],
+  "author": "Project Wyvern Developers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProjectWyvern/wyvern-schemas/issues"
+  },  
+  "homepage": "https://github.com/ProjectWyvern/wyvern-schemas#readme",
   "devDependencies": {
     "@types/node": "^9.3.0",
     "buffer": "^5.0.8",

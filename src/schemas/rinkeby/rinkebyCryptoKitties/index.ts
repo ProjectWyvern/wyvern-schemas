@@ -8,7 +8,7 @@ import {
   StateMutability,
 } from '../../../types';
 
-export type RinkebyCryptoKittiesType = number;
+export type RinkebyCryptoKittiesType = string;
 
 export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
   name: 'RinkebyCryptoKitties',
@@ -19,6 +19,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
     {name: 'ID', type: 'uint256', description: 'CryptoKitty number.'},
   ],
   nftFromFields: (fields: any) => fields.ID,
+  nftToFields: nft => ({ID: nft}),
   formatter:
     nftID => {
       return {
@@ -74,7 +75,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
         if (output.toNumber() === 0) {
           return null;
         } else {
-          return output;
+          return output.toString();
         }
       },
     },

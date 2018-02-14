@@ -124,6 +124,7 @@ export interface Schema<T> {
   fields: SchemaField[];
   unifyFields?: (fields: any) => any;
   nftFromFields: (fields: any) => T;
+  nftToFields?: (nft: T) => any;
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
   formatter: (obj: T) => FormatInfo;
