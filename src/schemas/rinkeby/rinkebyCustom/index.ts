@@ -31,7 +31,7 @@ export const rinkebyCustomSchema: Schema<RinkebyCustomType> = {
     {name: 'URL', type: 'string', description: 'URL of asset'},
     {name: 'Transfer', type: 'abi', description: 'ABI of transfer function'},
   ],
-  nftFromFields: (fields: any) => ({
+  assetFromFields: (fields: any) => ({
     name: fields.Name,
     description: fields.Description,
     thumbnail: fields.Thumbnail,
@@ -39,16 +39,17 @@ export const rinkebyCustomSchema: Schema<RinkebyCustomType> = {
     transfer: fields.Transfer,
   }),
   formatter:
-    nft => {
+    async asset => {
       return {
-        thumbnail: nft.thumbnail,
-        title: nft.name,
-        description: nft.description,
-        url: nft.url,
+        thumbnail: asset.thumbnail,
+        title: asset.name,
+        description: asset.description,
+        url: asset.url,
+        properties: [],
       };
   },
   functions: {
-    transfer: nft => nft.transfer,
+    transfer: asset => asset.transfer,
   },
   events: {},
 };

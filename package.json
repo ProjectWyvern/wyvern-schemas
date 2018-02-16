@@ -1,6 +1,6 @@
 {
   "name": "wyvern-schemas",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./dist/index.js",
   "description": "Nonfungible asset schemas for the Wyvern Protocol",
   "scripts": {
@@ -21,7 +21,7 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ProjectWyvern/wyvern-schemas/issues"
-  },  
+  },
   "homepage": "https://github.com/ProjectWyvern/wyvern-schemas#readme",
   "devDependencies": {
     "@types/node": "^9.3.0",
@@ -37,5 +37,8 @@
     "typescript": "^2.6.2",
     "web3": "^0.20.4",
     "web3-typescript-typings": "^0.9.4"
+  },
+  "dependencies": {
+    "axios": "^0.17.1"
   }
 }

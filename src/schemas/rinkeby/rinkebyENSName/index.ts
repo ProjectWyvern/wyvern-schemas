@@ -52,22 +52,23 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
     NodeHash: nodehash(fields.Name),
     NameHash: namehash(fields.Name),
   }),
-  nftFromFields: (fields: any) => ({
+  assetFromFields: (fields: any) => ({
     name: fields.Name,
     nodeHash: fields.NodeHash,
     nameHash: fields.NameHash,
   }),
   formatter:
-    nft => {
+    async asset => {
       return {
         thumbnail: 'https://ens.domains/img/ens.svg',
-        title: 'ENS Name ' + nft.name,
-        description: '(ENS node ' + nft.nodeHash + ')',
+        title: 'ENS Name ' + asset.name,
+        description: '(ENS node ' + asset.nodeHash + ')',
         url: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md',
+        properties: [],
       };
   },
   functions: {
-    transfer: nft => ({
+    transfer: asset => ({
       type: Web3.AbiType.Function,
       name: 'setOwner',
       payable: false,
@@ -75,12 +76,12 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
       stateMutability: StateMutability.Nonpayable,
       target: '0xe7410170f87102df0055eb195163a03b7f2bff4a',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: nft.nodeHash },
+        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: asset.nodeHash },
         {kind: FunctionInputKind.Replaceable, name: 'owner', type: 'address'},
       ],
       outputs: [],
     }),
-    ownerOf: nft => ({
+    ownerOf: asset => ({
       type: Web3.AbiType.Function,
       name: 'owner',
       payable: false,
@@ -88,7 +89,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
       stateMutability: StateMutability.View,
       target: '0xe7410170f87102df0055eb195163a03b7f2bff4a',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: nft.nodeHash},
+        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: asset.nodeHash},
       ],
       outputs: [
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
@@ -105,7 +106,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
         {kind: EventInputKind.Asset, indexed: true, name: 'node', type: 'bytes32'},
         {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
       ],
-      nftFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
+      assetFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
     },
   },
 };

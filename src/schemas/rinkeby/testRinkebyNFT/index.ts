@@ -18,19 +18,20 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
   fields: [
     {name: 'ID', type: 'uint256', description: 'Token identification number.'},
   ],
-  nftFromFields: (fields: any) => fields.ID,
-  nftToFields: nft => ({ID: nft}),
+  assetFromFields: (fields: any) => fields.ID,
+  assetToFields: asset => ({ID: asset}),
   formatter:
-    nftID => {
+    async asset => {
       return {
         thumbnail: 'https://cointelegraph.com/storage/uploads/view/f88e17e41f607dc0aef238230dd40cc6.png',
-        title: 'TestRinkebyNFT #' + nftID,
+        title: 'TestRinkebyNFT #' + asset,
         description: 'A useless NFT!',
         url: 'https://www.projectwyvern.com',
+        properties: [],
       };
   },
   functions: {
-    transfer: nft => ({
+    transfer: asset => ({
       type: Web3.AbiType.Function,
       name: 'transfer',
       payable: false,
@@ -39,11 +40,11 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
-        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: nft},
+        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
       ],
       outputs: [],
     }),
-    ownerOf: nft => ({
+    ownerOf: asset => ({
       type: Web3.AbiType.Function,
       name: 'ownerOf',
       payable: false,
@@ -51,7 +52,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       stateMutability: StateMutability.View,
       target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: nft},
+        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
       ],
       outputs: [
         {kind: FunctionOutputKind.Owner, name: '_owner', type: 'address'},
@@ -69,7 +70,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
         {kind: EventInputKind.Destination, indexed: true, name: '_to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: '_tokenId', type: 'uint256'},
       ],
-      nftFromInputs: (inputs: any) => inputs._tokenId.toString(),
+      assetFromInputs: (inputs: any) => inputs._tokenId.toString(),
     },
   },
 };

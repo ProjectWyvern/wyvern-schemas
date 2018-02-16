@@ -67,7 +67,7 @@ export interface AnnotatedFunctionABI {
 }
 
 export interface AnnotatedFunctionABIReturning<T> extends AnnotatedFunctionABI {
-  nftFromOutputs: (outputs: any) => T;
+  assetFromOutputs: (outputs: any) => T;
 }
 
 export enum EventInputKind {
@@ -89,12 +89,12 @@ export interface AnnotatedEventABI<T> {
   target: string;
   anonymous: boolean;
   inputs: AnnotatedEventInput[];
-  nftFromInputs: (inputs: any) => T;
+  assetFromInputs: (inputs: any) => T;
 }
 
 export interface SchemaFunctions<T> {
-  transfer: (nft: T) => AnnotatedFunctionABI;
-  ownerOf?: (nft: T) => AnnotatedFunctionABI;
+  transfer: (asset: T) => AnnotatedFunctionABI;
+  ownerOf?: (asset: T) => AnnotatedFunctionABI;
   tokensOfOwnerByIndex?: AnnotatedFunctionABIReturning<T>;
 }
 
@@ -102,11 +102,18 @@ export interface SchemaEvents<T> {
   transfer?: AnnotatedEventABI<T>;
 }
 
+export interface Property {
+  key: string;
+  kind: string;
+  value: any;
+}
+
 export interface FormatInfo {
   thumbnail: string;
   title: string;
   description: string;
   url: string;
+  properties: Property[];
 }
 
 export interface SchemaField {
@@ -123,9 +130,9 @@ export interface Schema<T> {
   website: string;
   fields: SchemaField[];
   unifyFields?: (fields: any) => any;
-  nftFromFields: (fields: any) => T;
-  nftToFields?: (nft: T) => any;
+  assetFromFields: (fields: any) => T;
+  assetToFields?: (asset: T) => any;
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
-  formatter: (obj: T) => FormatInfo;
+  formatter: (obj: T) => Promise<FormatInfo>;
 }
