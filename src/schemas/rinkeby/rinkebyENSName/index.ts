@@ -57,6 +57,9 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
     nodeHash: fields.NodeHash,
     nameHash: fields.NameHash,
   }),
+  checkAsset: (asset: RinkebyENSNameType) => {
+    return asset.name ? (namehash(asset.name) === asset.nameHash && nodehash(asset.name) === asset.nodeHash) : true;
+  },
   formatter:
     async asset => {
       return {

@@ -53,8 +53,8 @@ export interface CallSpec {
 
 export type SellEncoder<T> = (schema: Schema<T>, asset: T) => CallSpec;
 
-export const encodeSell: SellEncoder<any> = (schema, nft) => {
-  const transfer = schema.functions.transfer(nft);
+export const encodeSell: SellEncoder<any> = (schema, asset) => {
+  const transfer = schema.functions.transfer(asset);
   return {
     target: transfer.target,
     calldata: encodeDefaultCall(transfer),
@@ -64,8 +64,8 @@ export const encodeSell: SellEncoder<any> = (schema, nft) => {
 
 export type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 
-export const encodeBuy: BuyEncoder<any> = (schema, nft, address) => {
-  const transfer = schema.functions.transfer(nft);
+export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
+  const transfer = schema.functions.transfer(asset);
   const matching = transfer.inputs.filter(i => i.kind === FunctionInputKind.Replaceable);
   if (matching.length !== 1) {
     failWith('Only 1 input can match transfer destination, but instead ' + matching.length + ' did');
