@@ -2,4 +2,4 @@
 
 set -e
 
-yarn lint
+yarn build
