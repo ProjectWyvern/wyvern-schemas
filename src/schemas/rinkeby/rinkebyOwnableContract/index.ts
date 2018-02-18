@@ -16,6 +16,7 @@ export interface RinkebyOwnableContractType {
 }
 
 export const rinkebyOwnableContractSchema: Schema<RinkebyOwnableContractType> = {
+  version: 1,
   name: 'RinkebyOwnableContract',
   description: 'Rinkeby Ownable Smart Contract',
   thumbnail: 'https://i.redditmedia.com/NaFzmSbDX2T2RALMxy2tmGJN_gPVNH9lJggCKUDDqcc.jpg?w=320&s=3913239508209aaf6ba1188fe3d3b5fc',
@@ -65,4 +66,5 @@ export const rinkebyOwnableContractSchema: Schema<RinkebyOwnableContractType> = 
     }),
   },
   events: {},
+  hash: a => a.address,
 };

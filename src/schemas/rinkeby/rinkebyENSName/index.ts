@@ -38,6 +38,7 @@ const nodehash = (name: string) => {
 };
 
 export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
+  version: 1,
   name: 'RinkebyENSName',
   description: 'Rinkeby Ethereum Name Service (EIP 137)',
   thumbnail: 'https://ens.domains/img/ens.svg',
@@ -112,4 +113,5 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
       assetFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
     },
   },
+  hash: a => a.nodeHash,
 };

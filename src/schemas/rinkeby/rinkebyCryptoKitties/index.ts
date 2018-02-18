@@ -12,6 +12,7 @@ import {
 export type RinkebyCryptoKittiesType = string;
 
 export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
+  version: 1,
   name: 'RinkebyCryptoKitties',
   description: 'Rinkeby Testnet CryptoKitties',
   thumbnail: 'https://www.cryptokitties.co/images/kitty-eth.svg',
@@ -65,7 +66,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
         {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
       ],
     }),
-    tokensOfOwnerByIndex: {
+    assetsOfOwnerByIndex: {
       type: Web3.AbiType.Function,
       name: 'tokensOfOwnerByIndex',
       payable: false,
@@ -102,4 +103,5 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
       assetFromInputs: (inputs: any) => inputs.tokenId,
     },
   },
+  hash: a => a,
 };

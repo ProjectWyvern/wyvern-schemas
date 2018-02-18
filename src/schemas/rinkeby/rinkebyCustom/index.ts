@@ -20,6 +20,7 @@ export interface RinkebyCustomType {
 }
 
 export const rinkebyCustomSchema: Schema<RinkebyCustomType> = {
+  version: 1,
   name: 'RinkebyCustom',
   description: 'Rinkeby Custom (manual ABI specification)',
   thumbnail: 'https://d30y9cdsu7xlg0.cloudfront.net/png/45447-200.png',
@@ -52,4 +53,5 @@ export const rinkebyCustomSchema: Schema<RinkebyCustomType> = {
     transfer: asset => asset.transfer,
   },
   events: {},
+  hash: a => JSON.stringify(a),
 };

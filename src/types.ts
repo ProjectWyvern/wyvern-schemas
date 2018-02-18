@@ -95,7 +95,7 @@ export interface AnnotatedEventABI<T> {
 export interface SchemaFunctions<T> {
   transfer: (asset: T) => AnnotatedFunctionABI;
   ownerOf?: (asset: T) => AnnotatedFunctionABI;
-  tokensOfOwnerByIndex?: AnnotatedFunctionABIReturning<T>;
+  assetsOfOwnerByIndex?: AnnotatedFunctionABIReturning<T>;
 }
 
 export interface SchemaEvents<T> {
@@ -124,6 +124,7 @@ export interface SchemaField {
 }
 
 export interface Schema<T> {
+  version: number;
   name: string;
   description: string;
   thumbnail: string;
@@ -136,4 +137,5 @@ export interface Schema<T> {
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
   formatter: (obj: T) => Promise<FormatInfo>;
+  hash: (obj: T) => any;
 }
