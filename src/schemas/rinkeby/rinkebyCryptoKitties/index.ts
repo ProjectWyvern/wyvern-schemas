@@ -24,18 +24,12 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
   assetToFields: asset => ({ID: asset}),
   formatter:
     async asset => {
-      const response = await axios.get(`https://api.cryptokitties.co/kitties/${asset}`);
-      const data = response.data;
       return {
-        thumbnail: data.image_url_cdn,
+        thumbnail: 'https://www.cryptokitties.co/images/kitty-eth.svg',
         title: 'RinkebyCryptoKitty #' + asset,
-        description: data.bio,
+        description: 'A Rinkeby kitten!',
         url: 'https://www.cryptokitties.co/kitty/' + asset,
-        properties: data.cattributes.map((c: any) => ({
-          key: c.type,
-          kind: 'string',
-          value: c.description,
-        })),
+        properties: [],
       };
   },
   functions: {
