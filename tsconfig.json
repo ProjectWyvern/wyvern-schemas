@@ -7,12 +7,12 @@
   ],
   "compilerOptions": {
     "sourceMap": true,
-    "outDir": "./dist/",
+    "outDir": "./dist-tsc/",
     "noImplicitAny": true,
     "noImplicitThis": false,
     "declaration": true,
     "module": "commonjs",
-    "target": "es2015",
+    "target": "es2017",
     "pretty": true,
     "strict": true,
     "noImplicitReturns": true
