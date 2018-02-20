@@ -13,6 +13,7 @@ export type MythereumType = string;
 
 export const MythereumSchema: Schema<MythereumType> = {
   version: 1,
+  deploymentBlock: 5033489,
   name: 'Mythereum',
   description: 'The Fantastically Distributed Collectible Card Game Built on the Ethereum Blockchain',
   thumbnail: 'https://www.mythereum.io/three-cards.png',

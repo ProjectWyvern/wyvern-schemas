@@ -38,6 +38,7 @@ const nodehash = (name: string) => {
 
 export const ENSNameSchema: Schema<ENSNameType> = {
   version: 1,
+  deploymentBlock: 3605331,
   name: 'ENSName',
   description: 'Ethereum Name Service Name (EIP 137)',
   thumbnail: 'https://ens.domains/img/ens.svg',

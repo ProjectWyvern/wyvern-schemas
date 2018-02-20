@@ -13,6 +13,7 @@ export type CryptoFightersType = string;
 
 export const CryptoFightersSchema: Schema<CryptoFightersType> = {
   version: 1,
+  deploymentBlock: 4952230,
   name: 'CryptoFighters',
   description: 'Collect, train, and fight: digital fighters on the blockchain.',
   thumbnail: 'https://s3.amazonaws.com/cryptofighters/images/455fde9f-9810-4e70-bda6-8bb5cf7a6fe7.png',

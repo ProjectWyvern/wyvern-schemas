@@ -125,6 +125,7 @@ export interface SchemaField {
 
 export interface Schema<T> {
   version: number;
+  deploymentBlock: number;
   name: string;
   description: string;
   thumbnail: string;

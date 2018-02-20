@@ -12,6 +12,7 @@ export type RinkebyCryptoKittiesType = string;
 
 export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
   version: 1,
+  deploymentBlock: 0,
   name: 'RinkebyCryptoKitties',
   description: 'Rinkeby Testnet CryptoKitties',
   thumbnail: 'https://www.cryptokitties.co/images/kitty-eth.svg',

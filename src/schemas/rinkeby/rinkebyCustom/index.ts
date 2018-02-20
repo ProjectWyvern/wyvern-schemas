@@ -14,6 +14,7 @@ export interface RinkebyCustomType {
 
 export const rinkebyCustomSchema: Schema<RinkebyCustomType> = {
   version: 1,
+  deploymentBlock: 0,
   name: 'RinkebyCustom',
   description: 'Rinkeby Custom (manual ABI specification)',
   thumbnail: 'https://d30y9cdsu7xlg0.cloudfront.net/png/45447-200.png',

@@ -13,6 +13,7 @@ export type CryptoKittiesType = string;
 
 export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
   version: 1,
+  deploymentBlock: 4605167,
   name: 'CryptoKitties',
   description: 'The virtual kitties that started the craze.',
   thumbnail: 'https://www.cryptokitties.co/images/kitty-eth.svg',
