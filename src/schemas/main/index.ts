@@ -1,9 +1,11 @@
 import { Schema } from '../../types';
 
-import { cryptoKittiesSchema } from './CryptoKitties/index';
+import { CryptoKittiesSchema } from './CryptoKitties/index';
+import { CryptoFightersSchema } from './CryptoFighters/index';
 import { ENSNameSchema } from './ENSName/index';
 
 export const mainSchemas: Array<Schema<any>> = [
-  cryptoKittiesSchema,
+  CryptoKittiesSchema,
+  CryptoFightersSchema,
   ENSNameSchema,
 ];

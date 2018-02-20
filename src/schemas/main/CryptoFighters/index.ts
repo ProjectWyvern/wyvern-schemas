@@ -9,33 +9,29 @@ import {
   StateMutability,
 } from '../../../types';
 
-export type CryptoKittiesType = string;
+export type CryptoFightersType = string;
 
-export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
+export const CryptoFightersSchema: Schema<CryptoFightersType> = {
   version: 1,
-  name: 'CryptoKitties',
-  description: 'The virtual kitties that started the craze.',
-  thumbnail: 'https://www.cryptokitties.co/images/kitty-eth.svg',
-  website: 'https://cryptokitties.co',
+  name: 'CryptoFighters',
+  description: 'Collect, train, and fight: digital fighters on the blockchain.',
+  thumbnail: 'https://s3.amazonaws.com/cryptofighters/images/455fde9f-9810-4e70-bda6-8bb5cf7a6fe7.png',
+  website: 'https://cryptofighters.io/',
   fields: [
-    {name: 'ID', type: 'uint256', description: 'CryptoKitty number.'},
+    {name: 'ID', type: 'uint256', description: 'CryptoFighter number.'},
   ],
   assetFromFields: (fields: any) => fields.ID,
   assetToFields: asset => ({ID: asset}),
   formatter:
     async asset => {
-      const response = await axios.get(`https://api.cryptokitties.co/kitties/${asset}`);
+      const response = await axios.get(`https://api.cryptofighters.io/fighters/${asset}`);
       const data = response.data;
       return {
-        thumbnail: data.image_url_cdn,
-        title: 'CryptoKitty #' + asset,
-        description: data.bio,
-        url: 'https://www.cryptokitties.co/kitty/' + asset,
-        properties: data.cattributes.map((c: any) => ({
-          key: c.type,
-          kind: 'string',
-          value: c.description,
-        })),
+        thumbnail: data.image,
+        title: 'CryptoFighter #' + asset,
+        description: '',
+        url: 'https://cryptofighters.io/fighter/' + asset,
+        properties: [],
       };
   },
   functions: {
@@ -45,7 +41,7 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: '0x06012c8cf97bead5deae237070f9587f8e7a266d',
+      target: '0x87d598064c736dd0c712d329afcfaa0ccc1921a1',
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
@@ -58,7 +54,7 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
       payable: false,
       constant: true,
       stateMutability: StateMutability.View,
-      target: '0x06012c8cf97bead5deae237070f9587f8e7a266d',
+      target: '0x87d598064c736dd0c712d329afcfaa0ccc1921a1',
       inputs: [
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
       ],
@@ -71,12 +67,12 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
     transfer: {
       type: Web3.AbiType.Event,
       name: 'Transfer',
-      target: '0x06012c8cf97bead5deae237070f9587f8e7a266d',
+      target: '0x87d598064c736dd0c712d329afcfaa0ccc1921a1',
       anonymous: false,
       inputs: [
-        {kind: EventInputKind.Source, indexed: false, name: 'from', type: 'address'},
-        {kind: EventInputKind.Destination, indexed: false, name: 'to', type: 'address'},
-        {kind: EventInputKind.Asset, indexed: false, name: 'tokenId', type: 'uint256'},
+        {kind: EventInputKind.Source, indexed: true, name: 'from', type: 'address'},
+        {kind: EventInputKind.Destination, indexed: true, name: 'to', type: 'address'},
+        {kind: EventInputKind.Asset, indexed: true, name: 'tokenId', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs.tokenId,
     },
