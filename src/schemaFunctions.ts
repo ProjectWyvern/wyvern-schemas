@@ -4,7 +4,6 @@ import * as Web3 from 'web3';
 import {
   AnnotatedFunctionABI,
   FunctionInputKind,
-  NetworkTokens,
   Schema,
 } from './types';
 

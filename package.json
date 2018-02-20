@@ -44,6 +44,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
-    "js-yaml": "^3.10.0"
+    "js-yaml": "^3.10.0",
+    "typed-promisify": "^0.4.0"
   }
 }

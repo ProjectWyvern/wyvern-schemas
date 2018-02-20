@@ -136,6 +136,6 @@ export interface Schema<T> {
   assetToFields?: (asset: T) => any;
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
-  formatter: (obj: T) => Promise<FormatInfo>;
+  formatter: (obj: T, web3: any) => Promise<FormatInfo>;
   hash: (obj: T) => any;
 }

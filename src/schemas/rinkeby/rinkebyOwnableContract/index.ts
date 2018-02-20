@@ -1,12 +1,9 @@
-import { sha3 } from 'ethereumjs-util';
 import * as Web3 from 'web3';
 
 import {
-  EventInputKind,
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
-  SchemaField,
   StateMutability,
 } from '../../../types';
 

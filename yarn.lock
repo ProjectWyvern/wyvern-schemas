@@ -2525,6 +2525,10 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
+typed-promisify@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/typed-promisify/-/typed-promisify-0.4.0.tgz#ade1d3d32130767ba4ef5385162c720698105d0f"
+
 types-bn@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/types-bn/-/types-bn-0.0.1.tgz#4253c7c7251b14e1d77cdca6f58800e5e2b82c4b"

@@ -6,7 +6,6 @@ import {
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
-  SchemaField,
   StateMutability,
 } from '../../../types';
 

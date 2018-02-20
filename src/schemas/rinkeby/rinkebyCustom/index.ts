@@ -1,14 +1,7 @@
-import { sha3 } from 'ethereumjs-util';
-import * as Web3 from 'web3';
 
 import {
   AnnotatedFunctionABI,
-  EventInputKind,
-  FunctionInputKind,
-  FunctionOutputKind,
   Schema,
-  SchemaField,
-  StateMutability,
 } from '../../../types';
 
 export interface RinkebyCustomType {
