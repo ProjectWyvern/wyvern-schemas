@@ -25,19 +25,35 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
   assetToFields: asset => ({ID: asset}),
   formatter:
     async asset => {
-      const response = await axios.get(`https://api.cryptokitties.co/kitties/${asset}`);
-      const data = response.data;
-      return {
-        thumbnail: data.image_url_cdn,
-        title: 'CryptoKitty #' + asset,
-        description: data.bio,
-        url: 'https://www.cryptokitties.co/kitty/' + asset,
-        properties: data.cattributes.map((c: any) => ({
-          key: c.type,
-          kind: 'string',
-          value: c.description,
-        })),
-      };
+      const response = await axios.get(`https://api.cryptokitties.co/kitties/${asset}`).catch(err => {
+        if (err.response && (err.response.status === 404 || err.response.status === 400)) {
+          return null;
+        } else {
+          throw err;
+        }
+      });
+      if (response === null) {
+        return {
+          thumbnail: 'https://www.cryptokitties.co/images/kitty-eth.svg',
+          title: 'CryptoKitty #' + asset,
+          description: '',
+          url: 'https://www.cryptokitties.co/kitty/' + asset,
+          properties: [],
+        };
+      } else {
+        const data = response.data;
+        return {
+          thumbnail: data.image_url_cdn,
+          title: 'CryptoKitty #' + asset,
+          description: data.bio,
+          url: 'https://www.cryptokitties.co/kitty/' + asset,
+          properties: data.cattributes.map((c: any) => ({
+            key: c.type,
+            kind: 'string',
+            value: c.description,
+          })),
+        };
+      }
   },
   functions: {
     transfer: asset => ({

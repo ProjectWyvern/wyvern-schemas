@@ -12,10 +12,10 @@ import {
 export type MythereumType = string;
 
 export const MythereumSchema: Schema<MythereumType> = {
-  version: 1,
+  version: 2,
   deploymentBlock: 5033489,
   name: 'Mythereum',
-  description: 'The Fantastically Distributed Collectible Card Game Built on the Ethereum Blockchain',
+  description: 'Fantastically Distributed Collectible Card Game',
   thumbnail: 'https://www.mythereum.io/three-cards.png',
   website: 'https://www.mythereum.io/',
   fields: [
@@ -26,15 +26,21 @@ export const MythereumSchema: Schema<MythereumType> = {
   formatter:
     async (asset, web3) => {
       const cardsABI = {'constant': true, 'inputs': [{'name': '', 'type': 'uint256'}], 'name': 'cards', 'outputs': [{'name': 'name', 'type': 'string'}, {'name': 'class', 'type': 'uint8'}, {'name': 'classVariant', 'type': 'uint8'}, {'name': 'damagePoints', 'type': 'uint8'}, {'name': 'shieldPoints', 'type': 'uint8'}, {'name': 'abilityId', 'type': 'uint256'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
-      const contract = web3.eth.contract([cardsABI]).at('0xa67aac23549f4c672256b59b43ab0bacfcfcd498');
+      const abilitiesABI = {'constant':true,'inputs':[{'name':'','type':'uint256'}],'name':'abilities','outputs':[{'name':'name','type':'string'},{'name':'canBeBlocked','type':'bool'},{'name':'blackMagicCost','type':'uint8'},{'name':'grayMagicCost','type':'uint8'},{'name':'whiteMagicCost','type':'uint8'},{'name':'addedDamage','type':'uint256'},{'name':'addedShield','type':'uint256'}],'payable':false,'stateMutability':'view','type':'function'};
+      const contract = web3.eth.contract([cardsABI, abilitiesABI]).at('0xa67aac23549f4c672256b59b43ab0bacfcfcd498');
       const res: any = await (promisify(contract.cards.call) as any)(asset);
       const name = res[0];
       const classId = res[1];
       const classVariant = res[2];
+      const damagePoints = res[3];
+      const shieldPoints = res[4];
+      const abilityId = res[5];
+      const ares: any = await (promisify(contract.abilities.call) as any)(abilityId);
+      const abilityName = ares[0];
       return {
         thumbnail: 'https://www.mythereum.io/' + classId + '_' + classVariant + '.png',
         title: 'Mythereum #' + asset + ' - ' + name,
-        description: '',
+        description: 'Ability ' + abilityName + ' / Damage ' + damagePoints + ' / Shield ' + shieldPoints,
         url: 'https://www.mythereum.io/',
         properties: [],
       };

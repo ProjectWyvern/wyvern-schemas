@@ -12,7 +12,7 @@ import {
 export type CryptoFightersType = string;
 
 export const CryptoFightersSchema: Schema<CryptoFightersType> = {
-  version: 1,
+  version: 2,
   deploymentBlock: 4952230,
   name: 'CryptoFighters',
   description: 'Collect, train, and fight: digital fighters on the blockchain.',
@@ -27,13 +27,23 @@ export const CryptoFightersSchema: Schema<CryptoFightersType> = {
     async asset => {
       const response = await axios.get(`https://api.cryptofighters.io/fighters/${asset}`);
       const data = response.data;
-      return {
-        thumbnail: data.image,
-        title: 'CryptoFighter #' + asset,
-        description: '',
-        url: 'https://cryptofighters.io/fighter/' + asset,
-        properties: [],
-      };
+      if (data === null) {
+        return {
+          thumbnail: 'https://s3.amazonaws.com/cryptofighters/images/455fde9f-9810-4e70-bda6-8bb5cf7a6fe7.png',
+          title: 'CryptoFighter #' + asset,
+          description: '',
+          url: 'https://cryptofighters.io/fighter/' + asset,
+          properties: [],
+        };
+      } else {
+        return {
+          thumbnail: data.image,
+          title: 'CryptoFighter #' + asset,
+          description: 'Luck: ' + data.luck + ', genes: ' + data.attr.join(', '),
+          url: 'https://cryptofighters.io/fighter/' + asset,
+          properties: [],
+        };
+      }
   },
   functions: {
     transfer: asset => ({
