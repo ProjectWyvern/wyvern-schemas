@@ -30,6 +30,14 @@ Run the lint script:
 yarn lint
 ```
 
+#### Testing
+
+Build first, then test (tests are in vanilla JS) - you will need an internet connection, the testsuite makes RPC calls against Ethereum state via [Infura](https://infura.io):
+
+```bash
+yarn build && yarn test
+```
+
 #### General Contribution
 
 Contributions welcome! Please use GitHub issues for suggestions/concerns - if you prefer to express your intentions in code, feel free to submit a pull request.
