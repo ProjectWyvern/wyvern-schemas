@@ -26,10 +26,10 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
   formatter:
     async asset => {
       return {
-        thumbnail: 'https://larvalabs.com/cryptopunks/cryptopunk' + asset + '.png',
+        thumbnail: 'https://www.larvalabs.com/cryptopunks/cryptopunk' + asset + '.png',
         title: 'CryptoPunk #' + asset,
         description: '',
-        url: 'https://larvalabs.com/cryptopunks/details/' + asset,
+        url: 'https://www.larvalabs.com/cryptopunks/details/' + asset,
         properties: [],
       };
   },
@@ -65,13 +65,13 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
   events: {
     transfer: {
       type: Web3.AbiType.Event,
-      name: 'Transfer',
+      name: 'PunkTransfer',
       target: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
       anonymous: false,
       inputs: [
         {kind: EventInputKind.Source, indexed: true, name: 'from', type: 'address'},
         {kind: EventInputKind.Destination, indexed: true, name: 'to', type: 'address'},
-        {kind: EventInputKind.Asset, indexed: true, name: 'punkIndex', type: 'uint256'},
+        {kind: EventInputKind.Asset, indexed: false, name: 'punkIndex', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs.punkIndex,
     },

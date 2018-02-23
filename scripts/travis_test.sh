@@ -2,4 +2,4 @@
 
 set -e
 
-yarn build
+yarn test

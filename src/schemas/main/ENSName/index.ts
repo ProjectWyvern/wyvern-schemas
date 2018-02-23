@@ -78,7 +78,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: '0x6090a6e47849629b7245dfa1ca21d94cd15878ef',
+      target: '0x314159265dD8dbb310642f98f50C066173C1259b',
       inputs: [
         {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: asset.nodeHash },
         {kind: FunctionInputKind.Replaceable, name: 'owner', type: 'address'},
@@ -91,7 +91,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
       payable: false,
       constant: true,
       stateMutability: StateMutability.View,
-      target: '0x6090a6e47849629b7245dfa1ca21d94cd15878ef',
+      target: '0x314159265dD8dbb310642f98f50C066173C1259b',
       inputs: [
         {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: asset.nodeHash},
       ],
@@ -103,11 +103,12 @@ export const ENSNameSchema: Schema<ENSNameType> = {
   events: {
     transfer: {
       type: Web3.AbiType.Event,
-      name: 'Transfer',
-      target: '0x6090a6e47849629b7245dfa1ca21d94cd15878ef',
+      name: 'NewOwner',
+      target: '0x314159265dD8dbb310642f98f50C066173C1259b',
       anonymous: false,
       inputs: [
         {kind: EventInputKind.Asset, indexed: true, name: 'node', type: 'bytes32'},
+        {kind: EventInputKind.Asset, indexed: true, name: 'label', type: 'bytes32'},
         {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
       ],
       assetFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
