@@ -34,6 +34,7 @@ schemas.main.map(schema => {
       const fromBlock = schema.deploymentBlock
       const toBlock = fromBlock + 10000
       const events = await promisify(c => transferContract[transfer.name]({}, {fromBlock, toBlock}).get(c))
+      console.log(events.length + ' transfer events for schema ' + schema.name + ' in first 10000 blocks')
       assert.equal(events.length > 0, true, 'No transfer events found in first 10000 blocks')
     })
   })

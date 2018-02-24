@@ -16,9 +16,9 @@ export interface DecentralandType {
 
 export const DecentralandSchema: Schema<DecentralandType> = {
   version: 1,
-  deploymentBlock: 0,
+  deploymentBlock: 4944642,
   name: 'Decentraland',
-  description: 'A virtual world that runs on open standards',
+  description: 'A virtual world that runs on open standards.',
   thumbnail: 'https://decentraland.org/images/logo-65f7b27caf.png',
   website: 'https://decentraland.org/',
   fields: [
@@ -29,11 +29,19 @@ export const DecentralandSchema: Schema<DecentralandType> = {
   assetToFields: asset => ({X: asset.x, Y: asset.y}),
   formatter:
     async asset => {
+      const districtResponse = await axios.get(`https://api.land.decentraland.org/api/districts`);
+      const districts = districtResponse.data.data;
+      const assetResponse = await axios.get(`https://api.land.decentraland.org/api/parcels?nw=${asset.x},${asset.y}&se=${asset.x},${asset.y}`);
+      const assetData = assetResponse.data.data[0];
+      let district = 'None';
+      if (assetData.district_id !== null) {
+        district = districts.filter((d: any) => d.id === assetData.district_id)[0].name;
+      }
       return {
-        thumbnail: '',
+        thumbnail: 'https://decentraland.org/images/logo-65f7b27caf.png',
         title: 'Decentraland Parcel at ' + asset.x + ',' + asset.y,
-        description: '',
-        url: '',
+        description: 'District: ' + district,
+        url: 'https://land.decentraland.org/' + asset.x + '/' + asset.y,
         properties: [],
       };
   },
@@ -44,7 +52,7 @@ export const DecentralandSchema: Schema<DecentralandType> = {
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: '',
+      target: '0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d',
       inputs: [
         {kind: FunctionInputKind.Asset, name: 'x', type: 'int256', value: asset.x},
         {kind: FunctionInputKind.Asset, name: 'y', type: 'int256', value: asset.y},
@@ -58,7 +66,7 @@ export const DecentralandSchema: Schema<DecentralandType> = {
       payable: false,
       constant: true,
       stateMutability: StateMutability.View,
-      target: '',
+      target: '0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d',
       inputs: [
         {kind: FunctionInputKind.Asset, name: 'x', type: 'int256', value: asset.x},
         {kind: FunctionInputKind.Asset, name: 'y', type: 'int256', value: asset.y},
@@ -72,7 +80,7 @@ export const DecentralandSchema: Schema<DecentralandType> = {
     transfer: {
       type: Web3.AbiType.Event,
       name: 'Transfer',
-      target: '',
+      target: '0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d',
       anonymous: false,
       inputs: [
         {kind: EventInputKind.Source, indexed: true, name: 'from', type: 'address'},
