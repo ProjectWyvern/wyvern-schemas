@@ -101,7 +101,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
       target: '0xe7410170f87102df0055eb195163a03b7f2bff4a',
@@ -111,7 +111,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
         {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
       ],
       assetFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
-    },
+    }],
   },
   hash: a => a.nodeHash,
 };

@@ -77,7 +77,7 @@ export const DecentralandSchema: Schema<DecentralandType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
       target: '0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d',
@@ -97,7 +97,7 @@ export const DecentralandSchema: Schema<DecentralandType> = {
           y: '0',
         };
       },
-    },
+    }],
   },
   hash: a => a,
 };

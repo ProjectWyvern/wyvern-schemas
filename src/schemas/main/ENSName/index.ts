@@ -37,7 +37,7 @@ const nodehash = (name: string) => {
 };
 
 export const ENSNameSchema: Schema<ENSNameType> = {
-  version: 1,
+  version: 2,
   deploymentBlock: 3605331,
   name: 'ENSName',
   description: 'Ethereum Name Service Name (EIP 137)',
@@ -65,7 +65,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
     async asset => {
       return {
         thumbnail: 'https://ens.domains/img/ens.svg',
-        title: 'ENS Name ' + asset.name,
+        title: 'ENS Name' + (asset.name ? ' ' + asset.name : asset.nodeHash.slice(0, 4) + '...'),
         description: 'ENS node ' + asset.nodeHash,
         url: 'https://etherscan.io/enslookup?q=' + asset.name,
         properties: [],
@@ -101,7 +101,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'NewOwner',
       target: '0x314159265dD8dbb310642f98f50C066173C1259b',
@@ -112,7 +112,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
         {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
       ],
       assetFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
-    },
+    }],
   },
   hash: a => a.nodeHash,
 };

@@ -63,6 +63,8 @@ export const rinkebyOwnableContractSchema: Schema<RinkebyOwnableContractType> = 
       ],
     }),
   },
-  events: {},
+  events: {
+    transfer: [],
+  },
   hash: a => a.address,
 };

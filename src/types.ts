@@ -100,7 +100,7 @@ export interface SchemaFunctions<T> {
 }
 
 export interface SchemaEvents<T> {
-  transfer?: AnnotatedEventABI<T>;
+  transfer: Array<AnnotatedEventABI<T>>;
 }
 
 export interface Property {
@@ -121,6 +121,7 @@ export interface SchemaField {
   name: string;
   type: string;
   description: string;
+  values?: any[];
   readOnly?: boolean;
 }
 

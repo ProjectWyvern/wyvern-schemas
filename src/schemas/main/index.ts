@@ -6,6 +6,7 @@ import { CryptoMemesSchema } from './CryptoMemes/index';
 import { CryptoPunksSchema } from './CryptoPunks/index';
 import { DecentralandSchema } from './Decentraland/index';
 import { ENSNameSchema } from './ENSName/index';
+import { EthercraftSchema } from './Ethercraft/index';
 import { EtheremonSchema } from './Etheremon/index';
 import { MythereumSchema } from './Mythereum/index';
 
@@ -16,6 +17,7 @@ export const mainSchemas: Array<Schema<any>> = [
   CryptoMemesSchema,
 //  DecentralandSchema,
   ENSNameSchema,
+  EthercraftSchema,
 //  EtheremonSchema,
   MythereumSchema,
 ];

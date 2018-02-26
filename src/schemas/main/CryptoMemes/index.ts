@@ -12,7 +12,7 @@ import {
 export type CryptoMemesType = string;
 
 export const CryptoMemesSchema: Schema<CryptoMemesType> = {
-  version: 1,
+  version: 2,
   deploymentBlock: 5121073,
   name: 'CryptoMemes',
   description: 'Buy memes on the blockchain.',
@@ -65,7 +65,7 @@ export const CryptoMemesSchema: Schema<CryptoMemesType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
       target: '0x0d623823d2aa4540f335bb926447dc582dc5bd64',
@@ -76,7 +76,7 @@ export const CryptoMemesSchema: Schema<CryptoMemesType> = {
         {kind: EventInputKind.Asset, indexed: false, name: 'tokenId', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs.tokenId,
-    },
+    }],
   },
   hash: a => a,
 };

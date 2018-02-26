@@ -62,7 +62,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
       target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
@@ -73,7 +73,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
         {kind: EventInputKind.Asset, indexed: false, name: '_tokenId', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs._tokenId.toString(),
-    },
+    }],
   },
   hash: a => a,
 };

@@ -84,7 +84,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
     },
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
       target: '0x16baf0de678e52367adc69fd067e5edd1d33e3bf',
@@ -95,7 +95,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
         {kind: EventInputKind.Asset, indexed: true, name: 'tokenId', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs.tokenId,
-    },
+    }],
   },
   hash: a => a,
 };

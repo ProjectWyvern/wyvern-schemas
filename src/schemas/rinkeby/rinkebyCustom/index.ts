@@ -46,6 +46,8 @@ export const rinkebyCustomSchema: Schema<RinkebyCustomType> = {
   functions: {
     transfer: asset => asset.transfer,
   },
-  events: {},
+  events: {
+    transfer: [],
+  },
   hash: a => JSON.stringify(a),
 };

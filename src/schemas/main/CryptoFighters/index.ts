@@ -75,7 +75,7 @@ export const CryptoFightersSchema: Schema<CryptoFightersType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
       target: '0x87d598064c736dd0c712d329afcfaa0ccc1921a1',
@@ -86,7 +86,7 @@ export const CryptoFightersSchema: Schema<CryptoFightersType> = {
         {kind: EventInputKind.Asset, indexed: true, name: 'tokenId', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs.tokenId,
-    },
+    }],
   },
   hash: a => a,
 };

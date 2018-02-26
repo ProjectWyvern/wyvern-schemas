@@ -75,7 +75,7 @@ export const MythereumSchema: Schema<MythereumType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
       target: '0xa67aac23549f4c672256b59b43ab0bacfcfcd498',
@@ -86,7 +86,7 @@ export const MythereumSchema: Schema<MythereumType> = {
         {kind: EventInputKind.Asset, indexed: false, name: '_tokenId', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs._tokenId,
-    },
+    }],
   },
   hash: a => a,
 };

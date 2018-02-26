@@ -63,7 +63,7 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'PunkTransfer',
       target: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
@@ -74,7 +74,7 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
         {kind: EventInputKind.Asset, indexed: false, name: 'punkIndex', type: 'uint256'},
       ],
       assetFromInputs: (inputs: any) => inputs.punkIndex,
-    },
+    }],
   },
   hash: a => a,
 };

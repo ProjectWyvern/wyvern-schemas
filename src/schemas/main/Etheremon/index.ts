@@ -64,7 +64,7 @@ export const EtheremonSchema: Schema<EtheremonType> = {
     }),
   },
   events: {
-    transfer: {
+    transfer: [{
       type: Web3.AbiType.Event,
       name: 'EventFreeTransferItem',
       target: '0x4bA72F0F8DAd13709EE28a992869E79d0fE47030',
@@ -75,7 +75,7 @@ export const EtheremonSchema: Schema<EtheremonType> = {
         {kind: EventInputKind.Asset, indexed: false, name: 'objId', type: 'uint64'},
       ],
       assetFromInputs: (inputs: any) => inputs.objId,
-    },
+    }],
   },
   hash: a => a,
 };
