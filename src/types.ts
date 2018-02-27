@@ -47,6 +47,7 @@ export interface AnnotatedFunctionInput {
 export enum FunctionOutputKind {
   Owner = 'owner',
   Asset = 'asset',
+  Count = 'count',
 }
 
 export interface AnnotatedFunctionOutput {
@@ -96,6 +97,7 @@ export interface AnnotatedEventABI<T> {
 export interface SchemaFunctions<T> {
   transfer: (asset: T) => AnnotatedFunctionABI;
   ownerOf?: (asset: T) => AnnotatedFunctionABI;
+  countOf?: (asset: T) => AnnotatedFunctionABIReturning<number>;
   assetsOfOwnerByIndex?: AnnotatedFunctionABIReturning<T>;
 }
 

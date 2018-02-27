@@ -9,6 +9,7 @@ import { ENSNameSchema } from './ENSName/index';
 import { EthercraftSchema } from './Ethercraft/index';
 import { EtheremonSchema } from './Etheremon/index';
 import { MythereumSchema } from './Mythereum/index';
+import { OwnableContractSchema } from './OwnableContract/index';
 
 export const mainSchemas: Array<Schema<any>> = [
   CryptoKittiesSchema,
@@ -20,4 +21,5 @@ export const mainSchemas: Array<Schema<any>> = [
   EthercraftSchema,
 //  EtheremonSchema,
   MythereumSchema,
+  OwnableContractSchema,
 ];

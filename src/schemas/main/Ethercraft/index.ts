@@ -51,12 +51,12 @@ export const EthercraftSchema: Schema<EthercraftType> = {
   deploymentBlock: 0, // Currently not indexed
   name: 'Ethercraft',
   description: 'A decentralized RPG running on the Ethereum blockchain.',
-  thumbnail: 'https://ethercraft.io/img/ETHERCRAFT.png',
+  thumbnail: 'https://cdn.discordapp.com/icons/400700363402903552/4f9c2076b2b8a9c0b8a57ce3ecdc57fe.png',
   website: 'https://ethercraft.io',
   fields: [
     {name: 'Kind', type: 'enum', values: kinds, description: 'Kind of item.'},
   ],
-  assetFromFields: (fields: any) => addressByKind(fields.Type),
+  assetFromFields: (fields: any) => addressByKind(fields.Kind),
   assetToFields: asset => ({Kind: nameOf(asset)}),
   formatter:
     async asset => {
@@ -81,6 +81,21 @@ export const EthercraftSchema: Schema<EthercraftType> = {
         {kind: FunctionInputKind.Asset, name: 'tokens', type: 'uint256', value: unit},
       ],
       outputs: [],
+    }),
+    countOf: asset => ({
+      type: Web3.AbiType.Function,
+      name: 'balanceOf',
+      payable: false,
+      constant: true,
+      stateMutability: StateMutability.View,
+      target: asset,
+      inputs: [
+        {kind: FunctionInputKind.Owner, name: 'tokenOwner', type: 'address'},
+      ],
+      outputs: [
+        {kind: FunctionOutputKind.Count, name: 'balance', type: 'uint'},
+      ],
+      assetFromOutputs: (outputs: any) => outputs.balance,
     }),
   },
   events: {
