@@ -139,6 +139,7 @@ export interface Schema<T> {
   checkAsset?: (asset: T) => boolean;
   assetFromFields: (fields: any) => T;
   assetToFields?: (asset: T) => any;
+  allAssets?: T[];
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
   formatter: (obj: T, web3: any) => Promise<FormatInfo>;
