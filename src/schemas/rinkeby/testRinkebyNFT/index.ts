@@ -72,7 +72,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
         {kind: EventInputKind.Destination, indexed: true, name: '_to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: '_tokenId', type: 'uint256'},
       ],
-      assetFromInputs: (inputs: any) => inputs._tokenId.toString(),
+      assetFromInputs: async (inputs: any) => inputs._tokenId.toString(),
     }],
   },
   hash: a => a,

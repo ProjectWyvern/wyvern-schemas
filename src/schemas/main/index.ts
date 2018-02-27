@@ -1,5 +1,6 @@
 import { Schema } from '../../types';
 
+import { CryptoBotsSchema } from './CryptoBots/index';
 import { CryptoFightersSchema } from './CryptoFighters/index';
 import { CryptoKittiesSchema } from './CryptoKitties/index';
 import { CryptoMemesSchema } from './CryptoMemes/index';
@@ -12,6 +13,7 @@ import { MythereumSchema } from './Mythereum/index';
 import { OwnableContractSchema } from './OwnableContract/index';
 
 export const mainSchemas: Array<Schema<any>> = [
+  CryptoBotsSchema,
   CryptoKittiesSchema,
   CryptoFightersSchema,
   CryptoPunksSchema,

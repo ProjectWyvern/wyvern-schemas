@@ -85,7 +85,7 @@ export const CryptoFightersSchema: Schema<CryptoFightersType> = {
         {kind: EventInputKind.Destination, indexed: true, name: 'to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: true, name: 'tokenId', type: 'uint256'},
       ],
-      assetFromInputs: (inputs: any) => inputs.tokenId,
+      assetFromInputs: async (inputs: any) => inputs.tokenId,
     }],
   },
   hash: a => a,

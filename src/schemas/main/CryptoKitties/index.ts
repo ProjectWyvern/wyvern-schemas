@@ -95,7 +95,7 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
         {kind: EventInputKind.Destination, indexed: false, name: 'to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: 'tokenId', type: 'uint256'},
       ],
-      assetFromInputs: (inputs: any) => inputs.tokenId,
+      assetFromInputs: async (inputs: any) => inputs.tokenId,
     }],
   },
   hash: a => a,

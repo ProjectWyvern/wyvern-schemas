@@ -1,6 +1,6 @@
 {
   "name": "wyvern-schemas",
-  "version": "0.3.8",
+  "version": "0.4.1",
   "main": "./dist/index.js",
   "description": "Nonfungible asset schemas for the Wyvern Protocol",
   "scripts": {
@@ -40,6 +40,7 @@
     "web3-typescript-typings": "^0.9.4"
   },
   "dependencies": {
+    "@0xproject/utils": "^0.3.4",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",

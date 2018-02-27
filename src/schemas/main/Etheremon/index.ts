@@ -74,7 +74,7 @@ export const EtheremonSchema: Schema<EtheremonType> = {
         {kind: EventInputKind.Destination, indexed: true, name: 'receiver', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: 'objId', type: 'uint64'},
       ],
-      assetFromInputs: (inputs: any) => inputs.objId,
+      assetFromInputs: async (inputs: any) => inputs.objId,
     }],
   },
   hash: a => a,

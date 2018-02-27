@@ -111,7 +111,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
         {kind: EventInputKind.Asset, indexed: true, name: 'label', type: 'bytes32'},
         {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
       ],
-      assetFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
+      assetFromInputs: async (inputs: any) => ({ nodeHash: inputs.node }),
     }],
   },
   hash: a => a.nodeHash,

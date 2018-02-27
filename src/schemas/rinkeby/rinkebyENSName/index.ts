@@ -110,7 +110,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
         {kind: EventInputKind.Asset, indexed: true, name: 'node', type: 'bytes32'},
         {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
       ],
-      assetFromInputs: (inputs: any) => ({ nodeHash: inputs.node }),
+      assetFromInputs: async (inputs: any) => ({ nodeHash: inputs.node }),
     }],
   },
   hash: a => a.nodeHash,

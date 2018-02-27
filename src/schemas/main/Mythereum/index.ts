@@ -85,7 +85,7 @@ export const MythereumSchema: Schema<MythereumType> = {
         {kind: EventInputKind.Destination, indexed: true, name: '_to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: '_tokenId', type: 'uint256'},
       ],
-      assetFromInputs: (inputs: any) => inputs._tokenId,
+      assetFromInputs: async (inputs: any) => inputs._tokenId,
     }],
   },
   hash: a => a,

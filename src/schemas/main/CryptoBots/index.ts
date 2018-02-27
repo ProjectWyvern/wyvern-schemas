@@ -9,31 +9,47 @@ import {
   StateMutability,
 } from '../../../types';
 
-export type CryptoMemesType = string;
+export type CryptoBotsType = string;
 
-export const CryptoMemesSchema: Schema<CryptoMemesType> = {
-  version: 2,
-  deploymentBlock: 5121073,
-  name: 'CryptoMemes',
-  description: 'Buy memes on the blockchain.',
-  thumbnail: 'https://pbs.twimg.com/profile_images/966538539667042304/H57YxbG-_400x400.jpg',
-  website: 'https://cryptomemes.lol/',
+export const CryptoBotsSchema: Schema<CryptoBotsType> = {
+  version: 1,
+  deploymentBlock: 4819345,
+  name: 'CryptoBots',
+  description: 'A blockchain-based game to find out whose bot army is the best!',
+  thumbnail: 'https://cryptobots.me/static/media/banner.38d05abc.svg',
+  website: 'https://cryptobots.me/',
   fields: [
-    {name: 'ID', type: 'uint256', description: 'CryptoMeme number.'},
+    {name: 'ID', type: 'uint256', description: 'CryptoBot number.'},
   ],
   assetFromFields: (fields: any) => fields.ID,
   assetToFields: asset => ({ID: asset}),
   formatter:
     async asset => {
-      const response = await axios.get(`https://cryptomemes.lol/api/meme/${asset}`);
-      const data = response.data[0];
-      return {
-        thumbnail: data.image_url,
-        title: 'CryptoMeme #' + asset + ' - ' + data.name,
-        description: data.description,
-        url: 'https://cryptomemes.lol/meme/' + asset,
-        properties: [],
-      };
+      const response = await axios.post(`https://cryptobots.me/api/bot/search`, {ids: [asset]}).catch(err => {
+        if (err.response && (err.response.status === 404 || err.response.status === 400)) {
+          return null;
+        } else {
+          throw err;
+        }
+      });
+      if (response === null) {
+        return {
+          thumbnail: 'https://cryptobots.me/static/media/banner.38d05abc.svg',
+          title: 'CryptoBot #' + asset,
+          description: '',
+          url: 'https://cryptobots.me/bot/' + asset,
+          properties: [],
+        };
+      } else {
+        const data = response.data.items[0];
+        return {
+          thumbnail: 'https://cryptobots.me/img/' + data.info.genes,
+          title: 'CryptoBot #' + asset,
+          description: 'Generation: ' + data.info.generation,
+          url: 'https://cryptobots.me/bot/' + asset,
+          properties: [],
+        };
+      }
   },
   functions: {
     transfer: asset => ({
@@ -42,7 +58,7 @@ export const CryptoMemesSchema: Schema<CryptoMemesType> = {
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: '0x0d623823d2aa4540f335bb926447dc582dc5bd64',
+      target: '0x491C05896EF656d7FeE0FB90CE487315ff0aC14C',
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
@@ -55,7 +71,7 @@ export const CryptoMemesSchema: Schema<CryptoMemesType> = {
       payable: false,
       constant: true,
       stateMutability: StateMutability.View,
-      target: '0x0d623823d2aa4540f335bb926447dc582dc5bd64',
+      target: '0x491C05896EF656d7FeE0FB90CE487315ff0aC14C',
       inputs: [
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
       ],
@@ -68,7 +84,7 @@ export const CryptoMemesSchema: Schema<CryptoMemesType> = {
     transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
-      target: '0x0d623823d2aa4540f335bb926447dc582dc5bd64',
+      target: '0x491C05896EF656d7FeE0FB90CE487315ff0aC14C',
       anonymous: false,
       inputs: [
         {kind: EventInputKind.Source, indexed: false, name: 'from', type: 'address'},

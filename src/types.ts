@@ -91,7 +91,7 @@ export interface AnnotatedEventABI<T> {
   target: string;
   anonymous: boolean;
   inputs: AnnotatedEventInput[];
-  assetFromInputs: (inputs: any) => T;
+  assetFromInputs: (inputs: any, web3: any) => Promise<T>;
 }
 
 export interface SchemaFunctions<T> {

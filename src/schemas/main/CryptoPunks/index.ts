@@ -73,7 +73,7 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
         {kind: EventInputKind.Destination, indexed: true, name: 'to', type: 'address'},
         {kind: EventInputKind.Asset, indexed: false, name: 'punkIndex', type: 'uint256'},
       ],
-      assetFromInputs: (inputs: any) => inputs.punkIndex,
+      assetFromInputs: async (inputs: any) => inputs.punkIndex,
     }],
   },
   hash: a => a,
