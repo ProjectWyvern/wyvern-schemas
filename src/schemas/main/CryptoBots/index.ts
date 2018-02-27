@@ -58,7 +58,7 @@ export const CryptoBotsSchema: Schema<CryptoBotsType> = {
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: '0x491C05896EF656d7FeE0FB90CE487315ff0aC14C',
+      target: '0xf7a6e15dfd5cdd9ef12711bd757a9b6021abf643',
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
@@ -71,7 +71,7 @@ export const CryptoBotsSchema: Schema<CryptoBotsType> = {
       payable: false,
       constant: true,
       stateMutability: StateMutability.View,
-      target: '0x491C05896EF656d7FeE0FB90CE487315ff0aC14C',
+      target: '0xf7a6e15dfd5cdd9ef12711bd757a9b6021abf643',
       inputs: [
         {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset},
       ],
@@ -84,7 +84,7 @@ export const CryptoBotsSchema: Schema<CryptoBotsType> = {
     transfer: [{
       type: Web3.AbiType.Event,
       name: 'Transfer',
-      target: '0x491C05896EF656d7FeE0FB90CE487315ff0aC14C',
+      target: '0xf7a6e15dfd5cdd9ef12711bd757a9b6021abf643',
       anonymous: false,
       inputs: [
         {kind: EventInputKind.Source, indexed: false, name: 'from', type: 'address'},
