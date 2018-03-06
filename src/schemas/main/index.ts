@@ -21,7 +21,7 @@ export const mainSchemas: Array<Schema<any>> = [
 //  DecentralandSchema,
   ENSNameSchema,
   EthercraftSchema,
-//  EtheremonSchema,
+  EtheremonSchema,
   MythereumSchema,
   OwnableContractSchema,
 ];

@@ -37,6 +37,8 @@ const generateDefaultValue = (type: string): any => {
     case 'uint':
     case 'uint8':
     case 'uint16':
+    case 'uint32':
+    case 'uint64':
     case 'uint256':
       return 0;
     default:

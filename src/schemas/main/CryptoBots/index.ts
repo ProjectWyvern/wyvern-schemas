@@ -32,7 +32,7 @@ export const CryptoBotsSchema: Schema<CryptoBotsType> = {
           throw err;
         }
       });
-      if (response === null) {
+      if (response === null || !response.data.items[0]) {
         return {
           thumbnail: 'https://cryptobots.me/static/media/banner.38d05abc.svg',
           title: 'CryptoBot #' + asset,

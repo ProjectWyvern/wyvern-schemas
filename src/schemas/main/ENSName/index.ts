@@ -65,7 +65,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
     async asset => {
       return {
         thumbnail: 'https://ens.domains/img/ens.svg',
-        title: 'ENS Name' + (asset.name ? ' ' + asset.name : asset.nodeHash.slice(0, 4) + '...'),
+        title: 'ENS Name ' + (asset.name ? asset.name : asset.nodeHash.slice(0, 4) + '...'),
         description: 'ENS node ' + asset.nodeHash,
         url: 'https://etherscan.io/enslookup?q=' + asset.name,
         properties: [],
@@ -74,14 +74,14 @@ export const ENSNameSchema: Schema<ENSNameType> = {
   functions: {
     transfer: asset => ({
       type: Web3.AbiType.Function,
-      name: 'setOwner',
+      name: 'transfer',
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: '0x314159265dD8dbb310642f98f50C066173C1259b',
+      target: '0x6090a6e47849629b7245dfa1ca21d94cd15878ef',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: asset.nodeHash },
-        {kind: FunctionInputKind.Replaceable, name: 'owner', type: 'address'},
+        {kind: FunctionInputKind.Asset, name: '_hash', type: 'bytes32', value: asset.nodeHash},
+        {kind: FunctionInputKind.Replaceable, name: 'newOwner', type: 'address'},
       ],
       outputs: [],
     }),
@@ -93,7 +93,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
       stateMutability: StateMutability.View,
       target: '0x314159265dD8dbb310642f98f50C066173C1259b',
       inputs: [
-        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: asset.nodeHash},
+        {kind: FunctionInputKind.Asset, name: 'node', type: 'bytes32', value: asset.nameHash},
       ],
       outputs: [
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
@@ -101,18 +101,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
     }),
   },
   events: {
-    transfer: [{
-      type: Web3.AbiType.Event,
-      name: 'NewOwner',
-      target: '0x314159265dD8dbb310642f98f50C066173C1259b',
-      anonymous: false,
-      inputs: [
-        {kind: EventInputKind.Asset, indexed: true, name: 'node', type: 'bytes32'},
-        {kind: EventInputKind.Asset, indexed: true, name: 'label', type: 'bytes32'},
-        {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
-      ],
-      assetFromInputs: async (inputs: any) => ({ nodeHash: inputs.node }),
-    }],
+    transfer: [],
   },
   hash: a => a.nodeHash,
 };

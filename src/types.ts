@@ -48,6 +48,7 @@ export enum FunctionOutputKind {
   Owner = 'owner',
   Asset = 'asset',
   Count = 'count',
+  Other = 'other',
 }
 
 export interface AnnotatedFunctionOutput {
