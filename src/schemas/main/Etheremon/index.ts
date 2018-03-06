@@ -15,7 +15,7 @@ import * as Thumbnails from './thumbnails.json';
 export type EtheremonType = string;
 
 export const EtheremonSchema: Schema<EtheremonType> = {
-  version: 1,
+  version: 2,
   deploymentBlock: 4946456,
   name: 'Etheremon',
   description: 'Decentralized World of Ether Monsters',
@@ -43,9 +43,9 @@ export const EtheremonSchema: Schema<EtheremonType> = {
       const name: any = await (promisify(dataContract.getMonsterName.call) as any)(asset);
       return {
         thumbnail: 'https://www.etheremon.com/' + (Thumbnails as any)[classId] + '.png',
-        title: 'Etheremon #' + asset + ' - ' + name + ' (class: ' + className + ')',
-        description: 'Catch number: ' + createIndex + ', experience: ' + exp,
-        url: 'https://www.etheremon.com/#/mons/' + asset,
+        title: 'Etheremon #' + asset + ' - ' + className,
+        description: 'Catch number: ' + createIndex + ', experience: ' + exp + ', nickname: ' + name,
+        url: 'https://www.etheremon.com/#/mons/' + classId,
         properties: [],
       };
     },
@@ -82,6 +82,22 @@ export const EtheremonSchema: Schema<EtheremonType> = {
         {kind: FunctionOutputKind.Other, name: 'lastClaimIndex', type: 'uint32'},
         {kind: FunctionOutputKind.Other, name: 'createTime', type: 'uint'},
       ],
+    }),
+    assetsOfOwnerByIndex: ({
+      type: Web3.AbiType.Function,
+      name: 'getMonsterObjId',
+      payable: false,
+      constant: true,
+      stateMutability: StateMutability.View,
+      target: '0xabc1c404424bdf24c19a5cc5ef8f47781d18eb3e',
+      inputs: [
+        {kind: FunctionInputKind.Owner, name: '_trainer', type: 'address'},
+        {kind: FunctionInputKind.Index, name: 'index', type: 'uint256'},
+      ],
+      outputs: [
+        {kind: FunctionOutputKind.Asset, name: '', type: 'uint64'},
+      ],
+      assetFromOutputs: (outputs: any) => outputs.toString(),
     }),
   },
   events: {
