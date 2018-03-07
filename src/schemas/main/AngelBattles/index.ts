@@ -26,6 +26,24 @@ const targets = {
   [Kind.Accessory]: '0x466c44812835f57b736ef9f63582b8a6693a14d0',
 };
 
+const dataTargets = {
+  [Kind.Angel]: '0x6d2e76213615925c5fc436565b5ee788ee0e86dc',
+  [Kind.Pet]: '0xB340686da996b8B3d486b4D27E38E38500A9E926',
+  [Kind.Accessory]: '0x466c44812835f57b736ef9f63582b8a6693a14d0',
+};
+
+const transferNames = {
+  [Kind.Angel]: 'ownerAngelTransfer',
+  [Kind.Pet]: 'ownerPetTransfer',
+  [Kind.Accessory]: 'ownerAccessoryTransfer',
+};
+
+const assetNames = {
+  [Kind.Angel]: '_angelId',
+  [Kind.Pet]: '_petId',
+  [Kind.Accessory]: '__accessoryId',
+};
+
 // @ts-ignore
 export const AngelBattlesSchema: Schema<AngelBattlesType> = {
   version: 1,
@@ -98,14 +116,14 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
   functions: {
     transfer: asset => ({
       type: Web3.AbiType.Function,
-      name: 'transfer',
+      name: transferNames[asset.kind],
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: targets[asset.kind],
+      target: dataTargets[asset.kind],
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
-        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset.id},
+        {kind: FunctionInputKind.Asset, name: assetNames[asset.kind], type: 'uint64', value: asset.id},
       ],
       outputs: [],
     }),
@@ -132,7 +150,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
       target: targets[kind],
       inputs: [
         {kind: FunctionInputKind.Owner, name: '_owner', type: 'address'},
-        {kind: FunctionInputKind.Index, name: 'index', type: 'uint'},
+        {kind: FunctionInputKind.Index, name: 'index', type: 'uint256'},
       ],
       outputs: [
         {kind: FunctionOutputKind.Asset, name: '', type: 'uint64'},
