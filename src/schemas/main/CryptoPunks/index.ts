@@ -61,6 +61,7 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [{

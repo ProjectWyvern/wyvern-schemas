@@ -60,7 +60,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
         {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
       ],
     }),
-    assetsOfOwnerByIndex: {
+    assetsOfOwnerByIndex: [{
       type: Web3.AbiType.Function,
       name: 'tokensOfOwnerByIndex',
       payable: false,
@@ -81,7 +81,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
           return output.toString();
         }
       },
-    },
+    }],
   },
   events: {
     transfer: [{

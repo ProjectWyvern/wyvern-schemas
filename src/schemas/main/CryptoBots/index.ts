@@ -79,6 +79,7 @@ export const CryptoBotsSchema: Schema<CryptoBotsType> = {
         {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [{

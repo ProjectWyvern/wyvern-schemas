@@ -83,7 +83,7 @@ export const EtheremonSchema: Schema<EtheremonType> = {
         {kind: FunctionOutputKind.Other, name: 'createTime', type: 'uint'},
       ],
     }),
-    assetsOfOwnerByIndex: ({
+    assetsOfOwnerByIndex: [{
       type: Web3.AbiType.Function,
       name: 'getMonsterObjId',
       payable: false,
@@ -97,8 +97,15 @@ export const EtheremonSchema: Schema<EtheremonType> = {
       outputs: [
         {kind: FunctionOutputKind.Asset, name: '', type: 'uint64'},
       ],
-      assetFromOutputs: (outputs: any) => outputs.toString(),
-    }),
+      assetFromOutputs: (output: any) => {
+        const str = output.toString();
+        if (str === '0') {
+          return null;
+        } else {
+          return str;
+        }
+      },
+    }],
   },
   events: {
     transfer: [{

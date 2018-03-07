@@ -99,6 +99,7 @@ export const ENSNameSchema: Schema<ENSNameType> = {
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [],

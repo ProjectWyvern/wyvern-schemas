@@ -63,6 +63,7 @@ export const CryptoMemesSchema: Schema<CryptoMemesType> = {
         {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [{

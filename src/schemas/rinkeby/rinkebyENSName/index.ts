@@ -99,6 +99,7 @@ export const rinkebyENSNameSchema: Schema<RinkebyENSNameType> = {
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [{

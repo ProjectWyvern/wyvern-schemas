@@ -62,6 +62,7 @@ export const rinkebyOwnableContractSchema: Schema<RinkebyOwnableContractType> = 
         {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [],

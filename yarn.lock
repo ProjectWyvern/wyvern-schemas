@@ -130,13 +130,7 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
-async-eventemitter@^0.2.2:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/async-eventemitter/-/async-eventemitter-0.2.4.tgz#f5e7c8ca7d3e46aab9ec40a292baf686a0bafaca"
-  dependencies:
-    async "^2.4.0"
-
-async-eventemitter@ahultgren/async-eventemitter#fa06e39e56786ba541c180061dbf2c0a5bbf951c:
+async-eventemitter@^0.2.2, async-eventemitter@ahultgren/async-eventemitter#fa06e39e56786ba541c180061dbf2c0a5bbf951c:
   version "0.2.3"
   resolved "https://codeload.github.com/ahultgren/async-eventemitter/tar.gz/fa06e39e56786ba541c180061dbf2c0a5bbf951c"
   dependencies:
@@ -704,6 +698,10 @@ bcrypt-pbkdf@^1.0.0:
 big.js@^3.1.3:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
+
+bignumber.js@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-6.0.0.tgz#bbfa047644609a5af093e9cbd83b0461fa3f6002"
 
 "bignumber.js@git+https://github.com/frozeman/bignumber.js-nolookahead.git":
   version "2.0.7"

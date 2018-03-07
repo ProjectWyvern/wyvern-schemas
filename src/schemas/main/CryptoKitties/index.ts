@@ -83,6 +83,7 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
         {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [{

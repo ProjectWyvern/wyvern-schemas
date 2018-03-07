@@ -73,6 +73,7 @@ export const MythereumSchema: Schema<MythereumType> = {
         {kind: FunctionOutputKind.Owner, name: '', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [{

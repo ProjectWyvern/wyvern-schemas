@@ -98,6 +98,7 @@ export const EthercraftSchema: Schema<EthercraftType> = {
       ],
       assetFromOutputs: (outputs: any) => outputs.balance,
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [],

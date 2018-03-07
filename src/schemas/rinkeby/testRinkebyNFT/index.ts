@@ -60,6 +60,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
         {kind: FunctionOutputKind.Owner, name: '_owner', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [{

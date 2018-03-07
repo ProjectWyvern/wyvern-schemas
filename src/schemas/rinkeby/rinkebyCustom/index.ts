@@ -45,6 +45,7 @@ export const rinkebyCustomSchema: Schema<RinkebyCustomType> = {
   },
   functions: {
     transfer: asset => asset.transfer,
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [],

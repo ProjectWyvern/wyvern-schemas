@@ -65,6 +65,7 @@ export const OwnableContractSchema: Schema<OwnableContractType> = {
         {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
       ],
     }),
+    assetsOfOwnerByIndex: [],
   },
   events: {
     transfer: [],
