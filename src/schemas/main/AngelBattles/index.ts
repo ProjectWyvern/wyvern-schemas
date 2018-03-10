@@ -24,7 +24,7 @@ export interface AngelBattlesType {
 const targets = {
   [Kind.Angel]: '0x0c47E8028D5452fcc1aD577B3212C1E63DE72b50',
   [Kind.Pet]: '0x5ee9bc8a2b2baa393706ba3f3268135663a626a1',
-  [Kind.Accessory]: '0x466c44812835f57b736ef9f63582b8a6693a14d0',
+  [Kind.Accessory]: '0x11b4591dc55d0fb44ce2ab7abe5536ab6e19cf78',
 };
 
 const dataTargets = {
@@ -35,7 +35,7 @@ const dataTargets = {
 
 const transferNames = {
   [Kind.Angel]: 'ownerAngelTransfer',
-  [Kind.Pet]: 'ownerPetTransfer',
+  [Kind.Pet]: 'transfer',
   [Kind.Accessory]: 'ownerAccessoryTransfer',
 };
 
@@ -45,9 +45,15 @@ const assetNames = {
   [Kind.Accessory]: '__accessoryId',
 };
 
+const assetTypes = {
+  [Kind.Angel]: 'uint64',
+  [Kind.Pet]: 'uint256',
+  [Kind.Accessory]: 'uint64',
+};
+
 // @ts-ignore
 export const AngelBattlesSchema: Schema<AngelBattlesType> = {
-  version: 3,
+  version: 4,
   deploymentBlock: 0,
   name: 'AngelBattles',
   description: 'Collect angel, pet, and accessory cards',
@@ -123,7 +129,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
           const accessoryOwner = accessoryRes[2];
           let accessoryThumbnail = 'https://www.angelbattles.com/images/Site/Logo.png';
           let accessoryName = accessorySeriesId;
-          const accessoryMatching = imagesSvg.filter((x: any) => x.cardSeriesType === 'Pet' && x.cardSeriesId === petCardSeriesId)[0];
+          const accessoryMatching = imagesSvg.filter((x: any) => x.cardSeriesType === 'Accessory' && x.cardSeriesId === accessorySeriesId)[0];
           if (accessoryMatching) {
             accessoryThumbnail = 'https://' + petMatching.imageUri;
             accessoryName = petMatching.cardName;
@@ -132,7 +138,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
             thumbnail: accessoryThumbnail,
             title: 'Accessory #' + accessoryId + ' - ' + accessoryName,
             description: '',
-            url: 'https://www.angelbattles.com/getcard?type=accessory&seriesid=' + accessorySeriesId,
+            url: 'https://www.angelbattles.com/getcard?type=acc&seriesid=' + accessorySeriesId,
             properties: [],
           };
       }
@@ -166,10 +172,10 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
-      target: dataTargets[asset.kind],
+      target: asset.kind === Kind.Pet ? targets[asset.kind] : dataTargets[asset.kind],
       inputs: [
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
-        {kind: FunctionInputKind.Asset, name: assetNames[asset.kind], type: 'uint64', value: asset.id},
+        {kind: FunctionInputKind.Asset, name: assetNames[asset.kind], type: assetTypes[asset.kind], value: asset.id},
       ],
       outputs: [],
     }),
