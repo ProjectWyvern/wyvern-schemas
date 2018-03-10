@@ -58,7 +58,7 @@ export const EthercraftSchema: Schema<EthercraftType> = {
   ],
   assetFromFields: (fields: any) => addressByKind(fields.Kind),
   assetToFields: asset => ({Kind: nameOf(asset)}),
-  allAssets: (ItemDB as any).map((x: any) => x.address),
+  allAssets: () => (ItemDB as any).map((x: any) => x.address),
   formatter:
     async asset => {
       return {

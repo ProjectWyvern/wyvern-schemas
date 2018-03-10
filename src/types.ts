@@ -100,6 +100,7 @@ export interface SchemaFunctions<T> {
   ownerOf?: (asset: T) => AnnotatedFunctionABI;
   countOf?: (asset: T) => AnnotatedFunctionABIReturning<number>;
   assetsOfOwnerByIndex: Array<AnnotatedFunctionABIReturning<T | null>>;
+  initializeProxy?: (owner: string) => AnnotatedFunctionABI;
 }
 
 export interface SchemaEvents<T> {
@@ -140,7 +141,7 @@ export interface Schema<T> {
   checkAsset?: (asset: T) => boolean;
   assetFromFields: (fields: any) => T;
   assetToFields?: (asset: T) => any;
-  allAssets?: T[];
+  allAssets?: (web3: any) => Promise<T[]>;
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
   formatter: (obj: T, web3: any) => Promise<FormatInfo>;
