@@ -131,7 +131,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
           let accessoryName = accessorySeriesId;
           const accessoryMatching = imagesSvg.filter((x: any) => x.cardSeriesType === 'Accessory' && x.cardSeriesId === accessorySeriesId)[0];
           if (accessoryMatching) {
-            accessoryThumbnail = 'https://' + petMatching.imageUri;
+            accessoryThumbnail = 'https://' + accessoryMatching.imageUri;
             accessoryName = petMatching.cardName;
           }
           return {
