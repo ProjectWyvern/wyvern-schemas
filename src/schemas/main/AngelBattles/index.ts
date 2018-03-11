@@ -53,7 +53,7 @@ const assetTypes = {
 
 // @ts-ignore
 export const AngelBattlesSchema: Schema<AngelBattlesType> = {
-  version: 4,
+  version: 6,
   deploymentBlock: 0,
   name: 'AngelBattles',
   description: 'Collect angel, pet, and accessory cards',
@@ -132,7 +132,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
           const accessoryMatching = imagesSvg.filter((x: any) => x.cardSeriesType === 'Accessory' && x.cardSeriesId === accessorySeriesId)[0];
           if (accessoryMatching) {
             accessoryThumbnail = 'https://' + accessoryMatching.imageUri;
-            accessoryName = petMatching.cardName;
+            accessoryName = accessoryMatching.cardName;
           }
           return {
             thumbnail: accessoryThumbnail,
