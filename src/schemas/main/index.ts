@@ -4,6 +4,7 @@ import { AngelBattlesSchema } from './AngelBattles/index';
 import { CryptoBotsSchema } from './CryptoBots/index';
 import { CryptoFightersSchema } from './CryptoFighters/index';
 import { CryptoKittiesSchema } from './CryptoKitties/index';
+import { CryptoMasterpiecesSchema } from './CryptoMasterpieces/index';
 import { CryptoMemesSchema } from './CryptoMemes/index';
 import { CryptoPunksSchema } from './CryptoPunks/index';
 import { DecentralandSchema } from './Decentraland/index';
@@ -20,6 +21,7 @@ export const mainSchemas: Array<Schema<any>> = [
   CryptoKittiesSchema,
   CryptoFightersSchema,
   CryptoPunksSchema,
+  CryptoMasterpiecesSchema,
   CryptoMemesSchema,
 //  DecentralandSchema,
   ENSNameSchema,
