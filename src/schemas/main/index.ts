@@ -3,6 +3,7 @@ import { Schema } from '../../types';
 import { AngelBattlesSchema } from './AngelBattles/index';
 import { CryptoBotsSchema } from './CryptoBots/index';
 import { CryptoFightersSchema } from './CryptoFighters/index';
+import { CryptoHorseSchema } from './CryptoHorse/index';
 import { CryptoKittiesSchema } from './CryptoKitties/index';
 import { CryptoMasterpiecesSchema } from './CryptoMasterpieces/index';
 import { CryptoMemesSchema } from './CryptoMemes/index';
@@ -19,6 +20,7 @@ export const mainSchemas: Array<Schema<any>> = [
   AngelBattlesSchema,
   CryptoBotsSchema,
   CryptoKittiesSchema,
+  CryptoHorseSchema,
   CryptoFightersSchema,
   CryptoPunksSchema,
   CryptoMasterpiecesSchema,

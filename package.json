@@ -1,6 +1,6 @@
 {
   "name": "wyvern-schemas",
-  "version": "0.6.12",
+  "version": "0.6.13",
   "main": "./dist/index.js",
   "description": "Nonfungible asset schemas for the Wyvern Protocol",
   "scripts": {
