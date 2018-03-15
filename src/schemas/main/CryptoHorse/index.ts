@@ -13,12 +13,12 @@ import {
 export type CryptoHorseType = string;
 
 export const CryptoHorseSchema: Schema<CryptoHorseType> = {
-  version: 1,
+  version: 2,
   deploymentBlock: 4979255,
   name: 'CryptoHorse',
   description: 'Collectible and breedable blockchain horses',
-  thumbnail: 'http://www.cryptohorse.ch/logo.svg',
-  website: 'http://www.cryptohorse.ch/',
+  thumbnail: 'https://www.cryptohorse.ch/logo.svg',
+  website: 'https://www.cryptohorse.ch/',
   fields: [
     {name: 'ID', type: 'uint256', description: 'CryptoHorse number.'},
   ],
@@ -31,10 +31,10 @@ export const CryptoHorseSchema: Schema<CryptoHorseType> = {
       const data = await (promisify(contract[abi.name].call) as any)(asset);
       const generation = data[11];
       return {
-        thumbnail: 'http://www.cryptohorse.ch/logo.svg',
+        thumbnail: 'https://www.cryptohorse.ch/logo.svg',
         title: 'CryptoHorse #' + asset,
         description: 'Generation: ' + generation,
-        url: 'http://www.cryptohorse.ch/',
+        url: 'https://www.cryptohorse.ch/',
         properties: [],
       };
   },
