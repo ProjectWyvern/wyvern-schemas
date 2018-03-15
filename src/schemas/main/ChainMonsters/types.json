@@ -1,0 +1,71 @@
+{
+    "1": {
+        "name": "Normal",
+        "className": "far fa-star cm-type-normal"
+    },
+    "2": {
+        "name": "Fighting",
+        "className": "fas fa-hand-paper cm-type-fighting"
+    },
+    "3": {
+        "name": "Flying"
+    },
+    "4": {
+        "name": "Poison",
+        "className": "fas fa-exclamation-triangle cm-type-poison"
+    },
+    "5": {
+        "name": "Ground",
+        "className": "fas fa-anchor cm-type-ground"
+    },
+    "6": {
+        "name": "Rock",
+        "className": "fas fa-stop cm-type-rock"
+    },
+    "7": {
+        "name": "Bug",
+        "className": "fas fa-bug cm-type-bug"
+    },
+    "8": {
+        "name": "Ghost",
+        "className": "fas fa-user-secret cm-type-ghost"
+    },
+    "9": {
+        "name": "Steel"
+    },
+    "10": {
+        "name": "Fire",
+        "className": "fas fa-fire cm-type-fire"
+    },
+    "11": {
+        "name": "Water",
+        "className": "fas fa-tint cm-type-water"
+    },
+    "12": {
+        "name": "Grass",
+        "className": "fas fa-leaf cm-type-grass"
+    },
+	"13": {
+        "name": "Electric"
+    },
+	"14": {
+        "name": "Psychic",
+        "className": "fas fa-eye cm-type-psychic"
+    },
+	"15": {
+        "name": "Ice"
+    },
+	"16": {
+        "name": "Dragon"
+    },
+	"17": {
+        "name": "Dark"
+    },
+	"18": {
+        "name": "Fariy"
+    },
+	"19": {
+        "name": "Crystal",
+        "className": "fas fa-gem cm-type-crystal"
+    }
+}

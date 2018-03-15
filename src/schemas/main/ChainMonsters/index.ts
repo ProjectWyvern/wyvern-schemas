@@ -10,10 +10,13 @@ import {
   StateMutability,
 } from '../../../types';
 
+import * as MonsterData from './monsterdata.json';
+import * as Types from './types.json';
+
 export type ChainMonstersType = string;
 
 export const ChainMonstersSchema: Schema<ChainMonstersType> = {
-  version: 1,
+  version: 2,
   deploymentBlock: 5106855,
   name: 'ChainMonsters',
   description: '100% blockchain based monster collectible game',
@@ -32,10 +35,12 @@ export const ChainMonstersSchema: Schema<ChainMonstersType> = {
       const generation = data[1];
       const stats = data[2];
       const mID = data[3];
+      const monster = (MonsterData as any)[mID.toString()];
+      const type = (Types as any)[stats[6].toString()];
       return {
         thumbnail: 'https://chainmonsters.io/assets/monsters/' + mID + '.png',
-        title: 'ChainMonster #' + asset,
-        description: 'HP ' + stats[0] + ', Attack ' + stats[1] + ', Defense ' + stats[2] + ', Special Attack ' + stats[3] + ', Special Defense ' + stats[4] + ', Speed ' + stats[5],
+        title: 'ChainMonster #' + asset + ' - ' + monster.name,
+        description: 'Type: ' + type.name + ', HP ' + stats[0] + ', Attack ' + stats[1] + ', Defense ' + stats[2] + ', Special Attack ' + stats[3] + ', Special Defense ' + stats[4] + ', Speed ' + stats[5],
         url: 'https://chainmonsters.io/monster/' + asset,
         properties: [],
       };

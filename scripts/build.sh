@@ -7,5 +7,6 @@ rm -rf dist-tsc dist
 yarn run tsc
 echo 'Transpiling with Babel...'
 yarn run babel dist-tsc --out-dir dist --source-maps
-cp -r src/schemas/main/Ethercraft/*.json dist/schemas/main/Ethercraft
-cp -r src/schemas/main/Etheremon/*.json dist/schemas/main/Etheremon
+for DIR in $(ls src/schemas/main); do
+  cp -r src/schemas/main/$DIR/*.json dist/schemas/main/$DIR
+done
