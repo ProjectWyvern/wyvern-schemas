@@ -10,6 +10,7 @@ import { DecentralandSchema } from './Decentraland/index';
 import { ENSNameSchema } from './ENSName/index';
 import { EthercraftSchema } from './Ethercraft/index';
 import { EtheremonSchema } from './Etheremon/index';
+import { EtherTulipsSchema } from './EtherTulips/index';
 import { MythereumSchema } from './Mythereum/index';
 import { OwnableContractSchema } from './OwnableContract/index';
 
@@ -24,6 +25,7 @@ export const mainSchemas: Array<Schema<any>> = [
   ENSNameSchema,
   EthercraftSchema,
   EtheremonSchema,
+  EtherTulipsSchema,
   MythereumSchema,
   OwnableContractSchema,
 ];
