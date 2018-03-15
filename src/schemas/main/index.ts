@@ -1,6 +1,7 @@
 import { Schema } from '../../types';
 
 import { AngelBattlesSchema } from './AngelBattles/index';
+import { ChainMonstersSchema } from './ChainMonsters/index';
 import { CryptoBotsSchema } from './CryptoBots/index';
 import { CryptoFightersSchema } from './CryptoFighters/index';
 import { CryptoHorseSchema } from './CryptoHorse/index';
@@ -18,6 +19,7 @@ import { OwnableContractSchema } from './OwnableContract/index';
 
 export const mainSchemas: Array<Schema<any>> = [
   AngelBattlesSchema,
+  ChainMonstersSchema,
   CryptoBotsSchema,
   CryptoKittiesSchema,
   CryptoHorseSchema,
