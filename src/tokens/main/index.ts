@@ -533,7 +533,6 @@ export const mainTokens: NetworkTokens = {
     {name: 'Kaizen', symbol: 'KZN', decimals: 8, address: '0x9541fd8b9b5fa97381783783cebf2f5fa793c262'},
     {name: 'Modum Token', symbol: 'MOD', decimals: 0, address: '0x957c30ab0426e0c93cd8241e2c60392d08c6ac8e'},
     {name: 'PABLOCoin', symbol: 'BLO', decimals: 0, address: '0x959529102cfde07b1196bd27adedc196d75f84f6'},
-    {name: 'EtheremonToken', symbol: 'EMONT', decimals: 8, address: '0x95daaab98046846bf4b2853e23cba236fa394a31'},
     {name: 'Aragon Network Token', symbol: 'ANT', decimals: 18, address: '0x960b236a07cf122663c4303350609a66a7b288c0'},
     {name: 'Centra', symbol: 'CTR', decimals: 18, address: '0x96a65609a7b84e8842732deb08f56c3e21ac6f8a'},
     {name: 'Vezt', symbol: 'VZT', decimals: 18, address: '0x9720b467a710382a232a32f540bdced7d662a10b'},
