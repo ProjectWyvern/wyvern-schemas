@@ -42,12 +42,13 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
         };
       } else {
         const data = response.data;
+        const attrs = data.enhanced_cattributes || data.cattributes || [];
         return {
           thumbnail: data.image_url_cdn,
           title: 'CryptoKitty #' + asset,
           description: data.bio,
           url: 'https://www.cryptokitties.co/kitty/' + asset,
-          properties: data.cattributes.map((c: any) => ({
+          properties: attrs.map((c: any) => ({
             key: c.type,
             kind: 'string',
             value: c.description,
