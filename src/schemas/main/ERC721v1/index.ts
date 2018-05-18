@@ -15,7 +15,7 @@ export interface NonFungibleContractType {
 export const ERC721v1Schema: Schema<NonFungibleContractType> = {
   version: 1,
   deploymentBlock: 0, // Not indexed (for now; need asset-specific indexing strategy)
-  name: 'ECR721v1',
+  name: 'ERC721v1',
   description: 'Items conforming to the ERC721 v1 spec, using transferFrom.',
   thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
   website: 'http://erc721.org/',
@@ -34,7 +34,7 @@ export const ERC721v1Schema: Schema<NonFungibleContractType> = {
   formatter:
     async asset => {
       return {
-        title: 'ECR721v1 Asset: Token ID ' + asset.id + ' at ' + asset.address,
+        title: 'ERC721v1 Asset: Token ID ' + asset.id + ' at ' + asset.address,
         description: '',
         url: '',
         thumbnail: '',
