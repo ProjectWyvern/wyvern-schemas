@@ -27,6 +27,7 @@ export const encodeCall = (abi: Web3.MethodAbi, parameters: any[]): string => {
 const generateDefaultValue = (type: string): any => {
   switch (type) {
     case 'address':
+    case FunctionInputKind.Owner:
       /* Null address is sometimes checked in transfer calls. */
       return '0x1111111111111111111111111111111111111111';
     case 'bytes32':
