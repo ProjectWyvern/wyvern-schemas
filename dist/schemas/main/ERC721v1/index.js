@@ -13,7 +13,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", { value: true });
 var Web3 = require("web3");
 var types_1 = require("../../../types");
-;
 exports.ERC721v1Schema = {
     version: 1,
     deploymentBlock: 0,

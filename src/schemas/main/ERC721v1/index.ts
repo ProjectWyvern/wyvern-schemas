@@ -1,7 +1,6 @@
 import * as Web3 from 'web3';
 
 import {
-  EventInputKind,
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
@@ -11,7 +10,7 @@ import {
 export interface NonFungibleContractType {
   id: string;
   address: string;
-};
+}
 
 export const ERC721v1Schema: Schema<NonFungibleContractType> = {
   version: 1,

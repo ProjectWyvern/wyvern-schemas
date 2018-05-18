@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Web3 = require("web3");
 const types_1 = require("../../../types");
-;
 exports.ERC721v1Schema = {
     version: 1,
     deploymentBlock: 0,
