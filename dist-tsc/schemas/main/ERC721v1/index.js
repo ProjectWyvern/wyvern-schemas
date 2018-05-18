@@ -77,6 +77,6 @@ exports.ERC721v1Schema = {
     events: {
         transfer: [],
     },
-    hash: a => a,
+    hash: asset => asset.address + "-" + asset.id,
 };
 //# sourceMappingURL=index.js.map

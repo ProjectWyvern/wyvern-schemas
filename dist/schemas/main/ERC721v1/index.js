@@ -103,8 +103,8 @@ exports.ERC721v1Schema = {
     events: {
         transfer: []
     },
-    hash: function hash(a) {
-        return a;
+    hash: function hash(asset) {
+        return asset.address + "-" + asset.id;
     }
 };
 //# sourceMappingURL=index.js.map

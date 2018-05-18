@@ -88,5 +88,5 @@ export const ERC721v1Schema: Schema<NonFungibleContractType> = {
   events: {
     transfer: [],
   },
-  hash: a => a,
+  hash: asset => asset.address + "-" + asset.id,
 };
