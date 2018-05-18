@@ -8,9 +8,12 @@ import {
   StateMutability,
 } from '../../../types';
 
-export type ECR721v1Type = string;
+export interface NonFungibleContractType {
+  id: string;
+  address: string;
+};
 
-export const ECR721v1Schema: Schema<ECR721v1Type> = {
+export const ERC721v1Schema: Schema<NonFungibleContractType> = {
   version: 1,
   deploymentBlock: 0, // Not indexed (for now; need asset-specific indexing strategy)
   name: 'ECR721v1',
@@ -33,10 +36,26 @@ export const ECR721v1Schema: Schema<ECR721v1Type> = {
     async asset => {
       return {
         title: 'ECR721v1 Asset: Token ID ' + asset.id + ' at ' + asset.address,
+        description: '',
+        url: '',
+        thumbnail: '',
         properties: [],
       };
   },
   functions: {
+    transfer: asset => ({
+      type: Web3.AbiType.Function,
+      name: 'transfer',
+      payable: false,
+      constant: false,
+      stateMutability: StateMutability.Nonpayable,
+      target: asset.address,
+      inputs: [
+        {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
+        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset.id},
+      ],
+      outputs: [],
+    }),
     transferFrom: asset => ({
       type: Web3.AbiType.Function,
       name: 'transferFrom',
@@ -68,18 +87,7 @@ export const ECR721v1Schema: Schema<ECR721v1Type> = {
     assetsOfOwnerByIndex: [],
   },
   events: {
-    transfer: asset => ([{
-      type: Web3.AbiType.Event,
-      name: 'Transfer',
-      target: asset.address,
-      anonymous: false,
-      inputs: [
-        {kind: EventInputKind.Source, indexed: false, name: 'from', type: 'address'},
-        {kind: EventInputKind.Destination, indexed: false, name: 'to', type: 'address'},
-        {kind: EventInputKind.Asset, indexed: false, name: 'tokenId', type: 'uint256'},
-      ],
-      assetFromInputs: async (inputs: any) => ({ address: asset.address, id: inputs.tokenId }),
-    }]),
+    transfer: [],
   },
   hash: a => a,
 };

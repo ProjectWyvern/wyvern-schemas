@@ -80,7 +80,7 @@ export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
   };
 };
 
-export type DefaultCallEncoder = (abi: AnnotatedFunctionABI) => string;
+export type DefaultCallEncoder = (abi: AnnotatedFunctionABI, address: string) => string;
 
 export const encodeDefaultCall: DefaultCallEncoder = (abi, address) => {
   const parameters = abi.inputs.map(input => {
@@ -137,8 +137,7 @@ export const encodeReplacementPattern: ReplacementEncoder = abi => {
   return '0x' + Buffer.concat(ret).toString('hex');
 };
 
-function getTransferFunction(schema) {
+function getTransferFunction(schema: any) {
   return schema.functions.transferFrom
-    || schema.functions.takeOwnership
     || schema.functions.transfer;
 }

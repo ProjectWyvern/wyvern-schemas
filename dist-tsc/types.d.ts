@@ -82,6 +82,7 @@ export interface AnnotatedEventABI<T> {
 }
 export interface SchemaFunctions<T> {
     transfer: (asset: T) => AnnotatedFunctionABI;
+    transferFrom?: (asset: T) => AnnotatedFunctionABI;
     ownerOf?: (asset: T) => AnnotatedFunctionABI;
     countOf?: (asset: T) => AnnotatedFunctionABIReturning<number>;
     assetsOfOwnerByIndex: Array<AnnotatedFunctionABIReturning<T | null>>;

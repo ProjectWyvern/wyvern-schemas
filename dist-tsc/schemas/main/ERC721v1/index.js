@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Web3 = require("web3");
 const types_1 = require("../../../types");
-exports.ECR721v1Schema = {
+;
+exports.ERC721v1Schema = {
     version: 1,
     deploymentBlock: 0,
     name: 'ECR721v1',
     description: 'Items conforming to the ERC721 v1 spec, using transferFrom.',
-    thumbnail: 'https://www.cryptokitties.co/images/kitty-eth.svg',
+    thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
     website: 'http://erc721.org/',
     fields: [
         { name: 'ID', type: 'uint256', description: 'Asset Token ID' },
@@ -24,10 +25,26 @@ exports.ECR721v1Schema = {
     formatter: async (asset) => {
         return {
             title: 'ECR721v1 Asset: Token ID ' + asset.id + ' at ' + asset.address,
+            description: '',
+            url: '',
+            thumbnail: '',
             properties: [],
         };
     },
     functions: {
+        transfer: asset => ({
+            type: Web3.AbiType.Function,
+            name: 'transfer',
+            payable: false,
+            constant: false,
+            stateMutability: types_1.StateMutability.Nonpayable,
+            target: asset.address,
+            inputs: [
+                { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' },
+                { kind: types_1.FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset.id },
+            ],
+            outputs: [],
+        }),
         transferFrom: asset => ({
             type: Web3.AbiType.Function,
             name: 'transferFrom',
@@ -59,18 +76,7 @@ exports.ECR721v1Schema = {
         assetsOfOwnerByIndex: [],
     },
     events: {
-        transfer: asset => ([{
-                type: Web3.AbiType.Event,
-                name: 'Transfer',
-                target: asset.address,
-                anonymous: false,
-                inputs: [
-                    { kind: types_1.EventInputKind.Source, indexed: false, name: 'from', type: 'address' },
-                    { kind: types_1.EventInputKind.Destination, indexed: false, name: 'to', type: 'address' },
-                    { kind: types_1.EventInputKind.Asset, indexed: false, name: 'tokenId', type: 'uint256' },
-                ],
-                assetFromInputs: async (inputs) => ({ address: asset.address, id: asset.tokenId }),
-            }]),
+        transfer: [],
     },
     hash: a => a,
 };

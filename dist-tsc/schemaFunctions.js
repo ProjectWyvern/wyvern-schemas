@@ -109,7 +109,6 @@ exports.encodeReplacementPattern = abi => {
 };
 function getTransferFunction(schema) {
     return schema.functions.transferFrom
-        || schema.functions.takeOwnership
         || schema.functions.transfer;
 }
 //# sourceMappingURL=schemaFunctions.js.map

@@ -33,6 +33,6 @@ exports.mainSchemas = [
     index_14.EtherTulipsSchema,
     index_15.MythereumSchema,
     index_16.OwnableContractSchema,
-    index_11.ERC721v1,
+    index_11.ERC721v1Schema,
 ];
 //# sourceMappingURL=index.js.map

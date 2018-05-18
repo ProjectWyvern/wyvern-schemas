@@ -112,7 +112,7 @@ exports.encodeReplacementPattern = function (abi) {
     return '0x' + Buffer.concat(ret).toString('hex');
 };
 function getTransferFunction(schema) {
-    return schema.functions.transferFrom || schema.functions.takeOwnership || schema.functions.transfer;
+    return schema.functions.transferFrom || schema.functions.transfer;
 }
 //# sourceMappingURL=schemaFunctions.js.map
 //# sourceMappingURL=schemaFunctions.js.map

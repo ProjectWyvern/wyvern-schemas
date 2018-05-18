@@ -10,7 +10,7 @@ import { CryptoMasterpiecesSchema } from './CryptoMasterpieces/index';
 import { CryptoMemesSchema } from './CryptoMemes/index';
 import { CryptoPunksSchema } from './CryptoPunks/index';
 import { ENSNameSchema } from './ENSName/index';
-import { ERC721v1 } from './ERC721v1/index';
+import { ERC721v1Schema } from './ERC721v1/index';
 import { EthercraftSchema } from './Ethercraft/index';
 import { EtheremonSchema } from './Etheremon/index';
 import { EtherTulipsSchema } from './EtherTulips/index';
@@ -34,5 +34,5 @@ export const mainSchemas: Array<Schema<any>> = [
   EtherTulipsSchema,
   MythereumSchema,
   OwnableContractSchema,
-  ERC721v1,
+  ERC721v1Schema,
 ];
