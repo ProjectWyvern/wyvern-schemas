@@ -43,16 +43,22 @@ exports.encodeSell = function (schema, asset, address) {
 };
 exports.encodeBuy = function (schema, asset, address) {
     var transfer = getTransferFunction(schema)(asset);
-    var matching = transfer.inputs.filter(function (i) {
+    var replaceables = transfer.inputs.filter(function (i) {
         return i.kind === types_1.FunctionInputKind.Replaceable;
     });
-    if (matching.length !== 1) {
-        failWith('Only 1 input can match transfer destination, but instead ' + matching.length + ' did');
+    if (replaceables.length !== 1) {
+        failWith('Only 1 input can match transfer destination, but instead ' + replaceables.length + ' did');
     }
-    matching[0].value = address;
-    var calldata = exports.encodeCall(transfer, transfer.inputs.map(function (i) {
-        return i.value.toString();
-    }));
+    var inputs = transfer.inputs.map(function (i) {
+        if (i.kind === types_1.FunctionInputKind.Replaceable) {
+            return address;
+        } else if (i.value == null) {
+            return generateDefaultValue(i.kind).toString();
+        } else {
+            return i.value.toString();
+        }
+    });
+    var calldata = exports.encodeCall(transfer, inputs);
     return {
         target: transfer.target,
         calldata: calldata,

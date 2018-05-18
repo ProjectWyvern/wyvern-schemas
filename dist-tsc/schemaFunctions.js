@@ -43,12 +43,22 @@ exports.encodeSell = (schema, asset, address) => {
 };
 exports.encodeBuy = (schema, asset, address) => {
     const transfer = getTransferFunction(schema)(asset);
-    const matching = transfer.inputs.filter(i => i.kind === types_1.FunctionInputKind.Replaceable);
-    if (matching.length !== 1) {
-        failWith('Only 1 input can match transfer destination, but instead ' + matching.length + ' did');
+    const replaceables = transfer.inputs.filter(i => i.kind === types_1.FunctionInputKind.Replaceable);
+    if (replaceables.length !== 1) {
+        failWith('Only 1 input can match transfer destination, but instead ' + replaceables.length + ' did');
     }
-    matching[0].value = address;
-    const calldata = exports.encodeCall(transfer, transfer.inputs.map(i => i.value.toString()));
+    const inputs = transfer.inputs.map(i => {
+        if (i.kind === types_1.FunctionInputKind.Replaceable) {
+            return address;
+        }
+        else if (i.value == null) {
+            return generateDefaultValue(i.kind).toString();
+        }
+        else {
+            return i.value.toString();
+        }
+    });
+    const calldata = exports.encodeCall(transfer, inputs);
     return {
         target: transfer.target,
         calldata,
