@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as Web3 from 'web3';
 
 import {

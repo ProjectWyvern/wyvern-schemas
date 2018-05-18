@@ -10,7 +10,7 @@ export interface CallSpec {
     calldata: string;
     replacementPattern: string;
 }
-export declare type SellEncoder<T> = (schema: Schema<T>, asset: T) => CallSpec;
+export declare type SellEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 export declare const encodeSell: SellEncoder<any>;
 export declare type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 export declare const encodeBuy: BuyEncoder<any>;

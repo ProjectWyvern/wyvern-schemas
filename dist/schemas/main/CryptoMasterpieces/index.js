@@ -35,7 +35,7 @@ exports.CryptoMasterpiecesSchema = {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            abi = { "constant": true, "inputs": [{ "name": "_tokenId", "type": "uint256" }], "name": "getMasterpiece", "outputs": [{ "name": "name", "type": "string" }, { "name": "artist", "type": "string" }, { "name": "birthTime", "type": "uint256" }, { "name": "snatchWindow", "type": "uint256" }, { "name": "sellingPrice", "type": "uint256" }, { "name": "owner", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            abi = { 'constant': true, 'inputs': [{ 'name': '_tokenId', 'type': 'uint256' }], 'name': 'getMasterpiece', 'outputs': [{ 'name': 'name', 'type': 'string' }, { 'name': 'artist', 'type': 'string' }, { 'name': 'birthTime', 'type': 'uint256' }, { 'name': 'snatchWindow', 'type': 'uint256' }, { 'name': 'sellingPrice', 'type': 'uint256' }, { 'name': 'owner', 'type': 'address' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             contract = web3.eth.contract([abi]).at('0xa92e3ab42c195e52c9fbf129be47ecbb03845dfd');
                             _context.next = 4;
                             return typed_promisify_1.promisify(contract[abi.name].call)(asset);

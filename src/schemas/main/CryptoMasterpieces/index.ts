@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { promisify } from 'typed-promisify';
 import * as Web3 from 'web3';
 
@@ -26,7 +25,7 @@ export const CryptoMasterpiecesSchema: Schema<CryptoMasterpiecesType> = {
   assetToFields: asset => ({ID: asset}),
   formatter:
     async (asset: CryptoMasterpiecesType, web3: any) => {
-      const abi = {"constant":true,"inputs":[{"name":"_tokenId","type":"uint256"}],"name":"getMasterpiece","outputs":[{"name":"name","type":"string"},{"name":"artist","type":"string"},{"name":"birthTime","type":"uint256"},{"name":"snatchWindow","type":"uint256"},{"name":"sellingPrice","type":"uint256"},{"name":"owner","type":"address"}],"payable":false,"stateMutability":"view","type":"function"};
+      const abi = {'constant': true, 'inputs': [{'name': '_tokenId', 'type': 'uint256'}], 'name': 'getMasterpiece', 'outputs': [{'name': 'name', 'type': 'string'}, {'name': 'artist', 'type': 'string'}, {'name': 'birthTime', 'type': 'uint256'}, {'name': 'snatchWindow', 'type': 'uint256'}, {'name': 'sellingPrice', 'type': 'uint256'}, {'name': 'owner', 'type': 'address'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
       const contract = web3.eth.contract([abi]).at('0xa92e3ab42c195e52c9fbf129be47ecbb03845dfd');
       const data = await (promisify(contract[abi.name].call) as any)(asset);
       const name = data[0];

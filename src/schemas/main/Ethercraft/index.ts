@@ -1,9 +1,6 @@
-import { promisify } from 'typed-promisify';
 import * as Web3 from 'web3';
 
 import {
-  AnnotatedEventABI,
-  EventInputKind,
   FunctionInputKind,
   FunctionOutputKind,
   Schema,

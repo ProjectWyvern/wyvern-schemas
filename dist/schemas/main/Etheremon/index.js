@@ -37,8 +37,8 @@ exports.EtheremonSchema = {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            getMonsterObjABI = { "constant": true, "inputs": [{ "name": "_objId", "type": "uint64" }], "name": "getMonsterObj", "outputs": [{ "name": "objId", "type": "uint64" }, { "name": "classId", "type": "uint32" }, { "name": "trainer", "type": "address" }, { "name": "exp", "type": "uint32" }, { "name": "createIndex", "type": "uint32" }, { "name": "lastClaimIndex", "type": "uint32" }, { "name": "createTime", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" };
-                            getMonsterNameABI = { "constant": true, "inputs": [{ "name": "_objId", "type": "uint64" }], "name": "getMonsterName", "outputs": [{ "name": "name", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            getMonsterObjABI = { 'constant': true, 'inputs': [{ 'name': '_objId', 'type': 'uint64' }], 'name': 'getMonsterObj', 'outputs': [{ 'name': 'objId', 'type': 'uint64' }, { 'name': 'classId', 'type': 'uint32' }, { 'name': 'trainer', 'type': 'address' }, { 'name': 'exp', 'type': 'uint32' }, { 'name': 'createIndex', 'type': 'uint32' }, { 'name': 'lastClaimIndex', 'type': 'uint32' }, { 'name': 'createTime', 'type': 'uint256' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
+                            getMonsterNameABI = { 'constant': true, 'inputs': [{ 'name': '_objId', 'type': 'uint64' }], 'name': 'getMonsterName', 'outputs': [{ 'name': 'name', 'type': 'string' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             dataContract = web3.eth.contract([getMonsterObjABI, getMonsterNameABI]).at('0xabc1c404424bdf24c19a5cc5ef8f47781d18eb3e');
                             _context.next = 5;
                             return typed_promisify_1.promisify(dataContract.getMonsterObj.call)(asset);

@@ -52,13 +52,13 @@ export interface CallSpec {
   replacementPattern: string;
 }
 
-export type SellEncoder<T> = (schema: Schema<T>, asset: T) => CallSpec;
+export type SellEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 
-export const encodeSell: SellEncoder<any> = (schema, asset) => {
-  const transfer = schema.functions.transfer(asset);
+export const encodeSell: SellEncoder<any> = (schema, asset, address) => {
+  const transfer = getTransferFunction(schema)(asset);
   return {
     target: transfer.target,
-    calldata: encodeDefaultCall(transfer),
+    calldata: encodeDefaultCall(transfer, address),
     replacementPattern: encodeReplacementPattern(transfer),
   };
 };
@@ -66,7 +66,7 @@ export const encodeSell: SellEncoder<any> = (schema, asset) => {
 export type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 
 export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
-  const transfer = schema.functions.transfer(asset);
+  const transfer = getTransferFunction(schema)(asset);
   const matching = transfer.inputs.filter(i => i.kind === FunctionInputKind.Replaceable);
   if (matching.length !== 1) {
     failWith('Only 1 input can match transfer destination, but instead ' + matching.length + ' did');
@@ -82,13 +82,15 @@ export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
 
 export type DefaultCallEncoder = (abi: AnnotatedFunctionABI) => string;
 
-export const encodeDefaultCall: DefaultCallEncoder = abi => {
+export const encodeDefaultCall: DefaultCallEncoder = (abi, address) => {
   const parameters = abi.inputs.map(input => {
     switch (input.kind) {
       case FunctionInputKind.Asset:
         return input.value;
       case FunctionInputKind.Replaceable:
         return generateDefaultValue(input.type);
+      case FunctionInputKind.Owner:
+        return address;
     }
   });
   return encodeCall(abi, parameters);
@@ -134,3 +136,9 @@ export const encodeReplacementPattern: ReplacementEncoder = abi => {
   }
   return '0x' + Buffer.concat(ret).toString('hex');
 };
+
+function getTransferFunction(schema) {
+  return schema.functions.transferFrom
+    || schema.functions.takeOwnership
+    || schema.functions.transfer;
+}

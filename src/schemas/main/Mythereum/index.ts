@@ -26,7 +26,7 @@ export const MythereumSchema: Schema<MythereumType> = {
   formatter:
     async (asset, web3) => {
       const cardsABI = {'constant': true, 'inputs': [{'name': '', 'type': 'uint256'}], 'name': 'cards', 'outputs': [{'name': 'name', 'type': 'string'}, {'name': 'class', 'type': 'uint8'}, {'name': 'classVariant', 'type': 'uint8'}, {'name': 'damagePoints', 'type': 'uint8'}, {'name': 'shieldPoints', 'type': 'uint8'}, {'name': 'abilityId', 'type': 'uint256'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
-      const abilitiesABI = {'constant':true,'inputs':[{'name':'','type':'uint256'}],'name':'abilities','outputs':[{'name':'name','type':'string'},{'name':'canBeBlocked','type':'bool'},{'name':'blackMagicCost','type':'uint8'},{'name':'grayMagicCost','type':'uint8'},{'name':'whiteMagicCost','type':'uint8'},{'name':'addedDamage','type':'uint256'},{'name':'addedShield','type':'uint256'}],'payable':false,'stateMutability':'view','type':'function'};
+      const abilitiesABI = {'constant': true, 'inputs': [{'name': '', 'type': 'uint256'}], 'name': 'abilities', 'outputs': [{'name': 'name', 'type': 'string'}, {'name': 'canBeBlocked', 'type': 'bool'}, {'name': 'blackMagicCost', 'type': 'uint8'}, {'name': 'grayMagicCost', 'type': 'uint8'}, {'name': 'whiteMagicCost', 'type': 'uint8'}, {'name': 'addedDamage', 'type': 'uint256'}, {'name': 'addedShield', 'type': 'uint256'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
       const contract = web3.eth.contract([cardsABI, abilitiesABI]).at('0xa67aac23549f4c672256b59b43ab0bacfcfcd498');
       const res: any = await (promisify(contract.cards.call) as any)(asset);
       const name = res[0];

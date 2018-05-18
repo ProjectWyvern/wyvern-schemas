@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { promisify } from 'typed-promisify';
 import * as Web3 from 'web3';
 
@@ -29,7 +28,7 @@ export const ChainMonstersSchema: Schema<ChainMonstersType> = {
   assetToFields: asset => ({ID: asset}),
   formatter:
     async (asset: ChainMonstersType, web3: any) => {
-      const abi = {"constant":true,"inputs":[{"name":"_id","type":"uint256"}],"name":"getMonster","outputs":[{"name":"birthTime","type":"uint256"},{"name":"generation","type":"uint256"},{"name":"stats","type":"uint8[8]"},{"name":"mID","type":"uint256"},{"name":"tradeable","type":"bool"},{"name":"uID","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"};
+      const abi = {'constant': true, 'inputs': [{'name': '_id', 'type': 'uint256'}], 'name': 'getMonster', 'outputs': [{'name': 'birthTime', 'type': 'uint256'}, {'name': 'generation', 'type': 'uint256'}, {'name': 'stats', 'type': 'uint8[8]'}, {'name': 'mID', 'type': 'uint256'}, {'name': 'tradeable', 'type': 'bool'}, {'name': 'uID', 'type': 'uint256'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
       const contract = web3.eth.contract([abi]).at('0xf7f6c2836293a661be2690fbacae97f3f027e9c4');
       const data = await (promisify(contract[abi.name].call) as any)(asset);
       const generation = data[1];

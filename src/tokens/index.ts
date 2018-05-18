@@ -1,6 +1,3 @@
-import {
-  NetworkTokens,
-} from '../types';
 
 import { mainTokens } from './main/index';
 import { rinkebyTokens } from './rinkeby/index';

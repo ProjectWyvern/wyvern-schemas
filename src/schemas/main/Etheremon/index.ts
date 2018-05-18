@@ -28,8 +28,8 @@ export const EtheremonSchema: Schema<EtheremonType> = {
   assetToFields: asset => ({ID: asset}),
   formatter:
     async (asset, web3) => {
-      const getMonsterObjABI = {"constant":true,"inputs":[{"name":"_objId","type":"uint64"}],"name":"getMonsterObj","outputs":[{"name":"objId","type":"uint64"},{"name":"classId","type":"uint32"},{"name":"trainer","type":"address"},{"name":"exp","type":"uint32"},{"name":"createIndex","type":"uint32"},{"name":"lastClaimIndex","type":"uint32"},{"name":"createTime","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"};
-      const getMonsterNameABI = {"constant":true,"inputs":[{"name":"_objId","type":"uint64"}],"name":"getMonsterName","outputs":[{"name":"name","type":"string"}],"payable":false,"stateMutability":"view","type":"function"};
+      const getMonsterObjABI = {'constant': true, 'inputs': [{'name': '_objId', 'type': 'uint64'}], 'name': 'getMonsterObj', 'outputs': [{'name': 'objId', 'type': 'uint64'}, {'name': 'classId', 'type': 'uint32'}, {'name': 'trainer', 'type': 'address'}, {'name': 'exp', 'type': 'uint32'}, {'name': 'createIndex', 'type': 'uint32'}, {'name': 'lastClaimIndex', 'type': 'uint32'}, {'name': 'createTime', 'type': 'uint256'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
+      const getMonsterNameABI = {'constant': true, 'inputs': [{'name': '_objId', 'type': 'uint64'}], 'name': 'getMonsterName', 'outputs': [{'name': 'name', 'type': 'string'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
       const dataContract = web3.eth.contract([getMonsterObjABI, getMonsterNameABI]).at('0xabc1c404424bdf24c19a5cc5ef8f47781d18eb3e');
       const res: any = await (promisify(dataContract.getMonsterObj.call) as any)(asset);
       const objId = res[0];

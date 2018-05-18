@@ -98,7 +98,7 @@ exports.AngelBattlesSchema = {
                             });
 
                         case 24:
-                            getPetABI = { "constant": true, "inputs": [{ "name": "_petId", "type": "uint256" }], "name": "getPet", "outputs": [{ "name": "petId", "type": "uint256" }, { "name": "petCardSeriesId", "type": "uint8" }, { "name": "luck", "type": "uint8" }, { "name": "auraRed", "type": "uint16" }, { "name": "auraBlue", "type": "uint16" }, { "name": "auraYellow", "type": "uint16" }, { "name": "owner", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            getPetABI = { 'constant': true, 'inputs': [{ 'name': '_petId', 'type': 'uint256' }], 'name': 'getPet', 'outputs': [{ 'name': 'petId', 'type': 'uint256' }, { 'name': 'petCardSeriesId', 'type': 'uint8' }, { 'name': 'luck', 'type': 'uint8' }, { 'name': 'auraRed', 'type': 'uint16' }, { 'name': 'auraBlue', 'type': 'uint16' }, { 'name': 'auraYellow', 'type': 'uint16' }, { 'name': 'owner', 'type': 'address' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             petContract = web3.eth.contract([getPetABI]).at(targets[Kind.Pet]);
                             _context.next = 28;
                             return typed_promisify_1.promisify(petContract.getPet.call)(asset.id);
@@ -131,7 +131,7 @@ exports.AngelBattlesSchema = {
                             });
 
                         case 41:
-                            getAccessoryABI = { "constant": true, "inputs": [{ "name": "_accessoryId", "type": "uint256" }], "name": "getAccessory", "outputs": [{ "name": "accessoryID", "type": "uint256" }, { "name": "AccessorySeriesID", "type": "uint8" }, { "name": "owner", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            getAccessoryABI = { 'constant': true, 'inputs': [{ 'name': '_accessoryId', 'type': 'uint256' }], 'name': 'getAccessory', 'outputs': [{ 'name': 'accessoryID', 'type': 'uint256' }, { 'name': 'AccessorySeriesID', 'type': 'uint8' }, { 'name': 'owner', 'type': 'address' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             accessoryContract = web3.eth.contract([getAccessoryABI]).at(targets[Kind.Accessory]);
                             _context.next = 45;
                             return typed_promisify_1.promisify(accessoryContract.getAccessory.call)(asset.id);
@@ -181,11 +181,11 @@ exports.AngelBattlesSchema = {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
                         case 0:
-                            getTotalAngelsABI = { "constant": true, "inputs": [], "name": "getTotalAngels", "outputs": [{ "name": "", "type": "uint64" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            getTotalAngelsABI = { 'constant': true, 'inputs': [], 'name': 'getTotalAngels', 'outputs': [{ 'name': '', 'type': 'uint64' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             getTotalAngelsContract = web3.eth.contract([getTotalAngelsABI]).at(dataTargets[Kind.Angel]);
-                            getTotalPetsABI = { "constant": true, "inputs": [], "name": "getTotalPets", "outputs": [{ "name": "", "type": "uint64" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            getTotalPetsABI = { 'constant': true, 'inputs': [], 'name': 'getTotalPets', 'outputs': [{ 'name': '', 'type': 'uint64' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             getTotalPetsContract = web3.eth.contract([getTotalPetsABI]).at(dataTargets[Kind.Pet]);
-                            getTotalAccessoriesABI = { "constant": true, "inputs": [], "name": "getTotalAccessories", "outputs": [{ "name": "", "type": "uint64" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            getTotalAccessoriesABI = { 'constant': true, 'inputs': [], 'name': 'getTotalAccessories', 'outputs': [{ 'name': '', 'type': 'uint64' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             getTotalAccessoriesContract = web3.eth.contract([getTotalAccessoriesABI]).at(dataTargets[Kind.Accessory]);
                             _context2.next = 8;
                             return typed_promisify_1.promisify(getTotalAngelsContract.getTotalAngels.call)();

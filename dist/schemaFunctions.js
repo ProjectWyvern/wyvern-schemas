@@ -33,16 +33,16 @@ var generateDefaultValue = function generateDefaultValue(type) {
             failWith('Default value not yet implemented for type: ' + type);
     }
 };
-exports.encodeSell = function (schema, asset) {
-    var transfer = schema.functions.transfer(asset);
+exports.encodeSell = function (schema, asset, address) {
+    var transfer = getTransferFunction(schema)(asset);
     return {
         target: transfer.target,
-        calldata: exports.encodeDefaultCall(transfer),
+        calldata: exports.encodeDefaultCall(transfer, address),
         replacementPattern: exports.encodeReplacementPattern(transfer)
     };
 };
 exports.encodeBuy = function (schema, asset, address) {
-    var transfer = schema.functions.transfer(asset);
+    var transfer = getTransferFunction(schema)(asset);
     var matching = transfer.inputs.filter(function (i) {
         return i.kind === types_1.FunctionInputKind.Replaceable;
     });
@@ -59,13 +59,15 @@ exports.encodeBuy = function (schema, asset, address) {
         replacementPattern: '0x'
     };
 };
-exports.encodeDefaultCall = function (abi) {
+exports.encodeDefaultCall = function (abi, address) {
     var parameters = abi.inputs.map(function (input) {
         switch (input.kind) {
             case types_1.FunctionInputKind.Asset:
                 return input.value;
             case types_1.FunctionInputKind.Replaceable:
                 return generateDefaultValue(input.type);
+            case types_1.FunctionInputKind.Owner:
+                return address;
         }
     });
     return exports.encodeCall(abi, parameters);
@@ -109,5 +111,8 @@ exports.encodeReplacementPattern = function (abi) {
     }
     return '0x' + Buffer.concat(ret).toString('hex');
 };
+function getTransferFunction(schema) {
+    return schema.functions.transferFrom || schema.functions.takeOwnership || schema.functions.transfer;
+}
 //# sourceMappingURL=schemaFunctions.js.map
 //# sourceMappingURL=schemaFunctions.js.map

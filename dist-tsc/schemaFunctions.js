@@ -33,16 +33,16 @@ const generateDefaultValue = (type) => {
             failWith('Default value not yet implemented for type: ' + type);
     }
 };
-exports.encodeSell = (schema, asset) => {
-    const transfer = schema.functions.transfer(asset);
+exports.encodeSell = (schema, asset, address) => {
+    const transfer = getTransferFunction(schema)(asset);
     return {
         target: transfer.target,
-        calldata: exports.encodeDefaultCall(transfer),
+        calldata: exports.encodeDefaultCall(transfer, address),
         replacementPattern: exports.encodeReplacementPattern(transfer),
     };
 };
 exports.encodeBuy = (schema, asset, address) => {
-    const transfer = schema.functions.transfer(asset);
+    const transfer = getTransferFunction(schema)(asset);
     const matching = transfer.inputs.filter(i => i.kind === types_1.FunctionInputKind.Replaceable);
     if (matching.length !== 1) {
         failWith('Only 1 input can match transfer destination, but instead ' + matching.length + ' did');
@@ -55,13 +55,15 @@ exports.encodeBuy = (schema, asset, address) => {
         replacementPattern: '0x',
     };
 };
-exports.encodeDefaultCall = abi => {
+exports.encodeDefaultCall = (abi, address) => {
     const parameters = abi.inputs.map(input => {
         switch (input.kind) {
             case types_1.FunctionInputKind.Asset:
                 return input.value;
             case types_1.FunctionInputKind.Replaceable:
                 return generateDefaultValue(input.type);
+            case types_1.FunctionInputKind.Owner:
+                return address;
         }
     });
     return exports.encodeCall(abi, parameters);
@@ -105,4 +107,9 @@ exports.encodeReplacementPattern = abi => {
     }
     return '0x' + Buffer.concat(ret).toString('hex');
 };
+function getTransferFunction(schema) {
+    return schema.functions.transferFrom
+        || schema.functions.takeOwnership
+        || schema.functions.transfer;
+}
 //# sourceMappingURL=schemaFunctions.js.map

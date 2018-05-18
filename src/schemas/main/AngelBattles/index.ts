@@ -3,7 +3,6 @@ import { promisify } from 'typed-promisify';
 import * as Web3 from 'web3';
 
 import {
-  EventInputKind,
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
@@ -71,7 +70,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
       const imagesSvg = imageResponse.data;
       switch (asset.kind) {
         case Kind.Angel:
-          const getAngelABI = {'constant':true,'inputs':[{'name':'_angelId','type':'uint64'}],'name':'getAngel','outputs':[{'name':'angelId','type':'uint64'},{'name':'angelCardSeriesId','type':'uint8'},{'name':'battlePower','type':'uint16'},{'name':'aura','type':'uint8'},{'name':'experience','type':'uint16'},{'name':'price','type':'uint256'},{'name':'owner','type':'address'}],'payable':false,'stateMutability':'view','type':'function'};
+          const getAngelABI = {'constant': true, 'inputs': [{'name': '_angelId', 'type': 'uint64'}], 'name': 'getAngel', 'outputs': [{'name': 'angelId', 'type': 'uint64'}, {'name': 'angelCardSeriesId', 'type': 'uint8'}, {'name': 'battlePower', 'type': 'uint16'}, {'name': 'aura', 'type': 'uint8'}, {'name': 'experience', 'type': 'uint16'}, {'name': 'price', 'type': 'uint256'}, {'name': 'owner', 'type': 'address'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
           const contract = web3.eth.contract([getAngelABI]).at(targets[Kind.Angel]);
           const res: any = await (promisify(contract.getAngel.call) as any)(asset.id);
           const angelId = res[0];
@@ -96,7 +95,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
             properties: [],
           };
         case Kind.Pet:
-          const getPetABI = {"constant":true,"inputs":[{"name":"_petId","type":"uint256"}],"name":"getPet","outputs":[{"name":"petId","type":"uint256"},{"name":"petCardSeriesId","type":"uint8"},{"name":"luck","type":"uint8"},{"name":"auraRed","type":"uint16"},{"name":"auraBlue","type":"uint16"},{"name":"auraYellow","type":"uint16"},{"name":"owner","type":"address"}],"payable":false,"stateMutability":"view","type":"function"};
+          const getPetABI = {'constant': true, 'inputs': [{'name': '_petId', 'type': 'uint256'}], 'name': 'getPet', 'outputs': [{'name': 'petId', 'type': 'uint256'}, {'name': 'petCardSeriesId', 'type': 'uint8'}, {'name': 'luck', 'type': 'uint8'}, {'name': 'auraRed', 'type': 'uint16'}, {'name': 'auraBlue', 'type': 'uint16'}, {'name': 'auraYellow', 'type': 'uint16'}, {'name': 'owner', 'type': 'address'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
           const petContract = web3.eth.contract([getPetABI]).at(targets[Kind.Pet]);
           const petRes: any = await (promisify(petContract.getPet.call) as any)(asset.id);
           const petId = petRes[0];
@@ -121,7 +120,7 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
             properties: [],
           };
         case Kind.Accessory:
-          const getAccessoryABI = {"constant":true,"inputs":[{"name":"_accessoryId","type":"uint256"}],"name":"getAccessory","outputs":[{"name":"accessoryID","type":"uint256"},{"name":"AccessorySeriesID","type":"uint8"},{"name":"owner","type":"address"}],"payable":false,"stateMutability":"view","type":"function"};
+          const getAccessoryABI = {'constant': true, 'inputs': [{'name': '_accessoryId', 'type': 'uint256'}], 'name': 'getAccessory', 'outputs': [{'name': 'accessoryID', 'type': 'uint256'}, {'name': 'AccessorySeriesID', 'type': 'uint8'}, {'name': 'owner', 'type': 'address'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
           const accessoryContract = web3.eth.contract([getAccessoryABI]).at(targets[Kind.Accessory]);
           const accessoryRes: any = await (promisify(accessoryContract.getAccessory.call) as any)(asset.id);
           const accessoryId = accessoryRes[0];
@@ -144,11 +143,11 @@ export const AngelBattlesSchema: Schema<AngelBattlesType> = {
       }
   },
   allAssets: async (web3: any) => {
-    const getTotalAngelsABI = {"constant":true,"inputs":[],"name":"getTotalAngels","outputs":[{"name":"","type":"uint64"}],"payable":false,"stateMutability":"view","type":"function"};
+    const getTotalAngelsABI = {'constant': true, 'inputs': [], 'name': 'getTotalAngels', 'outputs': [{'name': '', 'type': 'uint64'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
     const getTotalAngelsContract = web3.eth.contract([getTotalAngelsABI]).at(dataTargets[Kind.Angel]);
-    const getTotalPetsABI = {"constant":true,"inputs":[],"name":"getTotalPets","outputs":[{"name":"","type":"uint64"}],"payable":false,"stateMutability":"view","type":"function"};
+    const getTotalPetsABI = {'constant': true, 'inputs': [], 'name': 'getTotalPets', 'outputs': [{'name': '', 'type': 'uint64'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
     const getTotalPetsContract = web3.eth.contract([getTotalPetsABI]).at(dataTargets[Kind.Pet]);
-    const getTotalAccessoriesABI = {"constant":true,"inputs":[],"name":"getTotalAccessories","outputs":[{"name":"","type":"uint64"}],"payable":false,"stateMutability":"view","type":"function"};
+    const getTotalAccessoriesABI = {'constant': true, 'inputs': [], 'name': 'getTotalAccessories', 'outputs': [{'name': '', 'type': 'uint64'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
     const getTotalAccessoriesContract = web3.eth.contract([getTotalAccessoriesABI]).at(dataTargets[Kind.Accessory]);
     const totalAngels: any = await (promisify(getTotalAngelsContract.getTotalAngels.call) as any)();
     const totalPets: any = await (promisify(getTotalPetsContract.getTotalPets.call) as any)();

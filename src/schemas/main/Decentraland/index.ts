@@ -1,5 +1,4 @@
 import axios from 'axios';
-import BigNumber from 'bignumber.js';
 import { promisify } from 'typed-promisify';
 import * as Web3 from 'web3';
 
@@ -94,7 +93,7 @@ export const DecentralandSchema: Schema<DecentralandType> = {
         {kind: EventInputKind.Other, indexed: false, name: 'operatorData', type: 'bytes'},
       ],
       assetFromInputs: async (inputs: any, web3: any) => {
-        const decodeABI = {'constant':true,'inputs':[{'name':'value','type':'uint256'}],'name':'decodeTokenId','outputs':[{'name':'','type':'int256'},{'name':'','type':'int256'}],'payable':false,'stateMutability':'view','type':'function'};
+        const decodeABI = {'constant': true, 'inputs': [{'name': 'value', 'type': 'uint256'}], 'name': 'decodeTokenId', 'outputs': [{'name': '', 'type': 'int256'}, {'name': '', 'type': 'int256'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
         const contract = web3.eth.contract([decodeABI]).at('0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d');
         const res: any = await (promisify(contract.decodeTokenId.call) as any)(inputs.assetId);
         return {

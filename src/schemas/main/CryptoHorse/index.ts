@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { promisify } from 'typed-promisify';
 import * as Web3 from 'web3';
 
@@ -26,7 +25,7 @@ export const CryptoHorseSchema: Schema<CryptoHorseType> = {
   assetToFields: asset => ({ID: asset}),
   formatter:
     async (asset: CryptoHorseType, web3: any) => {
-      const abi = {"constant":true,"inputs":[{"name":"_id","type":"uint256"}],"name":"getHorse","outputs":[{"name":"price","type":"uint256"},{"name":"id","type":"uint256"},{"name":"forSale","type":"bool"},{"name":"isGestating","type":"bool"},{"name":"isReady","type":"bool"},{"name":"unproductiveIndex","type":"uint256"},{"name":"nextActionAt","type":"uint256"},{"name":"stallionWithId","type":"uint256"},{"name":"birthTime","type":"uint256"},{"name":"mareId","type":"uint256"},{"name":"stallionId","type":"uint256"},{"name":"generation","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"};
+      const abi = {'constant': true, 'inputs': [{'name': '_id', 'type': 'uint256'}], 'name': 'getHorse', 'outputs': [{'name': 'price', 'type': 'uint256'}, {'name': 'id', 'type': 'uint256'}, {'name': 'forSale', 'type': 'bool'}, {'name': 'isGestating', 'type': 'bool'}, {'name': 'isReady', 'type': 'bool'}, {'name': 'unproductiveIndex', 'type': 'uint256'}, {'name': 'nextActionAt', 'type': 'uint256'}, {'name': 'stallionWithId', 'type': 'uint256'}, {'name': 'birthTime', 'type': 'uint256'}, {'name': 'mareId', 'type': 'uint256'}, {'name': 'stallionId', 'type': 'uint256'}, {'name': 'generation', 'type': 'uint256'}], 'payable': false, 'stateMutability': 'view', 'type': 'function'};
       const contract = web3.eth.contract([abi]).at('0xB88924408A95917c75DE67fc9FbdC4Af992979c3');
       const data = await (promisify(contract[abi.name].call) as any)(asset);
       const generation = data[11];

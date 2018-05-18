@@ -37,7 +37,7 @@ exports.ChainMonstersSchema = {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            abi = { "constant": true, "inputs": [{ "name": "_id", "type": "uint256" }], "name": "getMonster", "outputs": [{ "name": "birthTime", "type": "uint256" }, { "name": "generation", "type": "uint256" }, { "name": "stats", "type": "uint8[8]" }, { "name": "mID", "type": "uint256" }, { "name": "tradeable", "type": "bool" }, { "name": "uID", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" };
+                            abi = { 'constant': true, 'inputs': [{ 'name': '_id', 'type': 'uint256' }], 'name': 'getMonster', 'outputs': [{ 'name': 'birthTime', 'type': 'uint256' }, { 'name': 'generation', 'type': 'uint256' }, { 'name': 'stats', 'type': 'uint8[8]' }, { 'name': 'mID', 'type': 'uint256' }, { 'name': 'tradeable', 'type': 'bool' }, { 'name': 'uID', 'type': 'uint256' }], 'payable': false, 'stateMutability': 'view', 'type': 'function' };
                             contract = web3.eth.contract([abi]).at('0xf7f6c2836293a661be2690fbacae97f3f027e9c4');
                             _context.next = 4;
                             return typed_promisify_1.promisify(contract[abi.name].call)(asset);
