@@ -15,6 +15,7 @@ exports.encodeCall = (abi, parameters) => {
 const generateDefaultValue = (type) => {
     switch (type) {
         case 'address':
+        case types_1.FunctionInputKind.Owner:
             /* Null address is sometimes checked in transfer calls. */
             return '0x1111111111111111111111111111111111111111';
         case 'bytes32':
@@ -43,11 +44,11 @@ exports.encodeSell = (schema, asset, address) => {
 };
 exports.encodeBuy = (schema, asset, address) => {
     const transfer = getTransferFunction(schema)(asset);
-    const replaceables = transfer.inputs.filter(i => i.kind === types_1.FunctionInputKind.Replaceable);
+    const replaceables = transfer.inputs.filter((i) => i.kind === types_1.FunctionInputKind.Replaceable);
     if (replaceables.length !== 1) {
         failWith('Only 1 input can match transfer destination, but instead ' + replaceables.length + ' did');
     }
-    const inputs = transfer.inputs.map(i => {
+    const inputs = transfer.inputs.map((i) => {
         if (i.kind === types_1.FunctionInputKind.Replaceable) {
             return address;
         }

@@ -15,6 +15,7 @@ exports.encodeCall = function (abi, parameters) {
 var generateDefaultValue = function generateDefaultValue(type) {
     switch (type) {
         case 'address':
+        case types_1.FunctionInputKind.Owner:
             /* Null address is sometimes checked in transfer calls. */
             return '0x1111111111111111111111111111111111111111';
         case 'bytes32':
