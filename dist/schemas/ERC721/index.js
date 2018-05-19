@@ -12,12 +12,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Web3 = require("web3");
-var types_1 = require("../../../types");
-exports.ERC721v1Schema = {
+var types_1 = require("../../types");
+exports.ERC721Schema = {
     version: 1,
     deploymentBlock: 0,
-    name: 'ERC721v1',
-    description: 'Items conforming to the ERC721 v1 spec, using transferFrom.',
+    name: 'ERC721',
+    description: 'Items conforming to the ERC721 spec, using transferFrom.',
     thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
     website: 'http://erc721.org/',
     fields: [{ name: 'ID', type: 'uint256', description: 'Asset Token ID' }, { name: 'Address', type: 'address', description: 'Asset Contract Address' }],
@@ -40,7 +40,7 @@ exports.ERC721v1Schema = {
                     switch (_context.prev = _context.next) {
                         case 0:
                             return _context.abrupt("return", {
-                                title: 'ERC721v1 Asset: Token ID ' + asset.id + ' at ' + asset.address,
+                                title: 'ERC721 Asset: Token ID ' + asset.id + ' at ' + asset.address,
                                 description: '',
                                 url: '',
                                 thumbnail: '',

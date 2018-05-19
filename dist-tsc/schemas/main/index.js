@@ -10,7 +10,7 @@ const index_7 = require("./CryptoMasterpieces/index");
 const index_8 = require("./CryptoMemes/index");
 const index_9 = require("./CryptoPunks/index");
 const index_10 = require("./ENSName/index");
-const index_11 = require("./ERC721v1/index");
+const index_11 = require("../ERC721/index");
 const index_12 = require("./Ethercraft/index");
 const index_13 = require("./Etheremon/index");
 const index_14 = require("./EtherTulips/index");
@@ -33,6 +33,6 @@ exports.mainSchemas = [
     index_14.EtherTulipsSchema,
     index_15.MythereumSchema,
     index_16.OwnableContractSchema,
-    index_11.ERC721v1Schema,
+    index_11.ERC721Schema,
 ];
 //# sourceMappingURL=index.js.map
