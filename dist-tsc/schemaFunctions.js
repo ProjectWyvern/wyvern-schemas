@@ -48,18 +48,7 @@ exports.encodeBuy = (schema, asset, address) => {
     if (replaceables.length !== 1) {
         failWith('Only 1 input can match transfer destination, but instead ' + replaceables.length + ' did');
     }
-    const inputs = transfer.inputs.map((i) => {
-        if (i.kind === types_1.FunctionInputKind.Replaceable) {
-            return address;
-        }
-        else if (i.value == null) {
-            return generateDefaultValue(i.kind).toString();
-        }
-        else {
-            return i.value.toString();
-        }
-    });
-    const calldata = exports.encodeCall(transfer, inputs);
+    const calldata = exports.encodeDefaultCall(transfer, address);
     return {
         target: transfer.target,
         calldata,
