@@ -47,14 +47,37 @@ exports.encodeBuy = function (schema, asset, address) {
     var replaceables = transfer.inputs.filter(function (i) {
         return i.kind === types_1.FunctionInputKind.Replaceable;
     });
+    var ownerInputs = transfer.inputs.filter(function (i) {
+        return i.kind === types_1.FunctionInputKind.Owner;
+    });
+    // Validate
     if (replaceables.length !== 1) {
         failWith('Only 1 input can match transfer destination, but instead ' + replaceables.length + ' did');
     }
-    var calldata = exports.encodeDefaultCall(transfer, address);
+    // Compute calldata
+    var parameters = transfer.inputs.map(function (input) {
+        switch (input.kind) {
+            case types_1.FunctionInputKind.Replaceable:
+                return address;
+            case types_1.FunctionInputKind.Owner:
+                return generateDefaultValue(input.type);
+            default:
+                return input.value.toString();
+        }
+    });
+    var calldata = exports.encodeCall(transfer, parameters);
+    // Compute replacement pattern
+    var replacementPattern = '0x';
+    if (ownerInputs.length > 0) {
+        ownerInputs.forEach(function (input) {
+            input.kind = types_1.FunctionInputKind.Replaceable;
+        });
+        replacementPattern = exports.encodeReplacementPattern(transfer);
+    }
     return {
         target: transfer.target,
         calldata: calldata,
-        replacementPattern: '0x'
+        replacementPattern: replacementPattern
     };
 };
 exports.encodeDefaultCall = function (abi, address) {

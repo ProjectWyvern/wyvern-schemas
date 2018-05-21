@@ -45,14 +45,35 @@ exports.encodeSell = (schema, asset, address) => {
 exports.encodeBuy = (schema, asset, address) => {
     const transfer = getTransferFunction(schema)(asset);
     const replaceables = transfer.inputs.filter((i) => i.kind === types_1.FunctionInputKind.Replaceable);
+    const ownerInputs = transfer.inputs.filter((i) => i.kind === types_1.FunctionInputKind.Owner);
+    // Validate
     if (replaceables.length !== 1) {
         failWith('Only 1 input can match transfer destination, but instead ' + replaceables.length + ' did');
     }
-    const calldata = exports.encodeDefaultCall(transfer, address);
+    // Compute calldata
+    const parameters = transfer.inputs.map((input) => {
+        switch (input.kind) {
+            case types_1.FunctionInputKind.Replaceable:
+                return address;
+            case types_1.FunctionInputKind.Owner:
+                return generateDefaultValue(input.type);
+            default:
+                return input.value.toString();
+        }
+    });
+    const calldata = exports.encodeCall(transfer, parameters);
+    // Compute replacement pattern
+    let replacementPattern = '0x';
+    if (ownerInputs.length > 0) {
+        ownerInputs.forEach((input) => {
+            input.kind = types_1.FunctionInputKind.Replaceable;
+        });
+        replacementPattern = exports.encodeReplacementPattern(transfer);
+    }
     return {
         target: transfer.target,
         calldata,
-        replacementPattern: '0x',
+        replacementPattern,
     };
 };
 exports.encodeDefaultCall = (abi, address) => {

@@ -69,15 +69,39 @@ export type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => Ca
 export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
   const transfer = getTransferFunction(schema)(asset);
   const replaceables = transfer.inputs.filter((i: any) => i.kind === FunctionInputKind.Replaceable);
+  const ownerInputs = transfer.inputs.filter((i: any) => i.kind === FunctionInputKind.Owner);
+
+  // Validate
   if (replaceables.length !== 1) {
     failWith('Only 1 input can match transfer destination, but instead ' + replaceables.length + ' did');
   }
-  
-  const calldata = encodeDefaultCall(transfer, address);
+
+  // Compute calldata
+  const parameters = transfer.inputs.map((input: any) => {
+    switch (input.kind) {
+      case FunctionInputKind.Replaceable:
+        return address;
+      case FunctionInputKind.Owner:
+        return generateDefaultValue(input.type);
+      default:
+        return input.value.toString();
+    }
+  });
+  const calldata = encodeCall(transfer, parameters);
+
+  // Compute replacement pattern
+  let replacementPattern = '0x'
+  if (ownerInputs.length > 0) {
+    ownerInputs.forEach((input: any) => {
+      input.kind = FunctionInputKind.Replaceable;
+    })
+    replacementPattern = encodeReplacementPattern(transfer)
+  }
+
   return {
     target: transfer.target,
     calldata,
-    replacementPattern: '0x',
+    replacementPattern,
   };
 };
 
