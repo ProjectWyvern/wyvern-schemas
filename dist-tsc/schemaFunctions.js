@@ -65,10 +65,7 @@ exports.encodeBuy = (schema, asset, address) => {
     // Compute replacement pattern
     let replacementPattern = '0x';
     if (ownerInputs.length > 0) {
-        ownerInputs.forEach((input) => {
-            input.kind = types_1.FunctionInputKind.Replaceable;
-        });
-        replacementPattern = exports.encodeReplacementPattern(transfer);
+        replacementPattern = exports.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
     }
     return {
         target: transfer.target,
@@ -89,7 +86,7 @@ exports.encodeDefaultCall = (abi, address) => {
     });
     return exports.encodeCall(abi, parameters);
 };
-exports.encodeReplacementPattern = abi => {
+exports.encodeReplacementPattern = (abi, replaceKind = types_1.FunctionInputKind.Replaceable) => {
     const allowReplaceBit = '1';
     const doNotAllowReplaceBit = '0';
     /* Four bytes for method ID. */
@@ -99,7 +96,7 @@ exports.encodeReplacementPattern = abi => {
     abi.inputs.map(i => {
         const type = ethABI.elementaryName(i.type);
         const encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
-        if (i.kind === types_1.FunctionInputKind.Replaceable) {
+        if (i.kind === replaceKind) {
             maskArr.push(allowReplaceBit.repeat(encoded.length));
         }
         else {

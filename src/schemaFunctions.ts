@@ -90,12 +90,9 @@ export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
   const calldata = encodeCall(transfer, parameters);
 
   // Compute replacement pattern
-  let replacementPattern = '0x'
+  let replacementPattern = '0x';
   if (ownerInputs.length > 0) {
-    ownerInputs.forEach((input: any) => {
-      input.kind = FunctionInputKind.Replaceable;
-    })
-    replacementPattern = encodeReplacementPattern(transfer)
+    replacementPattern = encodeReplacementPattern(transfer, FunctionInputKind.Owner);
   }
 
   return {
@@ -121,9 +118,9 @@ export const encodeDefaultCall: DefaultCallEncoder = (abi, address) => {
   return encodeCall(abi, parameters);
 };
 
-export type ReplacementEncoder = (abi: AnnotatedFunctionABI) => string;
+export type ReplacementEncoder = (abi: AnnotatedFunctionABI, kind?: FunctionInputKind) => string;
 
-export const encodeReplacementPattern: ReplacementEncoder = abi => {
+export const encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable) => {
   const allowReplaceBit = '1';
   const doNotAllowReplaceBit = '0';
   /* Four bytes for method ID. */
@@ -133,7 +130,7 @@ export const encodeReplacementPattern: ReplacementEncoder = abi => {
   abi.inputs.map(i => {
     const type = ethABI.elementaryName(i.type);
     const encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
-    if (i.kind === FunctionInputKind.Replaceable) {
+    if (i.kind === replaceKind) {
       maskArr.push((allowReplaceBit as any).repeat(encoded.length));
     } else {
       maskArr.push((doNotAllowReplaceBit as any).repeat(encoded.length));

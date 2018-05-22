@@ -69,10 +69,7 @@ exports.encodeBuy = function (schema, asset, address) {
     // Compute replacement pattern
     var replacementPattern = '0x';
     if (ownerInputs.length > 0) {
-        ownerInputs.forEach(function (input) {
-            input.kind = types_1.FunctionInputKind.Replaceable;
-        });
-        replacementPattern = exports.encodeReplacementPattern(transfer);
+        replacementPattern = exports.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
     }
     return {
         target: transfer.target,
@@ -94,6 +91,8 @@ exports.encodeDefaultCall = function (abi, address) {
     return exports.encodeCall(abi, parameters);
 };
 exports.encodeReplacementPattern = function (abi) {
+    var replaceKind = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : types_1.FunctionInputKind.Replaceable;
+
     var allowReplaceBit = '1';
     var doNotAllowReplaceBit = '0';
     /* Four bytes for method ID. */
@@ -102,7 +101,7 @@ exports.encodeReplacementPattern = function (abi) {
     abi.inputs.map(function (i) {
         var type = ethABI.elementaryName(i.type);
         var encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
-        if (i.kind === types_1.FunctionInputKind.Replaceable) {
+        if (i.kind === replaceKind) {
             maskArr.push(allowReplaceBit.repeat(encoded.length));
         } else {
             maskArr.push(doNotAllowReplaceBit.repeat(encoded.length));
