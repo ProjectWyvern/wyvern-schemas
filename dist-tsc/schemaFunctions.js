@@ -40,7 +40,7 @@ exports.encodeSell = (schema, asset, address) => {
     return {
         target: transfer.target,
         calldata: exports.encodeDefaultCall(transfer, address),
-        replacementPattern: exports.encodeReplacementPattern(transfer),
+        replacementPattern: wyvern_js_1.WyvernProtocol.encodeReplacementPattern(transfer),
     };
 };
 exports.encodeBuy = (schema, asset, address) => {
@@ -66,7 +66,7 @@ exports.encodeBuy = (schema, asset, address) => {
     // Compute replacement pattern
     let replacementPattern = '0x';
     if (ownerInputs.length > 0) {
-        replacementPattern = exports.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
+        replacementPattern = wyvern_js_1.WyvernProtocol.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
     }
     return {
         target: transfer.target,
