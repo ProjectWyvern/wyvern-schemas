@@ -62,7 +62,7 @@ export const encodeSell: SellEncoder<any> = (schema, asset, address) => {
   return {
     target: transfer.target,
     calldata: encodeDefaultCall(transfer, address),
-    replacementPattern: encodeReplacementPattern(transfer),
+    replacementPattern: WyvernProtocol.encodeReplacementPattern(transfer),
   };
 };
 
@@ -94,7 +94,7 @@ export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
   // Compute replacement pattern
   let replacementPattern = '0x';
   if (ownerInputs.length > 0) {
-    replacementPattern = encodeReplacementPattern(transfer, FunctionInputKind.Owner);
+    replacementPattern = WyvernProtocol.encodeReplacementPattern(transfer, FunctionInputKind.Owner);
   }
 
   return {
