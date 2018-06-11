@@ -2,10 +2,12 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ethABI = require("ethereumjs-abi");
+var wyvern_js_1 = require("wyvern-js");
 var types_1 = require("./types");
 var failWith = function failWith(msg) {
     throw new Error(msg);
 };
+exports.encodeReplacementPattern = wyvern_js_1.WyvernProtocol.encodeReplacementPattern;
 exports.encodeCall = function (abi, parameters) {
     var inputTypes = abi.inputs.map(function (i) {
         return i.type;
@@ -15,7 +17,6 @@ exports.encodeCall = function (abi, parameters) {
 var generateDefaultValue = function generateDefaultValue(type) {
     switch (type) {
         case 'address':
-        case types_1.FunctionInputKind.Owner:
             /* Null address is sometimes checked in transfer calls. */
             return '0x1111111111111111111111111111111111111111';
         case 'bytes32':
@@ -89,47 +90,6 @@ exports.encodeDefaultCall = function (abi, address) {
         }
     });
     return exports.encodeCall(abi, parameters);
-};
-exports.encodeReplacementPattern = function (abi) {
-    var replaceKind = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : types_1.FunctionInputKind.Replaceable;
-
-    var allowReplaceBit = '1';
-    var doNotAllowReplaceBit = '0';
-    /* Four bytes for method ID. */
-    var maskArr = [doNotAllowReplaceBit, doNotAllowReplaceBit, doNotAllowReplaceBit, doNotAllowReplaceBit];
-    /* This DOES NOT currently support dynamic-length data (arrays). */
-    abi.inputs.map(function (i) {
-        var type = ethABI.elementaryName(i.type);
-        var encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
-        if (i.kind === replaceKind) {
-            maskArr.push(allowReplaceBit.repeat(encoded.length));
-        } else {
-            maskArr.push(doNotAllowReplaceBit.repeat(encoded.length));
-        }
-    });
-    var mask = maskArr.reduce(function (x, y) {
-        return x + y;
-    }, '');
-    var ret = [];
-    /* Encode into bytes. */
-    while (true) {
-        var byteChars = mask.substr(0, 8);
-        if (byteChars.length === 0) {
-            break;
-        }
-        byteChars = byteChars.padEnd(8, '0');
-        var byte = 0;
-        var mul = Math.pow(2, 7);
-        for (var i = 0; i < 8; i++) {
-            byte += byteChars[i] === allowReplaceBit ? mul : 0;
-            mul = mul / 2;
-        }
-        var buf = Buffer.alloc(1);
-        buf.writeUInt8(byte, 0);
-        ret.push(buf);
-        mask = mask.slice(8);
-    }
-    return '0x' + Buffer.concat(ret).toString('hex');
 };
 function getTransferFunction(schema) {
     return schema.functions.transferFrom || schema.functions.transfer;

@@ -1,5 +1,6 @@
 import * as Web3 from 'web3';
 import { AnnotatedFunctionABI, FunctionInputKind, Schema } from './types';
+export declare const encodeReplacementPattern: any;
 export interface LimitedCallSpec {
     target: string;
     calldata: string;
@@ -17,4 +18,3 @@ export declare const encodeBuy: BuyEncoder<any>;
 export declare type DefaultCallEncoder = (abi: AnnotatedFunctionABI, address: string) => string;
 export declare const encodeDefaultCall: DefaultCallEncoder;
 export declare type ReplacementEncoder = (abi: AnnotatedFunctionABI, kind?: FunctionInputKind) => string;
-export declare const encodeReplacementPattern: ReplacementEncoder;

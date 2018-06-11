@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ethABI = require("ethereumjs-abi");
+const wyvern_js_1 = require("wyvern-js");
 const types_1 = require("./types");
 const failWith = (msg) => {
     throw new Error(msg);
 };
+exports.encodeReplacementPattern = wyvern_js_1.WyvernProtocol.encodeReplacementPattern;
 exports.encodeCall = (abi, parameters) => {
     const inputTypes = abi.inputs.map(i => i.type);
     return '0x' + Buffer.concat([
@@ -15,7 +17,6 @@ exports.encodeCall = (abi, parameters) => {
 const generateDefaultValue = (type) => {
     switch (type) {
         case 'address':
-        case types_1.FunctionInputKind.Owner:
             /* Null address is sometimes checked in transfer calls. */
             return '0x1111111111111111111111111111111111111111';
         case 'bytes32':
@@ -85,45 +86,6 @@ exports.encodeDefaultCall = (abi, address) => {
         }
     });
     return exports.encodeCall(abi, parameters);
-};
-exports.encodeReplacementPattern = (abi, replaceKind = types_1.FunctionInputKind.Replaceable) => {
-    const allowReplaceBit = '1';
-    const doNotAllowReplaceBit = '0';
-    /* Four bytes for method ID. */
-    const maskArr = [doNotAllowReplaceBit, doNotAllowReplaceBit,
-        doNotAllowReplaceBit, doNotAllowReplaceBit];
-    /* This DOES NOT currently support dynamic-length data (arrays). */
-    abi.inputs.map(i => {
-        const type = ethABI.elementaryName(i.type);
-        const encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
-        if (i.kind === replaceKind) {
-            maskArr.push(allowReplaceBit.repeat(encoded.length));
-        }
-        else {
-            maskArr.push(doNotAllowReplaceBit.repeat(encoded.length));
-        }
-    });
-    let mask = maskArr.reduce((x, y) => x + y, '');
-    const ret = [];
-    /* Encode into bytes. */
-    while (true) {
-        let byteChars = mask.substr(0, 8);
-        if (byteChars.length === 0) {
-            break;
-        }
-        byteChars = byteChars.padEnd(8, '0');
-        let byte = 0;
-        let mul = 2 ** 7;
-        for (let i = 0; i < 8; i++) {
-            byte += byteChars[i] === allowReplaceBit ? mul : 0;
-            mul = mul / 2;
-        }
-        const buf = Buffer.alloc(1);
-        buf.writeUInt8(byte, 0);
-        ret.push(buf);
-        mask = mask.slice(8);
-    }
-    return '0x' + Buffer.concat(ret).toString('hex');
 };
 function getTransferFunction(schema) {
     return schema.functions.transferFrom
