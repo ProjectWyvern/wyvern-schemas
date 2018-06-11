@@ -12,7 +12,35 @@ const failWith = (msg: string): any => {
   throw new Error(msg);
 };
 
-export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
+// export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
+// Copied from wyvern-js 3.0.0-rc1
+export const encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable): string => {
+  const allowReplaceByte = '1';
+  const doNotAllowReplaceByte = '0';
+  /* Four bytes for method ID. */
+  const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
+  doNotAllowReplaceByte, doNotAllowReplaceByte];
+  /* This DOES NOT currently support dynamic-length data (arrays). */
+  abi.inputs.map(i => {
+    const type = ethABI.elementaryName(i.type);
+    const encoded = ethABI.encodeSingle(type, WyvernProtocol.generateDefaultValue(i.type));
+    if (i.kind === replaceKind) {
+      maskArr.push((allowReplaceByte as any).repeat(encoded.length));
+    } else {
+      maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
+    }
+  });
+  const mask = maskArr.reduce((x, y) => x + y, '');
+  const ret = [];
+  /* Encode into bytes. */
+  for (const char of mask) {
+    const byte = char === allowReplaceByte ? 255 : 0;
+    const buf = Buffer.alloc(1);
+    buf.writeUInt8(byte, 0);
+    ret.push(buf);
+  }
+  return '0x' + Buffer.concat(ret).toString('hex');
+}
 
 export interface LimitedCallSpec {
   target: string;
@@ -62,7 +90,7 @@ export const encodeSell: SellEncoder<any> = (schema, asset, address) => {
   return {
     target: transfer.target,
     calldata: encodeDefaultCall(transfer, address),
-    replacementPattern: WyvernProtocol.encodeReplacementPattern(transfer),
+    replacementPattern: encodeReplacementPattern(transfer),
   };
 };
 
@@ -94,7 +122,7 @@ export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
   // Compute replacement pattern
   let replacementPattern = '0x';
   if (ownerInputs.length > 0) {
-    replacementPattern = WyvernProtocol.encodeReplacementPattern(transfer, FunctionInputKind.Owner);
+    replacementPattern = encodeReplacementPattern(transfer, FunctionInputKind.Owner);
   }
 
   return {

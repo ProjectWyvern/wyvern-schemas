@@ -6,7 +6,36 @@ const types_1 = require("./types");
 const failWith = (msg) => {
     throw new Error(msg);
 };
-exports.encodeReplacementPattern = wyvern_js_1.WyvernProtocol.encodeReplacementPattern;
+// export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
+// Copied from wyvern-js 3.0.0-rc1
+exports.encodeReplacementPattern = (abi, replaceKind = types_1.FunctionInputKind.Replaceable) => {
+    const allowReplaceByte = '1';
+    const doNotAllowReplaceByte = '0';
+    /* Four bytes for method ID. */
+    const maskArr = [doNotAllowReplaceByte, doNotAllowReplaceByte,
+        doNotAllowReplaceByte, doNotAllowReplaceByte];
+    /* This DOES NOT currently support dynamic-length data (arrays). */
+    abi.inputs.map(i => {
+        const type = ethABI.elementaryName(i.type);
+        const encoded = ethABI.encodeSingle(type, wyvern_js_1.WyvernProtocol.generateDefaultValue(i.type));
+        if (i.kind === replaceKind) {
+            maskArr.push(allowReplaceByte.repeat(encoded.length));
+        }
+        else {
+            maskArr.push(doNotAllowReplaceByte.repeat(encoded.length));
+        }
+    });
+    const mask = maskArr.reduce((x, y) => x + y, '');
+    const ret = [];
+    /* Encode into bytes. */
+    for (const char of mask) {
+        const byte = char === allowReplaceByte ? 255 : 0;
+        const buf = Buffer.alloc(1);
+        buf.writeUInt8(byte, 0);
+        ret.push(buf);
+    }
+    return '0x' + Buffer.concat(ret).toString('hex');
+};
 exports.encodeCall = (abi, parameters) => {
     const inputTypes = abi.inputs.map(i => i.type);
     return '0x' + Buffer.concat([
@@ -40,7 +69,7 @@ exports.encodeSell = (schema, asset, address) => {
     return {
         target: transfer.target,
         calldata: exports.encodeDefaultCall(transfer, address),
-        replacementPattern: wyvern_js_1.WyvernProtocol.encodeReplacementPattern(transfer),
+        replacementPattern: exports.encodeReplacementPattern(transfer),
     };
 };
 exports.encodeBuy = (schema, asset, address) => {
@@ -66,7 +95,7 @@ exports.encodeBuy = (schema, asset, address) => {
     // Compute replacement pattern
     let replacementPattern = '0x';
     if (ownerInputs.length > 0) {
-        replacementPattern = wyvern_js_1.WyvernProtocol.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
+        replacementPattern = exports.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
     }
     return {
         target: transfer.target,

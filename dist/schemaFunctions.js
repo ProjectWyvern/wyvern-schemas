@@ -1,5 +1,11 @@
 "use strict";
 
+var _getIterator2 = require("babel-runtime/core-js/get-iterator");
+
+var _getIterator3 = _interopRequireDefault(_getIterator2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
 var ethABI = require("ethereumjs-abi");
 var wyvern_js_1 = require("wyvern-js");
@@ -7,7 +13,60 @@ var types_1 = require("./types");
 var failWith = function failWith(msg) {
     throw new Error(msg);
 };
-exports.encodeReplacementPattern = wyvern_js_1.WyvernProtocol.encodeReplacementPattern;
+// export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
+// Copied from wyvern-js 3.0.0-rc1
+exports.encodeReplacementPattern = function (abi) {
+    var replaceKind = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : types_1.FunctionInputKind.Replaceable;
+
+    var allowReplaceByte = '1';
+    var doNotAllowReplaceByte = '0';
+    /* Four bytes for method ID. */
+    var maskArr = [doNotAllowReplaceByte, doNotAllowReplaceByte, doNotAllowReplaceByte, doNotAllowReplaceByte];
+    /* This DOES NOT currently support dynamic-length data (arrays). */
+    abi.inputs.map(function (i) {
+        var type = ethABI.elementaryName(i.type);
+        var encoded = ethABI.encodeSingle(type, wyvern_js_1.WyvernProtocol.generateDefaultValue(i.type));
+        if (i.kind === replaceKind) {
+            maskArr.push(allowReplaceByte.repeat(encoded.length));
+        } else {
+            maskArr.push(doNotAllowReplaceByte.repeat(encoded.length));
+        }
+    });
+    var mask = maskArr.reduce(function (x, y) {
+        return x + y;
+    }, '');
+    var ret = [];
+    /* Encode into bytes. */
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = (0, _getIterator3.default)(mask), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var char = _step.value;
+
+            var byte = char === allowReplaceByte ? 255 : 0;
+            var buf = Buffer.alloc(1);
+            buf.writeUInt8(byte, 0);
+            ret.push(buf);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+
+    return '0x' + Buffer.concat(ret).toString('hex');
+};
 exports.encodeCall = function (abi, parameters) {
     var inputTypes = abi.inputs.map(function (i) {
         return i.type;
@@ -40,7 +99,7 @@ exports.encodeSell = function (schema, asset, address) {
     return {
         target: transfer.target,
         calldata: exports.encodeDefaultCall(transfer, address),
-        replacementPattern: wyvern_js_1.WyvernProtocol.encodeReplacementPattern(transfer)
+        replacementPattern: exports.encodeReplacementPattern(transfer)
     };
 };
 exports.encodeBuy = function (schema, asset, address) {
@@ -70,7 +129,7 @@ exports.encodeBuy = function (schema, asset, address) {
     // Compute replacement pattern
     var replacementPattern = '0x';
     if (ownerInputs.length > 0) {
-        replacementPattern = wyvern_js_1.WyvernProtocol.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
+        replacementPattern = exports.encodeReplacementPattern(transfer, types_1.FunctionInputKind.Owner);
     }
     return {
         target: transfer.target,
