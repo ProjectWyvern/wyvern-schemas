@@ -13,7 +13,7 @@ const failWith = (msg: string): any => {
 };
 
 // export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
-// Copied from wyvern-js 3.0.0-rc1
+// Copied from wyvern-js 3.0.0-rc1, with generateDefaultValue changed
 export const encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable): string => {
   const allowReplaceByte = '1';
   const doNotAllowReplaceByte = '0';
@@ -23,7 +23,7 @@ export const encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = 
   /* This DOES NOT currently support dynamic-length data (arrays). */
   abi.inputs.map(i => {
     const type = ethABI.elementaryName(i.type);
-    const encoded = ethABI.encodeSingle(type, WyvernProtocol.generateDefaultValue(i.type));
+    const encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
     if (i.kind === replaceKind) {
       maskArr.push((allowReplaceByte as any).repeat(encoded.length));
     } else {
@@ -58,6 +58,7 @@ export const encodeCall = (abi: Web3.MethodAbi, parameters: any[]): string => {
 const generateDefaultValue = (type: string): any => {
   switch (type) {
     case 'address':
+    case 'bytes20':
       /* Null address is sometimes checked in transfer calls. */
       return '0x1111111111111111111111111111111111111111';
     case 'bytes32':

@@ -8,13 +8,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ethABI = require("ethereumjs-abi");
-var wyvern_js_1 = require("wyvern-js");
 var types_1 = require("./types");
 var failWith = function failWith(msg) {
     throw new Error(msg);
 };
 // export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
-// Copied from wyvern-js 3.0.0-rc1
+// Copied from wyvern-js 3.0.0-rc1, with generateDefaultValue changed
 exports.encodeReplacementPattern = function (abi) {
     var replaceKind = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : types_1.FunctionInputKind.Replaceable;
 
@@ -25,7 +24,7 @@ exports.encodeReplacementPattern = function (abi) {
     /* This DOES NOT currently support dynamic-length data (arrays). */
     abi.inputs.map(function (i) {
         var type = ethABI.elementaryName(i.type);
-        var encoded = ethABI.encodeSingle(type, wyvern_js_1.WyvernProtocol.generateDefaultValue(i.type));
+        var encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
         if (i.kind === replaceKind) {
             maskArr.push(allowReplaceByte.repeat(encoded.length));
         } else {
@@ -76,6 +75,7 @@ exports.encodeCall = function (abi, parameters) {
 var generateDefaultValue = function generateDefaultValue(type) {
     switch (type) {
         case 'address':
+        case 'bytes20':
             /* Null address is sometimes checked in transfer calls. */
             return '0x1111111111111111111111111111111111111111';
         case 'bytes32':
