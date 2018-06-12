@@ -1,6 +1,6 @@
 import * as Web3 from 'web3';
 import { AnnotatedFunctionABI, FunctionInputKind, Schema } from './types';
-export declare const encodeReplacementPattern: ReplacementEncoder;
+export declare const encodeReplacementPattern: any;
 export interface LimitedCallSpec {
     target: string;
     calldata: string;

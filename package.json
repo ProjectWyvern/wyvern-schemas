@@ -52,6 +52,6 @@
     "mocha": "^5.0.1",
     "typed-promisify": "^0.4.0",
     "web3-provider-engine": "^13.6.5",
-    "wyvern-js": "2.2.0"
+    "wyvern-js": "github:ProjectOpenSea/wyvern-js"
   }
 }

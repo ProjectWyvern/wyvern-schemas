@@ -12,35 +12,57 @@ const failWith = (msg: string): any => {
   throw new Error(msg);
 };
 
-// export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
-// Copied from wyvern-js 3.0.0-rc1, with generateDefaultValue changed
-export const encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable): string => {
-  const allowReplaceByte = '1';
-  const doNotAllowReplaceByte = '0';
-  /* Four bytes for method ID. */
-  const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
-  doNotAllowReplaceByte, doNotAllowReplaceByte];
-  /* This DOES NOT currently support dynamic-length data (arrays). */
-  abi.inputs.map(i => {
-    const type = ethABI.elementaryName(i.type);
-    const encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
-    if (i.kind === replaceKind) {
-      maskArr.push((allowReplaceByte as any).repeat(encoded.length));
-    } else {
-      maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
-    }
-  });
-  const mask = maskArr.reduce((x, y) => x + y, '');
-  const ret = [];
-  /* Encode into bytes. */
-  for (const char of mask) {
-    const byte = char === allowReplaceByte ? 255 : 0;
-    const buf = Buffer.alloc(1);
-    buf.writeUInt8(byte, 0);
-    ret.push(buf);
-  }
-  return '0x' + Buffer.concat(ret).toString('hex');
-}
+export const encodeReplacementPattern = WyvernProtocol.encodeReplacementPattern;
+// const generateDefaultValue = (type: string): any => {
+//   switch (type) {
+//     case 'address':
+//     case 'bytes20':
+//       /* Null address is sometimes checked in transfer calls. */
+//       return '0x1111111111111111111111111111111111111111';
+//     case 'bytes32':
+//       return '0x0000000000000000000000000000000000000000000000000000000000000000';
+//     case 'bool':
+//       return false;
+//     case 'int':
+//     case 'uint':
+//     case 'uint8':
+//     case 'uint16':
+//     case 'uint32':
+//     case 'uint64':
+//     case 'uint256':
+//       return 0;
+//     default:
+//       failWith('Default value not yet implemented for type: ' + type);
+//   }
+// };
+// // Copied from wyvern-js 3.0.0-rc1, with generateDefaultValue changed
+// export const encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable): string => {
+//   const allowReplaceByte = '1';
+//   const doNotAllowReplaceByte = '0';
+//   /* Four bytes for method ID. */
+//   const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
+//   doNotAllowReplaceByte, doNotAllowReplaceByte];
+//   /* This DOES NOT currently support dynamic-length data (arrays). */
+//   abi.inputs.map(i => {
+//     const type = ethABI.elementaryName(i.type);
+//     const encoded = ethABI.encodeSingle(type, generateDefaultValue(i.type));
+//     if (i.kind === replaceKind) {
+//       maskArr.push((allowReplaceByte as any).repeat(encoded.length));
+//     } else {
+//       maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
+//     }
+//   });
+//   const mask = maskArr.reduce((x, y) => x + y, '');
+//   const ret = [];
+//   /* Encode into bytes. */
+//   for (const char of mask) {
+//     const byte = char === allowReplaceByte ? 255 : 0;
+//     const buf = Buffer.alloc(1);
+//     buf.writeUInt8(byte, 0);
+//     ret.push(buf);
+//   }
+//   return '0x' + Buffer.concat(ret).toString('hex');
+// }
 
 export interface LimitedCallSpec {
   target: string;
@@ -53,29 +75,6 @@ export const encodeCall = (abi: Web3.MethodAbi, parameters: any[]): string => {
     ethABI.methodID(abi.name, inputTypes),
     ethABI.rawEncode(inputTypes, parameters),
   ]).toString('hex');
-};
-
-const generateDefaultValue = (type: string): any => {
-  switch (type) {
-    case 'address':
-    case 'bytes20':
-      /* Null address is sometimes checked in transfer calls. */
-      return '0x1111111111111111111111111111111111111111';
-    case 'bytes32':
-      return '0x0000000000000000000000000000000000000000000000000000000000000000';
-    case 'bool':
-      return false;
-    case 'int':
-    case 'uint':
-    case 'uint8':
-    case 'uint16':
-    case 'uint32':
-    case 'uint64':
-    case 'uint256':
-      return 0;
-    default:
-      failWith('Default value not yet implemented for type: ' + type);
-  }
 };
 
 export interface CallSpec {
@@ -113,7 +112,7 @@ export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
       case FunctionInputKind.Replaceable:
         return address;
       case FunctionInputKind.Owner:
-        return generateDefaultValue(input.type);
+        return WyvernProtocol.generateDefaultValue(input.type);
       default:
         return input.value.toString();
     }
@@ -141,7 +140,7 @@ export const encodeDefaultCall: DefaultCallEncoder = (abi, address) => {
       case FunctionInputKind.Asset:
         return input.value;
       case FunctionInputKind.Replaceable:
-        return generateDefaultValue(input.type);
+        return WyvernProtocol.generateDefaultValue(input.type);
       case FunctionInputKind.Owner:
         return address;
     }
