@@ -4326,8 +4326,8 @@ ts-loader@^3.3.0:
     semver "^5.0.1"
 
 ts-node@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-6.1.0.tgz#a2c37a11fdb58e60eca887a1269b025cf4d2f8b8"
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-6.1.1.tgz#19607140acb06150441fcdb61be11f73f7b6657e"
   dependencies:
     arrify "^1.0.0"
     diff "^3.1.0"
@@ -4694,8 +4694,8 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 "wyvern-js@github:ProjectOpenSea/wyvern-js":
-  version "3.0.0-rc2"
-  resolved "https://codeload.github.com/ProjectOpenSea/wyvern-js/tar.gz/86df3c771a1d4f58d4e3d81d1d4bc68b85366974"
+  version "3.0.0-rc3"
+  resolved "https://codeload.github.com/ProjectOpenSea/wyvern-js/tar.gz/858b0634a77d2b76750390b9651b9127ddb10b7c"
   dependencies:
     "0x.js" "^0.29.2"
     "@0xproject/abi-gen" "^0.1.1"
