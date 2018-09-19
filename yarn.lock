@@ -323,13 +323,13 @@ async@^1.4.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
-async@^2.0.1, async@^2.4.0, async@^2.5.0:
+async@^2.0.1, async@^2.4.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
     lodash "^4.14.0"
 
-async@^2.1.2:
+async@^2.1.2, async@^2.5.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
   dependencies:
@@ -2875,11 +2875,7 @@ lodash.values@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.values/-/lodash.values-4.3.0.tgz#a3a6c2b0ebecc5c2cba1c17e6e620fe81b53d347"
 
-lodash@^4.14.0:
-  version "4.17.10"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
-
-lodash@^4.17.10, lodash@^4.17.4:
+lodash@^4.14.0, lodash@^4.17.10, lodash@^4.17.4:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
@@ -4722,7 +4718,7 @@ wrappy@1:
 
 "wyvern-js@github:ProjectOpenSea/wyvern-js":
   version "3.0.0-rc3"
-  resolved "https://codeload.github.com/ProjectOpenSea/wyvern-js/tar.gz/59e3c8e0aad825d965cee8716dfb01f967ebf5af"
+  resolved "https://codeload.github.com/ProjectOpenSea/wyvern-js/tar.gz/0a6039bf0901ceaef955121960de42a1466d7534"
   dependencies:
     "0x.js" "^0.29.2"
     "@0xproject/abi-gen" "^0.1.1"
