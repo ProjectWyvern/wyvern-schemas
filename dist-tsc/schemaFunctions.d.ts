@@ -1,4 +1,5 @@
 import * as Web3 from 'web3';
+import { WyvernAtomicizerContract } from 'wyvern-js/lib/abi_gen/wyvern_atomicizer';
 import { AnnotatedFunctionABI, FunctionInputKind, Schema } from './types';
 export declare const encodeReplacementPattern: any;
 export interface LimitedCallSpec {
@@ -13,6 +14,8 @@ export interface CallSpec {
 }
 export declare type SellEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 export declare const encodeSell: SellEncoder<any>;
+export declare type AtomicizedSellEncoder<T> = (schema: Schema<T>, assets: T[], address: string, atomicizer: WyvernAtomicizerContract) => Partial<CallSpec>;
+export declare const encodeAtomicizedSell: AtomicizedSellEncoder<any>;
 export declare type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 export declare const encodeBuy: BuyEncoder<any>;
 export declare type DefaultCallEncoder = (abi: AnnotatedFunctionABI, address: string) => string;

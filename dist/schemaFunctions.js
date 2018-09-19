@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ethABI = require("ethereumjs-abi");
 var wyvern_js_1 = require("wyvern-js");
+var bignumber_js_1 = require("wyvern-js/node_modules/bignumber.js");
 var types_1 = require("./types");
 var failWith = function failWith(msg) {
     throw new Error(msg);
@@ -20,6 +21,39 @@ exports.encodeSell = function (schema, asset, address) {
         target: transfer.target,
         calldata: exports.encodeDefaultCall(transfer, address),
         replacementPattern: exports.encodeReplacementPattern(transfer)
+    };
+};
+exports.encodeAtomicizedSell = function (schema, assets, address, atomicizer) {
+    var transactions = assets.map(function (asset) {
+        var _exports$encodeSell = exports.encodeSell(schema, asset, address),
+            target = _exports$encodeSell.target,
+            calldata = _exports$encodeSell.calldata;
+
+        return {
+            calldata: calldata,
+            abi: getTransferFunction(schema)(asset),
+            address: target,
+            value: new bignumber_js_1.default(0)
+        };
+    });
+    var atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(transactions.map(function (t) {
+        return t.address;
+    }), transactions.map(function (t) {
+        return t.value;
+    }), transactions.map(function (t) {
+        return new bignumber_js_1.default((t.calldata.length - 2) / 2);
+    }), // subtract 2 for '0x', divide by 2 for hex
+    transactions.map(function (t) {
+        return t.calldata;
+    }).reduce(function (x, y) {
+        return x + y.slice(2);
+    }));
+    var atomicizedReplacementPattern = wyvern_js_1.WyvernProtocol.encodeAtomicizedReplacementPattern(transactions.map(function (t) {
+        return t.abi;
+    }));
+    return {
+        calldata: atomicizedCalldata,
+        replacementPattern: atomicizedReplacementPattern
     };
 };
 exports.encodeBuy = function (schema, asset, address) {

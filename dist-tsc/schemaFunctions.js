@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ethABI = require("ethereumjs-abi");
 const wyvern_js_1 = require("wyvern-js");
+const bignumber_js_1 = require("wyvern-js/node_modules/bignumber.js");
 const types_1 = require("./types");
 const failWith = (msg) => {
     throw new Error(msg);
@@ -20,6 +21,24 @@ exports.encodeSell = (schema, asset, address) => {
         target: transfer.target,
         calldata: exports.encodeDefaultCall(transfer, address),
         replacementPattern: exports.encodeReplacementPattern(transfer),
+    };
+};
+exports.encodeAtomicizedSell = (schema, assets, address, atomicizer) => {
+    const transactions = assets.map(asset => {
+        const { target, calldata } = exports.encodeSell(schema, asset, address);
+        return {
+            calldata,
+            abi: getTransferFunction(schema)(asset),
+            address: target,
+            value: new bignumber_js_1.default(0),
+        };
+    });
+    const atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(transactions.map(t => t.address), transactions.map(t => t.value), transactions.map(t => new bignumber_js_1.default((t.calldata.length - 2) / 2)), // subtract 2 for '0x', divide by 2 for hex
+    transactions.map(t => t.calldata).reduce((x, y) => x + y.slice(2)));
+    const atomicizedReplacementPattern = wyvern_js_1.WyvernProtocol.encodeAtomicizedReplacementPattern(transactions.map(t => t.abi));
+    return {
+        calldata: atomicizedCalldata,
+        replacementPattern: atomicizedReplacementPattern,
     };
 };
 exports.encodeBuy = (schema, asset, address) => {
