@@ -11,6 +11,7 @@ Web3.AbiType = {
 var schemaFunctions_1 = require("./schemaFunctions");
 exports.encodeBuy = schemaFunctions_1.encodeBuy;
 exports.encodeSell = schemaFunctions_1.encodeSell;
+exports.encodeAtomicizedSell = schemaFunctions_1.encodeAtomicizedSell;
 exports.encodeCall = schemaFunctions_1.encodeCall;
 exports.encodeDefaultCall = schemaFunctions_1.encodeDefaultCall;
 exports.encodeReplacementPattern = schemaFunctions_1.encodeReplacementPattern;
