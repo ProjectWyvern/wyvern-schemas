@@ -1,9 +1,9 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var utils_1 = require("@0xproject/utils");
 var ethABI = require("ethereumjs-abi");
 var wyvern_js_1 = require("wyvern-js");
-var bignumber_js_1 = require("wyvern-js/node_modules/bignumber.js");
 var types_1 = require("./types");
 var failWith = function failWith(msg) {
     throw new Error(msg);
@@ -33,7 +33,7 @@ exports.encodeAtomicizedSell = function (schema, assets, address, atomicizer) {
             calldata: calldata,
             abi: getTransferFunction(schema)(asset),
             address: target,
-            value: new bignumber_js_1.default(0)
+            value: new utils_1.BigNumber(0)
         };
     });
     var atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(transactions.map(function (t) {
@@ -41,7 +41,7 @@ exports.encodeAtomicizedSell = function (schema, assets, address, atomicizer) {
     }), transactions.map(function (t) {
         return t.value;
     }), transactions.map(function (t) {
-        return new bignumber_js_1.default((t.calldata.length - 2) / 2);
+        return new utils_1.BigNumber((t.calldata.length - 2) / 2);
     }), // subtract 2 for '0x', divide by 2 for hex
     transactions.map(function (t) {
         return t.calldata;

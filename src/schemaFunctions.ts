@@ -1,8 +1,8 @@
+import { BigNumber } from '@0xproject/utils';
 import * as ethABI from 'ethereumjs-abi';
 import * as Web3 from 'web3';
 import { WyvernProtocol } from 'wyvern-js';
 import { WyvernAtomicizerContract } from 'wyvern-js/lib/abi_gen/wyvern_atomicizer';
-import BigNumber from 'wyvern-js/node_modules/bignumber.js';
 
 import {
   AnnotatedFunctionABI,
