@@ -4718,7 +4718,7 @@ wrappy@1:
 
 "wyvern-js@github:ProjectOpenSea/wyvern-js":
   version "3.0.0-rc3"
-  resolved "https://codeload.github.com/ProjectOpenSea/wyvern-js/tar.gz/ee7093a638c0a359096f59265d4360086df8dc0c"
+  resolved "https://codeload.github.com/ProjectOpenSea/wyvern-js/tar.gz/672f5fcfc4f6ec676339006f0862145c3b1c7250"
   dependencies:
     "0x.js" "^0.29.2"
     "@0xproject/abi-gen" "^0.1.1"
