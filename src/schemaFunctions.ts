@@ -124,6 +124,34 @@ export const encodeAtomicizedSell: AtomicizedSellEncoder<any> = (schema, assets,
   };
 };
 
+export type AtomicizedBuyEncoder<T> = (schema: Schema<T>, assets: T[], address: string, atomicizer: WyvernAtomicizerContract) => Partial<CallSpec>;
+
+export const encodeAtomicizedBuy: AtomicizedBuyEncoder<any> = (schema, assets, address, atomicizer) => {
+  const transactions = assets.map(asset => {
+    const { target, calldata } = encodeBuy(schema, asset, address);
+    return {
+      calldata,
+      abi: getTransferFunction(schema)(asset),
+      address: target,
+      value: new BigNumber(0),
+    };
+  });
+
+  const atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(
+    transactions.map(t => t.address),
+    transactions.map(t => t.value),
+    transactions.map(t => new BigNumber((t.calldata.length - 2) / 2)), // subtract 2 for '0x', divide by 2 for hex
+    transactions.map(t => t.calldata).reduce((x, y) => x + y.slice(2)), // cut off the '0x'
+  );
+
+  const atomicizedReplacementPattern = WyvernProtocol.encodeAtomicizedReplacementPattern(transactions.map(t => t.abi), FunctionInputKind.Owner);
+
+  return {
+    calldata: atomicizedCalldata,
+    replacementPattern: atomicizedReplacementPattern,
+  };
+};
+
 export type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 
 export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {

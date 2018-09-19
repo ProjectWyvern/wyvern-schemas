@@ -10,6 +10,7 @@ Web3.AbiType = {
 export {
   encodeBuy,
   encodeSell,
+  encodeAtomicizedBuy,
   encodeAtomicizedSell,
   encodeCall,
   encodeDefaultCall,

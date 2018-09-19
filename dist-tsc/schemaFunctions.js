@@ -41,6 +41,24 @@ exports.encodeAtomicizedSell = (schema, assets, address, atomicizer) => {
         replacementPattern: atomicizedReplacementPattern,
     };
 };
+exports.encodeAtomicizedBuy = (schema, assets, address, atomicizer) => {
+    const transactions = assets.map(asset => {
+        const { target, calldata } = exports.encodeBuy(schema, asset, address);
+        return {
+            calldata,
+            abi: getTransferFunction(schema)(asset),
+            address: target,
+            value: new utils_1.BigNumber(0),
+        };
+    });
+    const atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(transactions.map(t => t.address), transactions.map(t => t.value), transactions.map(t => new utils_1.BigNumber((t.calldata.length - 2) / 2)), // subtract 2 for '0x', divide by 2 for hex
+    transactions.map(t => t.calldata).reduce((x, y) => x + y.slice(2)));
+    const atomicizedReplacementPattern = wyvern_js_1.WyvernProtocol.encodeAtomicizedReplacementPattern(transactions.map(t => t.abi), types_1.FunctionInputKind.Owner);
+    return {
+        calldata: atomicizedCalldata,
+        replacementPattern: atomicizedReplacementPattern,
+    };
+};
 exports.encodeBuy = (schema, asset, address) => {
     const transfer = getTransferFunction(schema)(asset);
     const replaceables = transfer.inputs.filter((i) => i.kind === types_1.FunctionInputKind.Replaceable);

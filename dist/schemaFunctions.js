@@ -56,6 +56,39 @@ exports.encodeAtomicizedSell = function (schema, assets, address, atomicizer) {
         replacementPattern: atomicizedReplacementPattern
     };
 };
+exports.encodeAtomicizedBuy = function (schema, assets, address, atomicizer) {
+    var transactions = assets.map(function (asset) {
+        var _exports$encodeBuy = exports.encodeBuy(schema, asset, address),
+            target = _exports$encodeBuy.target,
+            calldata = _exports$encodeBuy.calldata;
+
+        return {
+            calldata: calldata,
+            abi: getTransferFunction(schema)(asset),
+            address: target,
+            value: new utils_1.BigNumber(0)
+        };
+    });
+    var atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(transactions.map(function (t) {
+        return t.address;
+    }), transactions.map(function (t) {
+        return t.value;
+    }), transactions.map(function (t) {
+        return new utils_1.BigNumber((t.calldata.length - 2) / 2);
+    }), // subtract 2 for '0x', divide by 2 for hex
+    transactions.map(function (t) {
+        return t.calldata;
+    }).reduce(function (x, y) {
+        return x + y.slice(2);
+    }));
+    var atomicizedReplacementPattern = wyvern_js_1.WyvernProtocol.encodeAtomicizedReplacementPattern(transactions.map(function (t) {
+        return t.abi;
+    }), types_1.FunctionInputKind.Owner);
+    return {
+        calldata: atomicizedCalldata,
+        replacementPattern: atomicizedReplacementPattern
+    };
+};
 exports.encodeBuy = function (schema, asset, address) {
     var transfer = getTransferFunction(schema)(asset);
     var replaceables = transfer.inputs.filter(function (i) {

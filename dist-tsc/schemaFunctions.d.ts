@@ -16,6 +16,8 @@ export declare type SellEncoder<T> = (schema: Schema<T>, asset: T, address: stri
 export declare const encodeSell: SellEncoder<any>;
 export declare type AtomicizedSellEncoder<T> = (schema: Schema<T>, assets: T[], address: string, atomicizer: WyvernAtomicizerContract) => Partial<CallSpec>;
 export declare const encodeAtomicizedSell: AtomicizedSellEncoder<any>;
+export declare type AtomicizedBuyEncoder<T> = (schema: Schema<T>, assets: T[], address: string, atomicizer: WyvernAtomicizerContract) => Partial<CallSpec>;
+export declare const encodeAtomicizedBuy: AtomicizedBuyEncoder<any>;
 export declare type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 export declare const encodeBuy: BuyEncoder<any>;
 export declare type DefaultCallEncoder = (abi: AnnotatedFunctionABI, address: string) => string;
