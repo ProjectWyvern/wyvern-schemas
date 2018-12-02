@@ -15,7 +15,7 @@ export interface RinkebyOwnableContractType {
 export const rinkebyOwnableContractSchema: Schema<RinkebyOwnableContractType> = {
   version: 1,
   deploymentBlock: 0,
-  name: 'RinkebyOwnableContract',
+  name: 'OwnableContract',
   description: 'Rinkeby Ownable Smart Contract',
   thumbnail: 'https://i.redditmedia.com/NaFzmSbDX2T2RALMxy2tmGJN_gPVNH9lJggCKUDDqcc.jpg?w=320&s=3913239508209aaf6ba1188fe3d3b5fc',
   website: 'https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/ownership/Ownable.sol',
@@ -33,7 +33,7 @@ export const rinkebyOwnableContractSchema: Schema<RinkebyOwnableContractType> = 
         thumbnail: 'https://i.redditmedia.com/NaFzmSbDX2T2RALMxy2tmGJN_gPVNH9lJggCKUDDqcc.jpg?w=320&s=3913239508209aaf6ba1188fe3d3b5fc',
         title: 'Ownable Contract: "' + asset.name + '"',
         description: 'Ownable at address ' + asset.address,
-        url: 'https://etherscan.io/address/' + asset.address,
+        url: 'https://rinkeby.etherscan.io/address/' + asset.address,
         properties: [],
       };
   },

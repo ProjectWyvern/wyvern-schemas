@@ -36,7 +36,7 @@ var nodehash = function nodehash(name) {
 exports.rinkebyENSNameSchema = {
     version: 1,
     deploymentBlock: 0,
-    name: 'RinkebyENSName',
+    name: 'ENSName',
     description: 'Rinkeby Ethereum Name Service (EIP 137)',
     thumbnail: 'https://ens.domains/img/ens.svg',
     website: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md',

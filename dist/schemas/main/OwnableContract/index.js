@@ -16,7 +16,7 @@ var types_1 = require("../../../types");
 exports.OwnableContractSchema = {
     version: 1,
     deploymentBlock: 0,
-    name: 'OwnableSmartContract',
+    name: 'OwnableContract',
     description: 'Smart contract with transferrable ownership.',
     thumbnail: 'https://i.redditmedia.com/NaFzmSbDX2T2RALMxy2tmGJN_gPVNH9lJggCKUDDqcc.jpg?w=320&s=3913239508209aaf6ba1188fe3d3b5fc',
     website: 'https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/ownership/Ownable.sol',
