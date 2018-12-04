@@ -145,6 +145,6 @@ export interface Schema<T> {
   allAssets?: (web3: any) => Promise<T[]>;
   functions: SchemaFunctions<T>;
   events: SchemaEvents<T>;
-  formatter: (obj: T, web3: any) => Promise<FormatInfo>;
+  formatter?: (obj: T, web3: any) => Promise<FormatInfo>;
   hash: (obj: T) => any;
 }

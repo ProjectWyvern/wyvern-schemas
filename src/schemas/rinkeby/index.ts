@@ -6,6 +6,7 @@ import { rinkebyENSNameSchema } from './rinkebyENSName/index';
 import { rinkebyOwnableContractSchema } from './rinkebyOwnableContract/index';
 import { testRinkebyNFTSchema } from './testRinkebyNFT/index';
 import { ERC721Schema } from '../ERC721/index';
+import { ContractRoleSchema } from '../ContractRole/index';
 
 export const rinkebySchemas: Array<Schema<any>> = [
   rinkebyCryptoKittiesSchema,
@@ -14,4 +15,5 @@ export const rinkebySchemas: Array<Schema<any>> = [
   rinkebyOwnableContractSchema,
   testRinkebyNFTSchema,
   ERC721Schema,
+  ContractRoleSchema,
 ];

@@ -6,6 +6,7 @@ const index_3 = require("./rinkebyENSName/index");
 const index_4 = require("./rinkebyOwnableContract/index");
 const index_5 = require("./testRinkebyNFT/index");
 const index_6 = require("../ERC721/index");
+const index_7 = require("../ContractRole/index");
 exports.rinkebySchemas = [
     index_1.rinkebyCryptoKittiesSchema,
     index_2.rinkebyCustomSchema,
@@ -13,5 +14,6 @@ exports.rinkebySchemas = [
     index_4.rinkebyOwnableContractSchema,
     index_5.testRinkebyNFTSchema,
     index_6.ERC721Schema,
+    index_7.ContractRoleSchema,
 ];
 //# sourceMappingURL=index.js.map

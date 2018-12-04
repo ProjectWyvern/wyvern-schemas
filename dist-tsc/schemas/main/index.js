@@ -16,6 +16,7 @@ const index_13 = require("./Etheremon/index");
 const index_14 = require("./EtherTulips/index");
 const index_15 = require("./Mythereum/index");
 const index_16 = require("./OwnableContract/index");
+const index_17 = require("../ContractRole/index");
 exports.mainSchemas = [
     index_1.AngelBattlesSchema,
     index_2.ChainMonstersSchema,
@@ -34,5 +35,6 @@ exports.mainSchemas = [
     index_15.MythereumSchema,
     index_16.OwnableContractSchema,
     index_11.ERC721Schema,
+    index_17.ContractRoleSchema,
 ];
 //# sourceMappingURL=index.js.map
