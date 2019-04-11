@@ -12,7 +12,6 @@ const index_8 = require("./CryptoKitties/index");
 const index_9 = require("./CryptoMasterpieces/index");
 const index_10 = require("./CryptoMemes/index");
 const index_11 = require("./CryptoPunks/index");
-const EnjinMetaverse_1 = require("./EnjinMetaverse");
 const index_12 = require("./ENSName/index");
 const index_13 = require("./Ethercraft/index");
 const index_14 = require("./Etheremon/index");
@@ -38,6 +37,5 @@ exports.mainSchemas = [
     index_2.ERC721Schema,
     ERC1155_1.ERC1155Schema,
     index_1.ContractRoleSchema,
-    EnjinMetaverse_1.EnjinMetaverseSchema,
 ];
 //# sourceMappingURL=index.js.map
