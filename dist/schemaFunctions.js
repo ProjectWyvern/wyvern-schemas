@@ -16,7 +16,7 @@ exports.encodeCall = function (abi, parameters) {
     return '0x' + Buffer.concat([ethABI.methodID(abi.name, inputTypes), ethABI.rawEncode(inputTypes, parameters)]).toString('hex');
 };
 exports.encodeSell = function (schema, asset, address) {
-    var transfer = getTransferFunction(schema)(asset);
+    var transfer = schema.functions.transfer(asset);
     return {
         target: transfer.target,
         calldata: exports.encodeDefaultCall(transfer, address),
@@ -31,7 +31,7 @@ exports.encodeAtomicizedSell = function (schema, assets, address, atomicizer) {
 
         return {
             calldata: calldata,
-            abi: getTransferFunction(schema)(asset),
+            abi: schema.functions.transfer(asset),
             address: target,
             value: new utils_1.BigNumber(0)
         };
@@ -64,7 +64,7 @@ exports.encodeAtomicizedBuy = function (schema, assets, address, atomicizer) {
 
         return {
             calldata: calldata,
-            abi: getTransferFunction(schema)(asset),
+            abi: schema.functions.transfer(asset),
             address: target,
             value: new utils_1.BigNumber(0)
         };
@@ -90,7 +90,7 @@ exports.encodeAtomicizedBuy = function (schema, assets, address, atomicizer) {
     };
 };
 exports.encodeBuy = function (schema, asset, address) {
-    var transfer = getTransferFunction(schema)(asset);
+    var transfer = schema.functions.transfer(asset);
     var replaceables = transfer.inputs.filter(function (i) {
         return i.kind === types_1.FunctionInputKind.Replaceable;
     });
@@ -137,8 +137,5 @@ exports.encodeDefaultCall = function (abi, address) {
     });
     return exports.encodeCall(abi, parameters);
 };
-function getTransferFunction(schema) {
-    return schema.functions.transferFrom || schema.functions.transfer;
-}
 //# sourceMappingURL=schemaFunctions.js.map
 //# sourceMappingURL=schemaFunctions.js.map

@@ -16,7 +16,7 @@ exports.encodeCall = (abi, parameters) => {
     ]).toString('hex');
 };
 exports.encodeSell = (schema, asset, address) => {
-    const transfer = getTransferFunction(schema)(asset);
+    const transfer = schema.functions.transfer(asset);
     return {
         target: transfer.target,
         calldata: exports.encodeDefaultCall(transfer, address),
@@ -28,7 +28,7 @@ exports.encodeAtomicizedSell = (schema, assets, address, atomicizer) => {
         const { target, calldata } = exports.encodeSell(schema, asset, address);
         return {
             calldata,
-            abi: getTransferFunction(schema)(asset),
+            abi: schema.functions.transfer(asset),
             address: target,
             value: new utils_1.BigNumber(0),
         };
@@ -46,7 +46,7 @@ exports.encodeAtomicizedBuy = (schema, assets, address, atomicizer) => {
         const { target, calldata } = exports.encodeBuy(schema, asset, address);
         return {
             calldata,
-            abi: getTransferFunction(schema)(asset),
+            abi: schema.functions.transfer(asset),
             address: target,
             value: new utils_1.BigNumber(0),
         };
@@ -60,7 +60,7 @@ exports.encodeAtomicizedBuy = (schema, assets, address, atomicizer) => {
     };
 };
 exports.encodeBuy = (schema, asset, address) => {
-    const transfer = getTransferFunction(schema)(asset);
+    const transfer = schema.functions.transfer(asset);
     const replaceables = transfer.inputs.filter((i) => i.kind === types_1.FunctionInputKind.Replaceable);
     const ownerInputs = transfer.inputs.filter((i) => i.kind === types_1.FunctionInputKind.Owner);
     // Validate
@@ -103,8 +103,4 @@ exports.encodeDefaultCall = (abi, address) => {
     });
     return exports.encodeCall(abi, parameters);
 };
-function getTransferFunction(schema) {
-    return schema.functions.transferFrom
-        || schema.functions.transfer;
-}
 //# sourceMappingURL=schemaFunctions.js.map

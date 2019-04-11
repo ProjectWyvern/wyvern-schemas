@@ -88,7 +88,7 @@ export interface CallSpec {
 export type SellEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 
 export const encodeSell: SellEncoder<any> = (schema, asset, address) => {
-  const transfer = getTransferFunction(schema)(asset);
+  const transfer = schema.functions.transfer(asset);
   return {
     target: transfer.target,
     calldata: encodeDefaultCall(transfer, address),
@@ -103,7 +103,7 @@ export const encodeAtomicizedSell: AtomicizedSellEncoder<any> = (schema, assets,
     const { target, calldata } = encodeSell(schema, asset, address);
     return {
       calldata,
-      abi: getTransferFunction(schema)(asset),
+      abi: schema.functions.transfer(asset),
       address: target,
       value: new BigNumber(0),
     };
@@ -131,7 +131,7 @@ export const encodeAtomicizedBuy: AtomicizedBuyEncoder<any> = (schema, assets, a
     const { target, calldata } = encodeBuy(schema, asset, address);
     return {
       calldata,
-      abi: getTransferFunction(schema)(asset),
+      abi: schema.functions.transfer(asset),
       address: target,
       value: new BigNumber(0),
     };
@@ -155,7 +155,7 @@ export const encodeAtomicizedBuy: AtomicizedBuyEncoder<any> = (schema, assets, a
 export type BuyEncoder<T> = (schema: Schema<T>, asset: T, address: string) => CallSpec;
 
 export const encodeBuy: BuyEncoder<any> = (schema, asset, address) => {
-  const transfer = getTransferFunction(schema)(asset);
+  const transfer = schema.functions.transfer(asset);
   const replaceables = transfer.inputs.filter((i: any) => i.kind === FunctionInputKind.Replaceable);
   const ownerInputs = transfer.inputs.filter((i: any) => i.kind === FunctionInputKind.Owner);
 
@@ -207,8 +207,3 @@ export const encodeDefaultCall: DefaultCallEncoder = (abi, address) => {
 };
 
 export type ReplacementEncoder = (abi: AnnotatedFunctionABI, kind?: FunctionInputKind) => string;
-
-function getTransferFunction(schema: any) {
-  return schema.functions.transferFrom
-    || schema.functions.transfer;
-}
