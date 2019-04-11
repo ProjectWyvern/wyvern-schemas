@@ -25,7 +25,7 @@ var FunctionInputKind;
     FunctionInputKind["Asset"] = "asset";
     FunctionInputKind["Owner"] = "owner";
     FunctionInputKind["Index"] = "index";
-    FunctionInputKind["Quantity"] = "quantity";
+    FunctionInputKind["Count"] = "count";
 })(FunctionInputKind = exports.FunctionInputKind || (exports.FunctionInputKind = {}));
 var FunctionOutputKind;
 (function (FunctionOutputKind) {

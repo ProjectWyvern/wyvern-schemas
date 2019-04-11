@@ -12,15 +12,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Web3 = require("web3");
-var types_1 = require("../../types");
-exports.ERC1155Schema = {
+var types_1 = require("../../../types");
+exports.EnjinMetaverseSchema = {
     version: 1,
     deploymentBlock: 0,
-    name: 'ERC1155',
-    description: 'Items conforming to the ERC1155 spec, using transferFrom.',
+    name: 'EnjinMetaverse',
+    description: 'Items conforming to the Enjin Metaverse contract ABI, using transfer.',
     thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
     website: 'https://github.com/ethereum/eips/issues/1155',
-    fields: [{ name: 'ID', type: 'uint256', description: 'Asset Token ID' }, { name: 'Address', type: 'address', description: 'Asset Contract Address' }],
+    fields: [{ name: 'ID', type: 'uint256', description: 'Asset ID' }, { name: 'Address', type: 'address', description: 'Enjin Contract Address' }],
     assetFromFields: function assetFromFields(fields) {
         return {
             id: fields.ID,
@@ -40,7 +40,7 @@ exports.ERC1155Schema = {
                     switch (_context.prev = _context.next) {
                         case 0:
                             return _context.abrupt("return", {
-                                title: 'ERC1155 Asset: Token ID ' + asset.id + ' at ' + asset.address,
+                                title: 'EnjinMetaverse Asset: Token ID ' + asset.id + ' at ' + asset.address,
                                 description: '',
                                 url: '',
                                 thumbnail: '',
@@ -65,12 +65,12 @@ exports.ERC1155Schema = {
         transfer: function transfer(asset) {
             return {
                 type: Web3.AbiType.Function,
-                name: 'transferFrom',
+                name: 'transfer',
                 payable: false,
                 constant: false,
                 stateMutability: types_1.StateMutability.Nonpayable,
                 target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: 1 }],
+                inputs: [{ kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: 1 }],
                 outputs: []
             };
         },

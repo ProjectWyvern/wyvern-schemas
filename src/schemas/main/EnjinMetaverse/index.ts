@@ -5,23 +5,23 @@ import {
   FunctionOutputKind,
   Schema,
   StateMutability,
-} from '../../types';
+} from '../../../types';
 
 export interface NonFungibleContractType {
   id: string;
   address: string;
 }
 
-export const ERC1155Schema: Schema<NonFungibleContractType> = {
+export const EnjinMetaverseSchema: Schema<NonFungibleContractType> = {
   version: 1,
   deploymentBlock: 0, // Not indexed (for now; need asset-specific indexing strategy)
-  name: 'ERC1155',
-  description: 'Items conforming to the ERC1155 spec, using transferFrom.',
+  name: 'EnjinMetaverse',
+  description: 'Items conforming to the Enjin Metaverse contract ABI, using transfer.',
   thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
   website: 'https://github.com/ethereum/eips/issues/1155',
   fields: [
-    {name: 'ID', type: 'uint256', description: 'Asset Token ID'},
-    {name: 'Address', type: 'address', description: 'Asset Contract Address'},
+    {name: 'ID', type: 'uint256', description: 'Asset ID'},
+    {name: 'Address', type: 'address', description: 'Enjin Contract Address'},
   ],
   assetFromFields: (fields: any) => ({
     id: fields.ID,
@@ -34,7 +34,7 @@ export const ERC1155Schema: Schema<NonFungibleContractType> = {
   formatter:
     async asset => {
       return {
-        title: 'ERC1155 Asset: Token ID ' + asset.id + ' at ' + asset.address,
+        title: 'EnjinMetaverse Asset: Token ID ' + asset.id + ' at ' + asset.address,
         description: '',
         url: '',
         thumbnail: '',
@@ -44,13 +44,12 @@ export const ERC1155Schema: Schema<NonFungibleContractType> = {
   functions: {
     transfer: asset => ({
       type: Web3.AbiType.Function,
-      name: 'transferFrom',
+      name: 'transfer',
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
       target: asset.address,
       inputs: [
-        {kind: FunctionInputKind.Owner, name: '_from', type: 'address'},
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
         {kind: FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id},
         {kind: FunctionInputKind.Count, name: '_value', type: 'uint256', value: 1},

@@ -29,7 +29,7 @@ export declare enum FunctionInputKind {
     Asset = "asset",
     Owner = "owner",
     Index = "index",
-    Quantity = "quantity",
+    Count = "count",
 }
 export interface AnnotatedFunctionInput {
     name: string;
