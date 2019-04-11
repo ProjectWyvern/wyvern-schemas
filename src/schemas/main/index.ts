@@ -1,4 +1,7 @@
 import { Schema } from '../../types';
+import { ContractRoleSchema } from '../ContractRole/index';
+import { ERC1155Schema } from '../ERC1155';
+import { ERC721Schema } from '../ERC721/index';
 
 import { AngelBattlesSchema } from './AngelBattles/index';
 import { ChainMonstersSchema } from './ChainMonsters/index';
@@ -10,13 +13,11 @@ import { CryptoMasterpiecesSchema } from './CryptoMasterpieces/index';
 import { CryptoMemesSchema } from './CryptoMemes/index';
 import { CryptoPunksSchema } from './CryptoPunks/index';
 import { ENSNameSchema } from './ENSName/index';
-import { ERC721Schema } from '../ERC721/index';
 import { EthercraftSchema } from './Ethercraft/index';
 import { EtheremonSchema } from './Etheremon/index';
 import { EtherTulipsSchema } from './EtherTulips/index';
 import { MythereumSchema } from './Mythereum/index';
 import { OwnableContractSchema } from './OwnableContract/index';
-import { ContractRoleSchema } from '../ContractRole/index';
 
 export const mainSchemas: Array<Schema<any>> = [
   AngelBattlesSchema,
@@ -28,7 +29,6 @@ export const mainSchemas: Array<Schema<any>> = [
   CryptoPunksSchema,
   CryptoMasterpiecesSchema,
   CryptoMemesSchema,
-//  DecentralandSchema,
   ENSNameSchema,
   EthercraftSchema,
   EtheremonSchema,
@@ -36,5 +36,6 @@ export const mainSchemas: Array<Schema<any>> = [
   MythereumSchema,
   OwnableContractSchema,
   ERC721Schema,
+  ERC1155Schema,
   ContractRoleSchema,
 ];

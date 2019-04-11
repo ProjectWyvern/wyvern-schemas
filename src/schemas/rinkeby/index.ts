@@ -1,5 +1,6 @@
 import { Schema } from '../../types';
 import { ContractRoleSchema } from '../ContractRole/index';
+import { ERC1155Schema } from '../ERC1155';
 import { ERC721Schema } from '../ERC721/index';
 
 import { rinkebyCryptoKittiesSchema } from './rinkebyCryptoKitties/index';
@@ -15,5 +16,6 @@ export const rinkebySchemas: Array<Schema<any>> = [
   rinkebyOwnableContractSchema,
   testRinkebyNFTSchema,
   ERC721Schema,
+  ERC1155Schema,
   ContractRoleSchema,
 ];
