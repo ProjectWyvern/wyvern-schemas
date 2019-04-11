@@ -195,12 +195,13 @@ export type DefaultCallEncoder = (abi: AnnotatedFunctionABI, address: string) =>
 export const encodeDefaultCall: DefaultCallEncoder = (abi, address) => {
   const parameters = abi.inputs.map(input => {
     switch (input.kind) {
-      case FunctionInputKind.Asset:
-        return input.value;
       case FunctionInputKind.Replaceable:
         return WyvernProtocol.generateDefaultValue(input.type);
       case FunctionInputKind.Owner:
         return address;
+      case FunctionInputKind.Asset:
+      default:
+        return input.value;
     }
   });
   return encodeCall(abi, parameters);

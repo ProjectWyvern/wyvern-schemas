@@ -127,12 +127,13 @@ exports.encodeBuy = function (schema, asset, address) {
 exports.encodeDefaultCall = function (abi, address) {
     var parameters = abi.inputs.map(function (input) {
         switch (input.kind) {
-            case types_1.FunctionInputKind.Asset:
-                return input.value;
             case types_1.FunctionInputKind.Replaceable:
                 return wyvern_js_1.WyvernProtocol.generateDefaultValue(input.type);
             case types_1.FunctionInputKind.Owner:
                 return address;
+            case types_1.FunctionInputKind.Asset:
+            default:
+                return input.value;
         }
     });
     return exports.encodeCall(abi, parameters);
