@@ -13,6 +13,7 @@ import { CryptoKittiesSchema } from './CryptoKitties/index';
 import { CryptoMasterpiecesSchema } from './CryptoMasterpieces/index';
 import { CryptoMemesSchema } from './CryptoMemes/index';
 import { CryptoPunksSchema } from './CryptoPunks/index';
+import { EnjinItemSchema } from './EnjinItem';
 import { ENSNameSchema } from './ENSName/index';
 import { EthercraftSchema } from './Ethercraft/index';
 import { EtheremonSchema } from './Etheremon/index';
@@ -39,5 +40,6 @@ export const mainSchemas: Array<Schema<any>> = [
   ERC20Schema,
   ERC721Schema,
   ERC1155Schema,
+  EnjinItemSchema,
   ContractRoleSchema,
 ];

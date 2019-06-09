@@ -13,23 +13,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", { value: true });
 var Web3 = require("web3");
 var types_1 = require("../../types");
-exports.ERC1155Schema = {
+var unit = '1';
+exports.ERC20Schema = {
     version: 1,
     deploymentBlock: 0,
-    name: 'ERC1155',
-    description: 'Items conforming to the ERC1155 spec, using transferFrom.',
+    name: 'ERC20',
+    description: 'Items conforming to the ERC20 spec, using transferFrom.',
     thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
-    website: 'https://github.com/ethereum/eips/issues/1155',
-    fields: [{ name: 'ID', type: 'uint256', description: 'Asset Token ID' }, { name: 'Address', type: 'address', description: 'Asset Contract Address' }],
+    website: 'https://github.com/ethereum/eips/issues/20',
+    fields: [{ name: 'Address', type: 'address', description: 'Asset Contract Address' }],
     assetFromFields: function assetFromFields(fields) {
         return {
-            id: fields.ID,
             address: fields.Address
         };
     },
     assetToFields: function assetToFields(asset) {
         return {
-            ID: asset.id,
             Address: asset.address
         };
     },
@@ -40,7 +39,7 @@ exports.ERC1155Schema = {
                     switch (_context.prev = _context.next) {
                         case 0:
                             return _context.abrupt("return", {
-                                title: 'ERC1155 Asset: Token ID ' + asset.id + ' at ' + asset.address,
+                                title: 'ERC20 Asset at ' + asset.address,
                                 description: '',
                                 url: '',
                                 thumbnail: '',
@@ -70,7 +69,7 @@ exports.ERC1155Schema = {
                 constant: false,
                 stateMutability: types_1.StateMutability.Nonpayable,
                 target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: 1 }],
+                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_value', type: 'uint256', value: unit }],
                 outputs: []
             };
         },
@@ -82,7 +81,7 @@ exports.ERC1155Schema = {
                 constant: false,
                 stateMutability: types_1.StateMutability.Nonpayable,
                 target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: quantity }],
+                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: quantity }],
                 outputs: []
             };
         },
@@ -94,7 +93,7 @@ exports.ERC1155Schema = {
                 constant: true,
                 stateMutability: types_1.StateMutability.View,
                 target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_owner', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }],
+                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_owner', type: 'address' }],
                 outputs: [{ kind: types_1.FunctionOutputKind.Count, name: 'balance', type: 'uint' }],
                 assetFromOutputs: function assetFromOutputs(outputs) {
                     return outputs.balance;
@@ -107,7 +106,7 @@ exports.ERC1155Schema = {
         transfer: []
     },
     hash: function hash(asset) {
-        return asset.address + '-' + asset.id;
+        return asset.address;
     }
 };
 //# sourceMappingURL=index.js.map

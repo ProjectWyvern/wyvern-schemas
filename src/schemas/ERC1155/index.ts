@@ -72,19 +72,21 @@ export const ERC1155Schema: Schema<NonFungibleContractType> = {
       ],
       outputs: [],
     }),
-    ownerOf: asset => ({
+    countOf: asset => ({
       type: Web3.AbiType.Function,
-      name: 'ownerOf',
+      name: 'balanceOf',
       payable: false,
       constant: true,
       stateMutability: StateMutability.View,
       target: asset.address,
       inputs: [
-        {kind: FunctionInputKind.Asset, name: '_tokenId', type: 'uint256', value: asset.id},
+        {kind: FunctionInputKind.Owner, name: '_owner', type: 'address'},
+        {kind: FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id},
       ],
       outputs: [
-        {kind: FunctionOutputKind.Owner, name: 'owner', type: 'address'},
+        {kind: FunctionOutputKind.Count, name: 'balance', type: 'uint'},
       ],
+      assetFromOutputs: (outputs: any) => outputs.balance,
     }),
     assetsOfOwnerByIndex: [],
   },

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../ContractRole/index");
 const ERC1155_1 = require("../ERC1155");
+const ERC20_1 = require("../ERC20");
 const index_2 = require("../ERC721/index");
 const index_3 = require("./AngelBattles/index");
 const index_4 = require("./ChainMonsters/index");
@@ -12,6 +13,7 @@ const index_8 = require("./CryptoKitties/index");
 const index_9 = require("./CryptoMasterpieces/index");
 const index_10 = require("./CryptoMemes/index");
 const index_11 = require("./CryptoPunks/index");
+const EnjinItem_1 = require("./EnjinItem");
 const index_12 = require("./ENSName/index");
 const index_13 = require("./Ethercraft/index");
 const index_14 = require("./Etheremon/index");
@@ -34,8 +36,10 @@ exports.mainSchemas = [
     index_15.EtherTulipsSchema,
     index_16.MythereumSchema,
     index_17.OwnableContractSchema,
+    ERC20_1.ERC20Schema,
     index_2.ERC721Schema,
     ERC1155_1.ERC1155Schema,
+    EnjinItem_1.EnjinItemSchema,
     index_1.ContractRoleSchema,
 ];
 //# sourceMappingURL=index.js.map
