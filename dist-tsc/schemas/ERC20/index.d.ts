@@ -1,5 +1,6 @@
 import { Schema } from '../../types';
-export interface FungibleContractType {
+export interface FungibleTradeType {
     address: string;
+    quantity: number;
 }
-export declare const ERC20Schema: Schema<FungibleContractType>;
+export declare const ERC20Schema: Schema<FungibleTradeType>;

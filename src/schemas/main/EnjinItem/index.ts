@@ -6,9 +6,9 @@ import {
   Schema,
   StateMutability,
 } from '../../../types';
-import { ERC1155Schema, NonFungibleContractType } from '../../ERC1155';
+import { ERC1155Schema, SemiFungibleTradeType } from '../../ERC1155';
 
-export const EnjinItemSchema: Schema<NonFungibleContractType> = {
+export const EnjinItemSchema: Schema<SemiFungibleTradeType> = {
   ...ERC1155Schema,
   version: 1,
   deploymentBlock: 0, // Not indexed (for now; need asset-specific indexing strategy)

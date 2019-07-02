@@ -13,7 +13,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", { value: true });
 var Web3 = require("web3");
 var types_1 = require("../../types");
-var unit = '1';
 exports.ERC20Schema = {
     version: 1,
     deploymentBlock: 0,
@@ -21,15 +20,17 @@ exports.ERC20Schema = {
     description: 'Items conforming to the ERC20 spec, using transferFrom.',
     thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
     website: 'https://github.com/ethereum/eips/issues/20',
-    fields: [{ name: 'Address', type: 'address', description: 'Asset Contract Address' }],
+    fields: [{ name: 'Address', type: 'address', description: 'Asset Contract Address' }, { name: 'Quantity', type: 'uint256', description: 'Quantity to transfer' }],
     assetFromFields: function assetFromFields(fields) {
         return {
-            address: fields.Address
+            address: fields.Address,
+            quantity: fields.Quantity
         };
     },
     assetToFields: function assetToFields(asset) {
         return {
-            Address: asset.address
+            Address: asset.address,
+            Quantity: asset.quantity
         };
     },
     formatter: function () {
@@ -40,7 +41,7 @@ exports.ERC20Schema = {
                         case 0:
                             return _context.abrupt("return", {
                                 title: 'ERC20 Asset at ' + asset.address,
-                                description: '',
+                                description: 'Trading ' + asset.quantity.toString(),
                                 url: '',
                                 thumbnail: '',
                                 properties: []
@@ -69,19 +70,7 @@ exports.ERC20Schema = {
                 constant: false,
                 stateMutability: types_1.StateMutability.Nonpayable,
                 target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_value', type: 'uint256', value: unit }],
-                outputs: []
-            };
-        },
-        transferQuantity: function transferQuantity(asset, quantity) {
-            return {
-                type: Web3.AbiType.Function,
-                name: 'transferFrom',
-                payable: false,
-                constant: false,
-                stateMutability: types_1.StateMutability.Nonpayable,
-                target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: quantity }],
+                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity }],
                 outputs: []
             };
         },

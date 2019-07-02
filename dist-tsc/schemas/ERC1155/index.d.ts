@@ -1,6 +1,7 @@
 import { Schema } from '../../types';
-export interface NonFungibleContractType {
+export interface SemiFungibleTradeType {
     id: string;
     address: string;
+    quantity: number;
 }
-export declare const ERC1155Schema: Schema<NonFungibleContractType>;
+export declare const ERC1155Schema: Schema<SemiFungibleTradeType>;

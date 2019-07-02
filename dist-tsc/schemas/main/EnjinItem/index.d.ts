@@ -1,3 +1,3 @@
 import { Schema } from '../../../types';
-import { NonFungibleContractType } from '../../ERC1155';
-export declare const EnjinItemSchema: Schema<NonFungibleContractType>;
+import { SemiFungibleTradeType } from '../../ERC1155';
+export declare const EnjinItemSchema: Schema<SemiFungibleTradeType>;

@@ -20,17 +20,19 @@ exports.ERC1155Schema = {
     description: 'Items conforming to the ERC1155 spec, using transferFrom.',
     thumbnail: 'https://opensea.io/static/images/opensea-icon.png',
     website: 'https://github.com/ethereum/eips/issues/1155',
-    fields: [{ name: 'ID', type: 'uint256', description: 'Asset Token ID' }, { name: 'Address', type: 'address', description: 'Asset Contract Address' }],
+    fields: [{ name: 'ID', type: 'uint256', description: 'Asset Token ID' }, { name: 'Address', type: 'address', description: 'Asset Contract Address' }, { name: 'Quantity', type: 'uint256', description: 'Quantity to transfer' }],
     assetFromFields: function assetFromFields(fields) {
         return {
             id: fields.ID,
-            address: fields.Address
+            address: fields.Address,
+            quantity: fields.Quantity
         };
     },
     assetToFields: function assetToFields(asset) {
         return {
             ID: asset.id,
-            Address: asset.address
+            Address: asset.address,
+            Quantity: asset.quantity
         };
     },
     formatter: function () {
@@ -41,7 +43,7 @@ exports.ERC1155Schema = {
                         case 0:
                             return _context.abrupt("return", {
                                 title: 'ERC1155 Asset: Token ID ' + asset.id + ' at ' + asset.address,
-                                description: '',
+                                description: 'Trading ' + asset.quantity.toString(),
                                 url: '',
                                 thumbnail: '',
                                 properties: []
@@ -70,19 +72,7 @@ exports.ERC1155Schema = {
                 constant: false,
                 stateMutability: types_1.StateMutability.Nonpayable,
                 target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: 1 }],
-                outputs: []
-            };
-        },
-        transferQuantity: function transferQuantity(asset, quantity) {
-            return {
-                type: Web3.AbiType.Function,
-                name: 'transferFrom',
-                payable: false,
-                constant: false,
-                stateMutability: types_1.StateMutability.Nonpayable,
-                target: asset.address,
-                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: quantity }],
+                inputs: [{ kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' }, { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' }, { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id }, { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity }],
                 outputs: []
             };
         },

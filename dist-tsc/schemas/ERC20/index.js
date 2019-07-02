@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Web3 = require("web3");
 const types_1 = require("../../types");
-const unit = '1';
 exports.ERC20Schema = {
     version: 1,
     deploymentBlock: 0,
@@ -12,17 +11,20 @@ exports.ERC20Schema = {
     website: 'https://github.com/ethereum/eips/issues/20',
     fields: [
         { name: 'Address', type: 'address', description: 'Asset Contract Address' },
+        { name: 'Quantity', type: 'uint256', description: 'Quantity to transfer' },
     ],
     assetFromFields: (fields) => ({
         address: fields.Address,
+        quantity: fields.Quantity,
     }),
     assetToFields: asset => ({
         Address: asset.address,
+        Quantity: asset.quantity,
     }),
     formatter: async (asset) => {
         return {
             title: 'ERC20 Asset at ' + asset.address,
-            description: '',
+            description: 'Trading ' + asset.quantity.toString(),
             url: '',
             thumbnail: '',
             properties: [],
@@ -39,21 +41,7 @@ exports.ERC20Schema = {
             inputs: [
                 { kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' },
                 { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' },
-                { kind: types_1.FunctionInputKind.Asset, name: '_value', type: 'uint256', value: unit },
-            ],
-            outputs: [],
-        }),
-        transferQuantity: (asset, quantity) => ({
-            type: Web3.AbiType.Function,
-            name: 'transferFrom',
-            payable: false,
-            constant: false,
-            stateMutability: types_1.StateMutability.Nonpayable,
-            target: asset.address,
-            inputs: [
-                { kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' },
-                { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' },
-                { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: quantity },
+                { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity },
             ],
             outputs: [],
         }),

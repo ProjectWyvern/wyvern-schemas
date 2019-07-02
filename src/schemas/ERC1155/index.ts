@@ -7,12 +7,13 @@ import {
   StateMutability,
 } from '../../types';
 
-export interface NonFungibleContractType {
+export interface SemiFungibleTradeType {
   id: string;
   address: string;
+  quantity: number;
 }
 
-export const ERC1155Schema: Schema<NonFungibleContractType> = {
+export const ERC1155Schema: Schema<SemiFungibleTradeType> = {
   version: 1,
   deploymentBlock: 0, // Not indexed (for now; need asset-specific indexing strategy)
   name: 'ERC1155',
@@ -22,20 +23,23 @@ export const ERC1155Schema: Schema<NonFungibleContractType> = {
   fields: [
     {name: 'ID', type: 'uint256', description: 'Asset Token ID'},
     {name: 'Address', type: 'address', description: 'Asset Contract Address'},
+    {name: 'Quantity', type: 'uint256', description: 'Quantity to transfer'},
   ],
   assetFromFields: (fields: any) => ({
     id: fields.ID,
     address: fields.Address,
+    quantity: fields.Quantity,
   }),
   assetToFields: asset => ({
     ID: asset.id,
     Address: asset.address,
+    Quantity: asset.quantity,
   }),
   formatter:
     async asset => {
       return {
         title: 'ERC1155 Asset: Token ID ' + asset.id + ' at ' + asset.address,
-        description: '',
+        description: 'Trading ' + asset.quantity.toString(),
         url: '',
         thumbnail: '',
         properties: [],
@@ -53,22 +57,7 @@ export const ERC1155Schema: Schema<NonFungibleContractType> = {
         {kind: FunctionInputKind.Owner, name: '_from', type: 'address'},
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
         {kind: FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id},
-        {kind: FunctionInputKind.Count, name: '_value', type: 'uint256', value: 1},
-      ],
-      outputs: [],
-    }),
-    transferQuantity: (asset, quantity) => ({
-      type: Web3.AbiType.Function,
-      name: 'transferFrom',
-      payable: false,
-      constant: false,
-      stateMutability: StateMutability.Nonpayable,
-      target: asset.address,
-      inputs: [
-        {kind: FunctionInputKind.Owner, name: '_from', type: 'address'},
-        {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
-        {kind: FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id},
-        {kind: FunctionInputKind.Count, name: '_value', type: 'uint256', value: quantity},
+        {kind: FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity},
       ],
       outputs: [],
     }),
