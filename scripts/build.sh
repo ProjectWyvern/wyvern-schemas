@@ -9,5 +9,6 @@ echo 'Transpiling with Babel...'
 yarn run babel dist-tsc --out-dir dist --source-maps
 for DIR in $(ls src/schemas/main); do
   cp -r src/schemas/main/$DIR/*.json dist/schemas/main/$DIR
+  cp -r src/schemas/main/$DIR/*.json dist-tsc/schemas/main/$DIR
 done
 echo 'Done'

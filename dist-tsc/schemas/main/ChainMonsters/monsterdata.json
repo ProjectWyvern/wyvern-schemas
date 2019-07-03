@@ -1,0 +1,98 @@
+{
+    "1": {
+        "name": "Chipleaf",
+        "description": "A big leaf comes out of his back. The more he stays in the sun the brighter are his green parts."
+    },
+    "2": {
+        "name": "Chipdril",
+        "description": "Bigger than his prevolution this one is actually able to stand on its feet but unable to walk, mostly using it to scare other monsters away."
+    },
+    "3": {
+        "name": "Chipscrub",
+        "description": "Do not touch the pink berries on its back, they are poisonous enough to harm children or medium sized ChainMonsters. You should not stand next to an attacking Chipscrub due to his spores."
+    },
+    "4": {
+        "name": "Pyrago",
+        "description": "Even though kinda small, this one can transform into a fireball that burns everything in his path. No touching!"
+    },
+    "5": {
+        "name": "Pyragno",
+        "description": "Flames are coming out of his center, demonstrating his high energy level. Sometimes referred to as Firegolem."
+    },
+    "6": {
+        "name": "Pyragnaros",
+        "description": "The flames can reach temperature levels higher than anything known to mankind. It is not sure why his rock body parts are not melting."
+    },
+    "7": {
+        "name": "Phirl",
+        "description": "Even though his psychic powers are not very strong, some believe that he uses them to reinforce his dominant hair style women used to like in the 1940s."
+    },
+    "8": {
+        "name": "Phirlian",
+        "description": "Having a reptilian shaped body he can crawl on the ground relatively fast while maintaining an upfeet balance through his tail when standing."
+    },
+    "9": {
+        "name": "Phirlos",
+        "description": "The long tail can be used as a strong whip but it prefers to use it to gather psychic power from its surroundings. Dangerously high psychic energy levels - can read human minds."
+    },
+	"10": {
+        "name": "Snarli",
+        "description": "Sweet and slow in nature but a poisonous opponent in a battle. Fairly small."
+    },
+    "11": {
+        "name": "Snarking",
+        "description": "Bigger than its prevolution, this monster seems to live in a symbiotic relationship with its attached tree. Fairly aggressive when encountered in the wild."
+    },
+    "12": {
+        "name": "Cocoonoo",
+        "description": "This monster is quite common in forest and attaches itself to trees and waits for summer to evolve into a hornet like creature."
+    },
+    "13": {
+        "name": "Horneeta",
+        "description": "After evolving it is a fast predator that tries to catch smaller creatures and sometimes stings humans passing by. Found all over the world and can be quite powerful in battle."
+    },
+    "14": {
+        "name": "Wormi",
+        "description": "This guy is extremely shy and hides underneath the ground for most of it's life. While searching for food it usually waits for other predators and then eats their leftovers."
+    },
+    "15": {
+        "name": "Worsteel",
+        "description": "Steel plated creature from underneath the ground that is fairly aggressive when encountered in the wild. It is not known how the prevolution gets to generate the steel plates."
+    },
+    "16": {
+        "name": "Stingli",
+        "description": "Sweet and happy creature that sometimes is confused with as a regular plant."
+    },
+    "17": {
+        "name": "Stingloreon",
+        "description": "Don't get confused when someday one of these creatures runs in front of your feet when going for a walk. It always tries to be near sunny places and can be seen moving around in the wild on it's feet."
+    },
+    "18": {
+        "name": "Stinglord",
+        "description": "Having used photosynthesis for most of it's life it has grown a white flower on it's back."
+    },
+    "19": {
+        "name": "Ducko",
+        "description": "This little creature can be found near or inside of lakes. Even though it has some kind of wings it is not able to fly or use them properly. Pretty shy."
+    },
+    "20": {
+        "name": "Svania",
+        "description": "A majestic creature that can be found in the middle of lakes. Pretty dominant being which does not like competition so only one of it's kind can be found per lake."
+    },
+    "149": {
+        "name": "Dalenorious",
+        "description": "The crystals on its body seem to be related to the much smaller crystals found in this world. Although it is unclear if it uses them to strenghten its abilities or if they are just used to mimick the surroundings. One of the reasons this one is rarely seen in the wild."
+    },
+    "150": {
+        "name": "Myotek",
+        "description": "One of the biggest ChainMonsters in the world but also one of the strongest. It can lift heavy objects like cars into the air easily which caused panic among earlier human generations. Nowadays this monster is hiding in the most far away areas of this world."
+    },
+    "151": {
+        "name": "Aetherian",
+        "description": "It is said to be the very first ChainMonster in existence. The crystals along his body have a strange gradient which could imply that it has lost part of his energy throughout his life. There is only one Aetherian in the world."
+    },
+    "???": {
+        "name": "???!",
+        "description": "This ChainMonster is currently in production and will be revealed soon."
+    }
+}
