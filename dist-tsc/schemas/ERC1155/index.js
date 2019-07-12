@@ -46,7 +46,7 @@ exports.ERC1155Schema = {
                 { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' },
                 { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id },
                 { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity },
-                { kind: types_1.FunctionInputKind.Data, name: '_data', type: 'bytes', value: '' },
+                { kind: types_1.FunctionInputKind.Data, name: '_data', type: 'bytes32', value: '' },
             ],
             outputs: [],
         }),
