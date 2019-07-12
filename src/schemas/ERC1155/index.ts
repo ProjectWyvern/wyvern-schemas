@@ -48,7 +48,7 @@ export const ERC1155Schema: Schema<SemiFungibleTradeType> = {
   functions: {
     transfer: asset => ({
       type: Web3.AbiType.Function,
-      name: 'safeTransferFrom',
+      name: 'transferFrom',
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
@@ -58,7 +58,6 @@ export const ERC1155Schema: Schema<SemiFungibleTradeType> = {
         {kind: FunctionInputKind.Replaceable, name: '_to', type: 'address'},
         {kind: FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id},
         {kind: FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity},
-        {kind: FunctionInputKind.Data, name: '_data', type: 'bytes32', value: ''},
       ],
       outputs: [],
     }),
