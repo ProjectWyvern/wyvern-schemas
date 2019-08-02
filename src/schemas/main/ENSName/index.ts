@@ -9,7 +9,7 @@ import {
 import {
   ENSName,
   ENSNameBaseSchema,
-} from '../../../utils/ens';
+} from '../../../common/ens';
 
 export const ENSNameSchema: Schema<ENSName> = {
   ...ENSNameBaseSchema,
