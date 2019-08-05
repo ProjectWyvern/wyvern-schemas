@@ -1,6 +1,11 @@
 import { AbiType } from 'web3';
 
-import { ENSName, ENSNameBaseSchema } from '../../../common/ens';
+import {
+  ENSName,
+  ENSNameBaseSchema,
+  namehash,
+  nodehash,
+} from '../../../common/ens';
 import {
   EventInputKind,
   FunctionInputKind,
@@ -70,7 +75,11 @@ export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
             type: 'address',
           },
         ],
-        assetFromInputs: async (inputs: any) => inputs.name,
+        assetFromInputs: async (inputs: { name: string }) => ({
+          name: inputs.name,
+          nodeHash: nodehash(inputs.name),
+          nameHash: namehash(inputs.name),
+        }),
       },
     ],
   },
