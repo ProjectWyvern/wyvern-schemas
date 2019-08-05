@@ -1,5 +1,6 @@
 import { AbiType } from 'web3';
 
+import { ENSName, ENSNameBaseSchema } from '../../../common/ens';
 import {
   EventInputKind,
   FunctionInputKind,
@@ -7,21 +8,17 @@ import {
   StateMutability,
 } from '../../../types';
 
-export type ENSShortName = string;
-
 export const RINKEBY_ENS_SHORT_NAME_AUCTION_ADDRESS =
   '0x266ebd3ca5b8c472da228df3f7ab2cc951b19ec3';
 
-export const rinkebyENSShortNameAuctionSchema: Schema<ENSShortName> = {
+export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
+  ...ENSNameBaseSchema,
   version: 0,
   deploymentBlock: 4791629,
   name: 'ENSShortNameAuction',
   description: 'ERC721 ENS short (3-6 character) names sold via auction.',
   thumbnail: '', // TODO: put SVG body directly here or host a PNG ourselves?
   website: 'https://ens.domains/',
-  fields: [{ name: 'Name', type: 'string', description: 'ENS short name' }],
-  assetFromFields: (fields: any) => fields.name,
-  assetToFields: asset => ({ name: asset }),
   formatter: async asset => {
     return {
       title: 'ENS Short Name: ' + asset,

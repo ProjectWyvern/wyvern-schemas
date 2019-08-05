@@ -4,8 +4,8 @@ import { Schema } from '../types';
 
 export interface ENSName {
   nodeHash: string;
-  nameHash?: string;
-  name?: string;
+  nameHash: string;
+  name: string;
 }
 
 const namehash = (name: string) => {
