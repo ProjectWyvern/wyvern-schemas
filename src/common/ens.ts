@@ -32,7 +32,7 @@ export const nodehash = (name: string) => {
 export const ENSNameBaseSchema: Required<
   Pick<
     Schema<ENSName>,
-    'fields' | 'unifyFields' | 'assetFromFields' | 'checkAsset' | 'hash'
+    'fields' | 'assetFromFields' | 'checkAsset' | 'hash'
   >
 > = {
   fields: [
@@ -50,15 +50,10 @@ export const ENSNameBaseSchema: Required<
       readOnly: true,
     },
   ],
-  unifyFields: (fields: any) => ({
-    Name: fields.Name,
-    NodeHash: nodehash(fields.Name),
-    NameHash: namehash(fields.Name),
-  }),
   assetFromFields: (fields: any) => ({
     name: fields.Name,
-    nodeHash: fields.NodeHash,
-    nameHash: fields.NameHash,
+    nodeHash: nodehash(fields.Name),
+    nameHash: namehash(fields.Name),
   }),
   checkAsset: (asset: ENSName) => {
     return asset.name
