@@ -8,7 +8,7 @@ export interface ENSName {
   name: string;
 }
 
-const namehash = (name: string) => {
+export const namehash = (name: string) => {
   let node = '0000000000000000000000000000000000000000000000000000000000000000';
   if (name !== '') {
     const labels = name.split('.');
@@ -20,7 +20,7 @@ const namehash = (name: string) => {
   return '0x' + node.toString();
 };
 
-const nodehash = (name: string) => {
+export const nodehash = (name: string) => {
   const label = name.split('.')[0];
   if (label) {
     return '0x' + sha3(label).toString('hex');
