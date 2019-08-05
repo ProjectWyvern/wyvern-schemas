@@ -32,7 +32,7 @@ const nodehash = (name: string) => {
 export const ENSNameBaseSchema: Required<
   Pick<
     Schema<ENSName>,
-    'fields' | 'unifyFields' | 'assetFromFields' | 'checkAsset'
+    'fields' | 'unifyFields' | 'assetFromFields' | 'checkAsset' | 'hash'
   >
 > = {
   fields: [
@@ -66,4 +66,5 @@ export const ENSNameBaseSchema: Required<
           nodehash(asset.name) === asset.nodeHash
       : true;
   },
+  hash: ({ nodeHash }) => nodeHash,
 };

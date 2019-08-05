@@ -19,9 +19,9 @@ export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
   description: 'ERC721 ENS short (3-6 character) names sold via auction.',
   thumbnail: '', // TODO: put SVG body directly here or host a PNG ourselves?
   website: 'https://ens.domains/',
-  formatter: async asset => {
+  formatter: async ({ name }) => {
     return {
-      title: 'ENS Short Name: ' + asset,
+      title: 'ENS Short Name: ' + name,
       description: '',
       url: '',
       thumbnail: '',
@@ -29,7 +29,7 @@ export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
     };
   },
   functions: {
-    transfer: asset => ({
+    transfer: ({ name }) => ({
       type: AbiType.Function,
       name: 'register',
       payable: false,
@@ -41,7 +41,7 @@ export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
           kind: FunctionInputKind.Data,
           name: 'name',
           type: 'string',
-          value: asset,
+          value: name,
         },
         { kind: FunctionInputKind.Replaceable, name: 'owner', type: 'address' },
       ],
@@ -74,5 +74,4 @@ export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
       },
     ],
   },
-  hash: asset => asset,
 };

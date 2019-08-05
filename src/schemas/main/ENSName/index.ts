@@ -72,5 +72,4 @@ export const ENSNameSchema: Schema<ENSName> = {
   events: {
     transfer: [],
   },
-  hash: a => a.nodeHash,
 };
