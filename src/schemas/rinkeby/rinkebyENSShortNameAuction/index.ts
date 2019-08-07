@@ -14,7 +14,7 @@ import {
 } from '../../../types';
 
 export const RINKEBY_ENS_SHORT_NAME_AUCTION_ADDRESS =
-  '0x266ebd3ca5b8c472da228df3f7ab2cc951b19ec3';
+  '0x76b6481a334783be36f2fc35b8f0b9bc7835d57b';
 
 export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
   ...ENSNameBaseSchema,
