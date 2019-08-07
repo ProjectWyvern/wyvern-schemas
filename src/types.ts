@@ -139,7 +139,6 @@ export interface Schema<T> {
   thumbnail: string;
   website: string;
   fields: SchemaField[];
-  unifyFields?: (fields: any) => any;
   checkAsset?: (asset: T) => boolean;
   assetFromFields: (fields: any) => T;
   assetToFields?: (asset: T) => any;
