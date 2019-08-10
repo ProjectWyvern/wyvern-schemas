@@ -2,11 +2,11 @@ import * as Web3 from 'web3';
 export declare enum Network {
     Main = "main",
     Rinkeby = "rinkeby",
-    Kovan = "kovan",
+    Kovan = "kovan"
 }
 export declare enum ABIType {
     Function = "function",
-    Event = "event",
+    Event = "event"
 }
 export interface Token {
     name: string;
@@ -22,7 +22,7 @@ export declare enum StateMutability {
     Pure = "pure",
     View = "view",
     Payable = "payable",
-    Nonpayable = "nonpayable",
+    Nonpayable = "nonpayable"
 }
 export declare enum FunctionInputKind {
     Replaceable = "replaceable",
@@ -30,7 +30,7 @@ export declare enum FunctionInputKind {
     Owner = "owner",
     Index = "index",
     Count = "count",
-    Data = "data",
+    Data = "data"
 }
 export interface AnnotatedFunctionInput {
     name: string;
@@ -42,7 +42,7 @@ export declare enum FunctionOutputKind {
     Owner = "owner",
     Asset = "asset",
     Count = "count",
-    Other = "other",
+    Other = "other"
 }
 export interface AnnotatedFunctionOutput {
     name: string;
@@ -66,7 +66,7 @@ export declare enum EventInputKind {
     Source = "source",
     Destination = "destination",
     Asset = "asset",
-    Other = "other",
+    Other = "other"
 }
 export interface AnnotatedEventInput {
     name: string;
@@ -119,7 +119,6 @@ export interface Schema<T> {
     thumbnail: string;
     website: string;
     fields: SchemaField[];
-    unifyFields?: (fields: any) => any;
     checkAsset?: (asset: T) => boolean;
     assetFromFields: (fields: any) => T;
     assetToFields?: (asset: T) => any;
