@@ -1,7 +1,6 @@
 "use strict";
-
 Object.defineProperty(exports, "__esModule", { value: true });
-var Web3 = require("web3");
+const Web3 = require("web3");
 var Network;
 (function (Network) {
     Network["Main"] = "main";
@@ -43,5 +42,4 @@ var EventInputKind;
     EventInputKind["Asset"] = "asset";
     EventInputKind["Other"] = "other";
 })(EventInputKind = exports.EventInputKind || (exports.EventInputKind = {}));
-//# sourceMappingURL=types.js.map
 //# sourceMappingURL=types.js.map

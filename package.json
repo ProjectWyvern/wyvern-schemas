@@ -1,6 +1,7 @@
 {
   "name": "wyvern-schemas",
-  "version": "0.9.6",
+  "version": "0.10.2",
+  "files": ["dist"],
   "main": "./dist/index.js",
   "description": "Nonfungible asset schemas for the Wyvern Protocol",
   "scripts": {
@@ -30,7 +31,9 @@
     "buffer": "^5.0.8",
     "ethereumjs-abi": "https://github.com/ProjectWyvern/ethereumjs-abi.git",
     "ethereumjs-util": "^5.1.3",
+    "js-yaml": "^3.10.0",
     "jsonlint": "^1.6.2",
+    "mocha": "^5.0.1",
     "ts-loader": "^3.3.0",
     "tslint": "^5.9.1",
     "tslint-eslint-rules": "^4.1.1",
@@ -43,13 +46,7 @@
   "dependencies": {
     "@0xproject/utils": "^0.3.4",
     "axios": "^0.17.1",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
     "bignumber.js": "^6.0.0",
-    "js-yaml": "^3.10.0",
-    "mocha": "^5.0.1",
     "typed-promisify": "^0.4.0",
     "web3-provider-engine": "^13.6.5",
     "wyvern-js": "github:ProjectOpenSea/wyvern-js"
