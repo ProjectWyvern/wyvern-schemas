@@ -1,3 +1,4 @@
+import { BigNumber } from '@0xproject/utils';
 import * as Web3 from 'web3';
 
 import {
@@ -9,7 +10,7 @@ import {
 
 export interface FungibleTradeType {
   address: string;
-  quantity: number;
+  quantity: BigNumber;
 }
 
 export const ERC20Schema: Schema<FungibleTradeType> = {
