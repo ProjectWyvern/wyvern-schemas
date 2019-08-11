@@ -51,6 +51,8 @@ export const ENSNameBaseSchema: Required<
     },
   ],
   assetFromFields: (fields: any) => ({
+    id: fields.ID,
+    address: fields.Address,
     name: fields.Name,
     nodeHash: nodehash(fields.Name),
     nameHash: namehash(fields.Name),

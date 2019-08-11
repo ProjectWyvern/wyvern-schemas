@@ -35,6 +35,8 @@ exports.ENSNameBaseSchema = {
     }],
     assetFromFields: function assetFromFields(fields) {
         return {
+            id: fields.ID,
+            address: fields.Address,
             name: fields.Name,
             nodeHash: exports.nodehash(fields.Name),
             nameHash: exports.namehash(fields.Name)
