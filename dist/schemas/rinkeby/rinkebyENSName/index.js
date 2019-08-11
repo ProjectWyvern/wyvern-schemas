@@ -49,16 +49,6 @@ exports.rinkebyENSNameSchema = Object.assign({}, ens_1.ENSNameBaseSchema, { vers
         }),
         assetsOfOwnerByIndex: [],
     }, events: {
-        transfer: [{
-                type: Web3.AbiType.Event,
-                name: 'Transfer',
-                target: '0xe7410170f87102df0055eb195163a03b7f2bff4a',
-                anonymous: false,
-                inputs: [
-                    { kind: types_1.EventInputKind.Asset, indexed: true, name: 'node', type: 'bytes32' },
-                    { kind: types_1.EventInputKind.Destination, indexed: false, name: 'owner', type: 'address' },
-                ],
-                assetFromInputs: (inputs) => __awaiter(this, void 0, void 0, function* () { return ({ nodeHash: inputs.node }); }),
-            }],
+        transfer: [],
     } });
 //# sourceMappingURL=index.js.map

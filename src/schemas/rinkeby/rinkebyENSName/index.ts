@@ -58,16 +58,6 @@ export const rinkebyENSNameSchema: Schema<ENSName> = {
     assetsOfOwnerByIndex: [],
   },
   events: {
-    transfer: [{
-      type: Web3.AbiType.Event,
-      name: 'Transfer',
-      target: '0xe7410170f87102df0055eb195163a03b7f2bff4a',
-      anonymous: false,
-      inputs: [
-        {kind: EventInputKind.Asset, indexed: true, name: 'node', type: 'bytes32'},
-        {kind: EventInputKind.Destination, indexed: false, name: 'owner', type: 'address'},
-      ],
-      assetFromInputs: async (inputs: any) => ({ nodeHash: inputs.node }),
-    }],
+    transfer: [],
   },
 };
