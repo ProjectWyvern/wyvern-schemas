@@ -25,7 +25,7 @@ exports.rinkebyENSShortNameAuctionSchema = Object.assign({}, ens_1.ENSNameBaseSc
                     kind: types_1.FunctionInputKind.Data,
                     name: 'name',
                     type: 'string',
-                    value: name,
+                    value: name.split('.')[0],
                 },
                 { kind: types_1.FunctionInputKind.Replaceable, name: 'owner', type: 'address' },
             ],

@@ -61,7 +61,7 @@ exports.rinkebyENSShortNameAuctionSchema = (0, _assign2.default)({}, ens_1.ENSNa
                     kind: types_1.FunctionInputKind.Data,
                     name: 'name',
                     type: 'string',
-                    value: name
+                    value: name.split('.')[0]
                 }, { kind: types_1.FunctionInputKind.Replaceable, name: 'owner', type: 'address' }],
                 outputs: []
             };

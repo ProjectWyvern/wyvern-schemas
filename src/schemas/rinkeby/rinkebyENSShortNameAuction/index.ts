@@ -46,7 +46,7 @@ export const rinkebyENSShortNameAuctionSchema: Schema<ENSName> = {
           kind: FunctionInputKind.Data,
           name: 'name',
           type: 'string',
-          value: name,
+          value: name.split('.')[0],
         },
         { kind: FunctionInputKind.Replaceable, name: 'owner', type: 'address' },
       ],
