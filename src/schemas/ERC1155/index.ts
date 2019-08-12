@@ -1,4 +1,3 @@
-import { BigNumber } from '@0xproject/utils';
 import * as Web3 from 'web3';
 
 import {
@@ -11,7 +10,7 @@ import {
 export interface SemiFungibleTradeType {
   id: string;
   address: string;
-  quantity: BigNumber;
+  quantity: string;
 }
 
 export const ERC1155Schema: Schema<SemiFungibleTradeType> = {
