@@ -51,6 +51,6 @@
     "bignumber.js": "^6.0.0",
     "typed-promisify": "^0.4.0",
     "web3-provider-engine": "^13.6.5",
-    "wyvern-js": "github:ProjectOpenSea/wyvern-js"
+    "wyvern-js": "github:ProjectOpenSea/wyvern-js#semver:^3.2.0"
   }
 }
