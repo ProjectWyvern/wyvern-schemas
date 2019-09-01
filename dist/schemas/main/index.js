@@ -15,11 +15,12 @@ const index_10 = require("./CryptoMemes/index");
 const index_11 = require("./CryptoPunks/index");
 const EnjinItem_1 = require("./EnjinItem");
 const index_12 = require("./ENSName/index");
-const index_13 = require("./Ethercraft/index");
-const index_14 = require("./Etheremon/index");
-const index_15 = require("./EtherTulips/index");
-const index_16 = require("./Mythereum/index");
-const index_17 = require("./OwnableContract/index");
+const index_13 = require("./ENSShortNameAuction/index");
+const index_14 = require("./Ethercraft/index");
+const index_15 = require("./Etheremon/index");
+const index_16 = require("./EtherTulips/index");
+const index_17 = require("./Mythereum/index");
+const index_18 = require("./OwnableContract/index");
 exports.mainSchemas = [
     index_3.AngelBattlesSchema,
     index_4.ChainMonstersSchema,
@@ -31,11 +32,12 @@ exports.mainSchemas = [
     index_9.CryptoMasterpiecesSchema,
     index_10.CryptoMemesSchema,
     index_12.ENSNameSchema,
-    index_13.EthercraftSchema,
-    index_14.EtheremonSchema,
-    index_15.EtherTulipsSchema,
-    index_16.MythereumSchema,
-    index_17.OwnableContractSchema,
+    index_13.ENSShortNameAuctionSchema,
+    index_14.EthercraftSchema,
+    index_15.EtheremonSchema,
+    index_16.EtherTulipsSchema,
+    index_17.MythereumSchema,
+    index_18.OwnableContractSchema,
     ERC20_1.ERC20Schema,
     index_2.ERC721Schema,
     ERC1155_1.ERC1155Schema,
