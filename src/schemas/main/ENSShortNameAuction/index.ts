@@ -14,7 +14,7 @@ import {
 } from '../../../types';
 
 export const ENS_SHORT_NAME_AUCTION_ADDRESS =
-  '0x76b6481a334783be36f2fc35b8f0b9bc7835d57b';
+  '0x699c7f511c9e2182e89f29b3bfb68bd327919d17';
 
 export const ENSShortNameAuctionSchema: Schema<ENSName> = {
   ...ENSNameBaseSchema,
