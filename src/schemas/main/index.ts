@@ -15,6 +15,7 @@ import { CryptoMemesSchema } from './CryptoMemes/index';
 import { CryptoPunksSchema } from './CryptoPunks/index';
 import { EnjinItemSchema } from './EnjinItem';
 import { ENSNameSchema } from './ENSName/index';
+import { ENSShortNameAuctionSchema } from './ENSShortNameAuction/index';
 import { EthercraftSchema } from './Ethercraft/index';
 import { EtheremonSchema } from './Etheremon/index';
 import { EtherTulipsSchema } from './EtherTulips/index';
@@ -32,6 +33,7 @@ export const mainSchemas: Array<Schema<any>> = [
   CryptoMasterpiecesSchema,
   CryptoMemesSchema,
   ENSNameSchema,
+  ENSShortNameAuctionSchema,
   EthercraftSchema,
   EtheremonSchema,
   EtherTulipsSchema,
