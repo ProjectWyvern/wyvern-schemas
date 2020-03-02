@@ -19,7 +19,7 @@ export const ENS_SHORT_NAME_AUCTION_ADDRESS =
 export const ENSShortNameAuctionSchema: Schema<ENSName> = {
   ...ENSNameBaseSchema,
   version: 0,
-  deploymentBlock: 4791629,
+  deploymentBlock: 8488908,
   name: 'ENSShortNameAuction',
   description: 'ERC721 ENS short (3-6 character) names sold via auction.',
   thumbnail: '', // TODO: put SVG body directly here or host a PNG ourselves?

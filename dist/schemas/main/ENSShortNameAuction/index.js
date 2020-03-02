@@ -12,7 +12,7 @@ const web3_1 = require("web3");
 const ens_1 = require("../../../common/ens");
 const types_1 = require("../../../types");
 exports.ENS_SHORT_NAME_AUCTION_ADDRESS = '0x699c7f511c9e2182e89f29b3bfb68bd327919d17';
-exports.ENSShortNameAuctionSchema = Object.assign({}, ens_1.ENSNameBaseSchema, { version: 0, deploymentBlock: 4791629, name: 'ENSShortNameAuction', description: 'ERC721 ENS short (3-6 character) names sold via auction.', thumbnail: '', website: 'https://ens.domains/', formatter: ({ name }) => __awaiter(this, void 0, void 0, function* () {
+exports.ENSShortNameAuctionSchema = Object.assign({}, ens_1.ENSNameBaseSchema, { version: 0, deploymentBlock: 8488908, name: 'ENSShortNameAuction', description: 'ERC721 ENS short (3-6 character) names sold via auction.', thumbnail: '', website: 'https://ens.domains/', formatter: ({ name }) => __awaiter(this, void 0, void 0, function* () {
         return {
             title: 'ENS Short Name: ' + name,
             description: '',

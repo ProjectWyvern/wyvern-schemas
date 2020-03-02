@@ -1,12 +1,15 @@
 /* globals describe:false,it:false */
-
+const { INFURA_API_KEY } = process.env
+if (!INFURA_API_KEY) {
+  throw new Error('Need to set INFURA_API_KEY')
+}
 const assert = require('assert')
 const Web3 = require('web3')
 const ZeroClientProvider = require('web3-provider-engine/zero.js')
 
 const engine = ZeroClientProvider({
   getAccounts: () => {},
-  rpcUrl: 'https://mainnet.infura.io'
+  rpcUrl: `https://mainnet.infura.io/v3/${INFURA_API_KEY}`
 })
 const web3 = new Web3(engine)
 

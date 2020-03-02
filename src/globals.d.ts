@@ -8,8 +8,8 @@ declare module 'ethereumjs-abi' {
 }
 
 declare module 'wyvern-js' {
-  export const WyvernProtocol: any
-} 
+  export const WyvernProtocol: any;
+}
 
 declare module '*.json' {
   const value: any;

@@ -71,7 +71,7 @@ export interface LimitedCallSpec {
   calldata: string;
 }
 
-export const encodeCall = (abi: Web3.MethodAbi, parameters: any[]): string => {
+export const encodeCall = (abi: AnnotatedFunctionABI, parameters: any[]): string => {
   const inputTypes = abi.inputs.map(i => i.type);
   return '0x' + Buffer.concat([
     ethABI.methodID(abi.name, inputTypes),

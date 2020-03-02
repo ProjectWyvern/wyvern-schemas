@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Web3 = require("web3");
+const types_1 = require("wyvern-js/lib/types");
+exports.FunctionInputKind = types_1.FunctionInputKind;
 var Network;
 (function (Network) {
     Network["Main"] = "main";
@@ -19,15 +21,6 @@ var StateMutability;
     StateMutability["Payable"] = "payable";
     StateMutability["Nonpayable"] = "nonpayable";
 })(StateMutability = exports.StateMutability || (exports.StateMutability = {}));
-var FunctionInputKind;
-(function (FunctionInputKind) {
-    FunctionInputKind["Replaceable"] = "replaceable";
-    FunctionInputKind["Asset"] = "asset";
-    FunctionInputKind["Owner"] = "owner";
-    FunctionInputKind["Index"] = "index";
-    FunctionInputKind["Count"] = "count";
-    FunctionInputKind["Data"] = "data";
-})(FunctionInputKind = exports.FunctionInputKind || (exports.FunctionInputKind = {}));
 var FunctionOutputKind;
 (function (FunctionOutputKind) {
     FunctionOutputKind["Owner"] = "owner";

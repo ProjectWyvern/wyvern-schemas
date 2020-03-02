@@ -1,4 +1,6 @@
 import * as Web3 from 'web3';
+import { AnnotatedFunctionInput, AnnotatedFunctionABI, FunctionInputKind } from 'wyvern-js/lib/types';
+export { AnnotatedFunctionInput, AnnotatedFunctionABI, FunctionInputKind, };
 export declare enum Network {
     Main = "main",
     Rinkeby = "rinkeby",
@@ -24,20 +26,6 @@ export declare enum StateMutability {
     Payable = "payable",
     Nonpayable = "nonpayable"
 }
-export declare enum FunctionInputKind {
-    Replaceable = "replaceable",
-    Asset = "asset",
-    Owner = "owner",
-    Index = "index",
-    Count = "count",
-    Data = "data"
-}
-export interface AnnotatedFunctionInput {
-    name: string;
-    type: string;
-    kind: FunctionInputKind;
-    value?: any;
-}
 export declare enum FunctionOutputKind {
     Owner = "owner",
     Asset = "asset",
@@ -48,16 +36,6 @@ export interface AnnotatedFunctionOutput {
     name: string;
     type: string;
     kind: FunctionOutputKind;
-}
-export interface AnnotatedFunctionABI {
-    type: Web3.AbiType.Function;
-    name: string;
-    target: string;
-    inputs: AnnotatedFunctionInput[];
-    outputs: AnnotatedFunctionOutput[];
-    constant: boolean;
-    stateMutability: StateMutability;
-    payable: boolean;
 }
 export interface AnnotatedFunctionABIReturning<T> extends AnnotatedFunctionABI {
     assetFromOutputs: (outputs: any) => T;

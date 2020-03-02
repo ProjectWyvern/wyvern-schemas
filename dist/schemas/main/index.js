@@ -4,40 +4,18 @@ const index_1 = require("../ContractRole/index");
 const ERC1155_1 = require("../ERC1155");
 const ERC20_1 = require("../ERC20");
 const index_2 = require("../ERC721/index");
-const index_3 = require("./AngelBattles/index");
-const index_4 = require("./ChainMonsters/index");
-const index_5 = require("./CryptoBots/index");
-const index_6 = require("./CryptoFighters/index");
-const index_7 = require("./CryptoHorse/index");
-const index_8 = require("./CryptoKitties/index");
-const index_9 = require("./CryptoMasterpieces/index");
-const index_10 = require("./CryptoMemes/index");
-const index_11 = require("./CryptoPunks/index");
+const index_3 = require("./CryptoKitties/index");
+const index_4 = require("./CryptoPunks/index");
 const EnjinItem_1 = require("./EnjinItem");
-const index_12 = require("./ENSName/index");
-const index_13 = require("./ENSShortNameAuction/index");
-const index_14 = require("./Ethercraft/index");
-const index_15 = require("./Etheremon/index");
-const index_16 = require("./EtherTulips/index");
-const index_17 = require("./Mythereum/index");
-const index_18 = require("./OwnableContract/index");
+const index_5 = require("./ENSName/index");
+const index_6 = require("./ENSShortNameAuction/index");
+const index_7 = require("./OwnableContract/index");
 exports.mainSchemas = [
-    index_3.AngelBattlesSchema,
-    index_4.ChainMonstersSchema,
-    index_5.CryptoBotsSchema,
-    index_8.CryptoKittiesSchema,
-    index_7.CryptoHorseSchema,
-    index_6.CryptoFightersSchema,
-    index_11.CryptoPunksSchema,
-    index_9.CryptoMasterpiecesSchema,
-    index_10.CryptoMemesSchema,
-    index_12.ENSNameSchema,
-    index_13.ENSShortNameAuctionSchema,
-    index_14.EthercraftSchema,
-    index_15.EtheremonSchema,
-    index_16.EtherTulipsSchema,
-    index_17.MythereumSchema,
-    index_18.OwnableContractSchema,
+    index_3.CryptoKittiesSchema,
+    index_4.CryptoPunksSchema,
+    index_5.ENSNameSchema,
+    index_6.ENSShortNameAuctionSchema,
+    index_7.OwnableContractSchema,
     ERC20_1.ERC20Schema,
     index_2.ERC721Schema,
     ERC1155_1.ERC1155Schema,

@@ -1,4 +1,3 @@
-import * as Web3 from 'web3';
 import { WyvernAtomicizerContract } from 'wyvern-js/lib/abi_gen/wyvern_atomicizer';
 import { AnnotatedFunctionABI, FunctionInputKind, Schema } from './types';
 export declare const encodeReplacementPattern: any;
@@ -6,7 +5,7 @@ export interface LimitedCallSpec {
     target: string;
     calldata: string;
 }
-export declare const encodeCall: (abi: Web3.MethodAbi, parameters: any[]) => string;
+export declare const encodeCall: (abi: AnnotatedFunctionABI, parameters: any[]) => string;
 export interface CallSpec {
     target: string;
     calldata: string;

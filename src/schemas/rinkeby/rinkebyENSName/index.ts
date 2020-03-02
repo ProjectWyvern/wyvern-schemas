@@ -2,7 +2,6 @@ import * as Web3 from 'web3';
 
 import { ENSName, ENSNameBaseSchema } from '../../../common/ens';
 import {
-  EventInputKind,
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
