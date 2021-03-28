@@ -11,7 +11,7 @@
     "dev": "scripts/dev.sh",
     "build": "scripts/build.sh",
     "test": "scripts/test.sh",
-    "prepublish": "yarn build"
+    "prepublish": "scripts/build.sh
   },
   "repository": {
     "type": "git",
