@@ -18,6 +18,7 @@ exports.mainSchemas = [
     index_7.OwnableContractSchema,
     ERC20_1.ERC20Schema,
     index_2.ERC721Schema,
+    index_2.ERC721v3Schema,
     ERC1155_1.ERC1155Schema,
     EnjinItem_1.EnjinItemSchema,
     index_1.ContractRoleSchema,

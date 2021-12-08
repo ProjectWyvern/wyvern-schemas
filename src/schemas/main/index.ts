@@ -2,7 +2,7 @@ import { Schema } from '../../types';
 import { ContractRoleSchema } from '../ContractRole/index';
 import { ERC1155Schema } from '../ERC1155';
 import { ERC20Schema } from '../ERC20';
-import { ERC721Schema } from '../ERC721/index';
+import { ERC721Schema, ERC721v3Schema } from '../ERC721/index';
 
 import { CryptoKittiesSchema } from './CryptoKitties/index';
 import { CryptoPunksSchema } from './CryptoPunks/index';
@@ -19,6 +19,7 @@ export const mainSchemas: Array<Schema<any>> = [
   OwnableContractSchema,
   ERC20Schema,
   ERC721Schema,
+  ERC721v3Schema,
   ERC1155Schema,
   EnjinItemSchema,
   ContractRoleSchema,
