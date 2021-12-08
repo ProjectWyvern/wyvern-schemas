@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Web3 = require("web3");
 const types_1 = require("../../types");
 exports.ERC721Schema = {
-    version: 2,
+    version: 3,
     deploymentBlock: 0,
     name: 'ERC721',
     description: 'Items conforming to the ERC721 spec, using transferFrom.',
@@ -41,7 +41,7 @@ exports.ERC721Schema = {
     functions: {
         transfer: asset => ({
             type: Web3.AbiType.Function,
-            name: 'transferFrom',
+            name: 'safeTransferFrom',
             payable: false,
             constant: false,
             stateMutability: types_1.StateMutability.Nonpayable,
