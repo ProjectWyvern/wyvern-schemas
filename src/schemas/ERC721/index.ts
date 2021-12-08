@@ -13,7 +13,7 @@ export interface NonFungibleContractType {
 }
 
 export const ERC721Schema: Schema<NonFungibleContractType> = {
-  version: 2,
+  version: 3,
   deploymentBlock: 0, // Not indexed (for now; need asset-specific indexing strategy)
   name: 'ERC721',
   description: 'Items conforming to the ERC721 spec, using transferFrom.',
@@ -44,7 +44,7 @@ export const ERC721Schema: Schema<NonFungibleContractType> = {
   functions: {
     transfer: asset => ({
       type: Web3.AbiType.Function,
-      name: 'transferFrom',
+      name: 'safeTransferFrom',
       payable: false,
       constant: false,
       stateMutability: StateMutability.Nonpayable,
