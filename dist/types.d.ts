@@ -1,5 +1,5 @@
 import * as Web3 from 'web3';
-import { AnnotatedFunctionInput, AnnotatedFunctionABI, FunctionInputKind } from 'wyvern-js/lib/types';
+import { AnnotatedFunctionABI, AnnotatedFunctionInput, FunctionInputKind } from 'wyvern-js/lib/types';
 export { AnnotatedFunctionInput, AnnotatedFunctionABI, FunctionInputKind, };
 export declare enum Network {
     Main = "main",

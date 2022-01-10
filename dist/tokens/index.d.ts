@@ -1,5 +1,4 @@
-import { NetworkTokens } from '../types';
 export declare const tokens: {
-    rinkeby: NetworkTokens;
-    main: NetworkTokens;
+    rinkeby: import("../../../../../../Users/jameswenzel/dev/wyvern-schemas/src/types").NetworkTokens;
+    main: import("../../../../../../Users/jameswenzel/dev/wyvern-schemas/src/types").NetworkTokens;
 };

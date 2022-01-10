@@ -1,5 +1,4 @@
-import { Schema } from '../types';
 export declare const schemas: {
-    rinkeby: Schema<any>[];
-    main: Schema<any>[];
+    rinkeby: import("../../../../../../Users/jameswenzel/dev/wyvern-schemas/src/types").Schema<any>[];
+    main: import("../../../../../../Users/jameswenzel/dev/wyvern-schemas/src/types").Schema<any>[];
 };

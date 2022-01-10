@@ -1,6 +1,6 @@
 {
   "name": "wyvern-schemas",
-  "version": "0.13.0",
+  "version": "0.14.1",
   "files": [
     "dist"
   ],
@@ -51,6 +51,6 @@
     "bignumber.js": "^6.0.0",
     "typed-promisify": "^0.4.0",
     "web3-provider-engine": "^13.6.5",
-    "wyvern-js": "github:ProjectOpenSea/wyvern-js#semver:^3.3.0"
+    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#v3.3.2"
   }
 }

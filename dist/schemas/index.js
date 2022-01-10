@@ -1,4 +1,5 @@
 "use strict";
+// To help typescript find the type
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("./main/index");
 const index_2 = require("./rinkeby/index");
