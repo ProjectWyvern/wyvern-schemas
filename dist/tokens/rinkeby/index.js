@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.rinkebyTokens = void 0;
 exports.rinkebyTokens = {
     canonicalWrappedEther: { name: 'Rinkeby Canonical Wrapped Ether', symbol: 'WETH', decimals: 18, address: '0xc778417e063141139fce010982780140aa0cd5ab' },
     otherTokens: [

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.mainSchemas = void 0;
 const index_1 = require("../ContractRole/index");
 const ERC1155_1 = require("../ERC1155");
 const ERC20_1 = require("../ERC20");

@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   EventInputKind,
@@ -34,7 +34,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
   },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'transfer',
       payable: false,
       constant: false,
@@ -47,7 +47,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'ownerOf',
       payable: false,
       constant: true,
@@ -61,7 +61,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
       ],
     }),
     assetsOfOwnerByIndex: [{
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'tokensOfOwnerByIndex',
       payable: false,
       constant: true,
@@ -85,7 +85,7 @@ export const rinkebyCryptoKittiesSchema: Schema<RinkebyCryptoKittiesType> = {
   },
   events: {
     transfer: [{
-      type: Web3.AbiType.Event,
+      type: AbiType.Event,
       name: 'Transfer',
       target: '0x16baf0de678e52367adc69fd067e5edd1d33e3bf',
       anonymous: false,

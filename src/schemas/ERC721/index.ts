@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   FunctionInputKind,
@@ -43,7 +43,7 @@ export const ERC721Schema: Schema<NonFungibleContractType> = {
     },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'transferFrom',
       payable: false,
       constant: false,
@@ -57,7 +57,7 @@ export const ERC721Schema: Schema<NonFungibleContractType> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'ownerOf',
       payable: false,
       constant: true,
@@ -109,7 +109,7 @@ export const ERC721v3Schema: Schema<NonFungibleContractType> = {
     },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'safeTransferFrom',
       payable: false,
       constant: false,
@@ -123,7 +123,7 @@ export const ERC721v3Schema: Schema<NonFungibleContractType> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'ownerOf',
       payable: false,
       constant: true,

@@ -1,15 +1,17 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CryptoKittiesSchema = void 0;
 const axios_1 = require("axios");
-const Web3 = require("web3");
+const ethereum_types_1 = require("ethereum-types");
 const types_1 = require("../../../types");
 exports.CryptoKittiesSchema = {
     version: 1,
@@ -23,7 +25,7 @@ exports.CryptoKittiesSchema = {
     ],
     assetFromFields: (fields) => fields.ID,
     assetToFields: asset => ({ ID: asset }),
-    formatter: (asset) => __awaiter(this, void 0, void 0, function* () {
+    formatter: (asset) => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield axios_1.default.get(`https://api.cryptokitties.co/kitties/${asset}`).catch(err => {
             if (err.response && (err.response.status === 404 || err.response.status === 400)) {
                 return null;
@@ -59,7 +61,7 @@ exports.CryptoKittiesSchema = {
     }),
     functions: {
         transfer: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'transfer',
             payable: false,
             constant: false,
@@ -72,7 +74,7 @@ exports.CryptoKittiesSchema = {
             outputs: [],
         }),
         ownerOf: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'ownerOf',
             payable: false,
             constant: true,
@@ -89,7 +91,7 @@ exports.CryptoKittiesSchema = {
     },
     events: {
         transfer: [{
-                type: Web3.AbiType.Event,
+                type: ethereum_types_1.AbiType.Event,
                 name: 'Transfer',
                 target: '0x06012c8cf97bead5deae237070f9587f8e7a266d',
                 anonymous: false,
@@ -98,7 +100,7 @@ exports.CryptoKittiesSchema = {
                     { kind: types_1.EventInputKind.Destination, indexed: false, name: 'to', type: 'address' },
                     { kind: types_1.EventInputKind.Asset, indexed: false, name: 'tokenId', type: 'uint256' },
                 ],
-                assetFromInputs: (inputs) => __awaiter(this, void 0, void 0, function* () { return inputs.tokenId; }),
+                assetFromInputs: (inputs) => __awaiter(void 0, void 0, void 0, function* () { return inputs.tokenId; }),
             }],
     },
     hash: a => a,

@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Web3 = require("web3");
+exports.EnjinItemSchema = void 0;
+const ethereum_types_1 = require("ethereum-types");
 const types_1 = require("../../../types");
 const ERC1155_1 = require("../../ERC1155");
-exports.EnjinItemSchema = Object.assign({}, ERC1155_1.ERC1155Schema, { version: 1, deploymentBlock: 0, name: 'Enjin', description: 'Items conforming to the Enjin implementation of the ERC1155 spec.', website: 'https://enjincoin.io/', functions: Object.assign({}, ERC1155_1.ERC1155Schema.functions, { ownerOf: asset => ({
-            type: Web3.AbiType.Function,
+exports.EnjinItemSchema = Object.assign(Object.assign({}, ERC1155_1.ERC1155Schema), { version: 1, deploymentBlock: 0, name: 'Enjin', description: 'Items conforming to the Enjin implementation of the ERC1155 spec.', website: 'https://enjincoin.io/', functions: Object.assign(Object.assign({}, ERC1155_1.ERC1155Schema.functions), { ownerOf: asset => ({
+            type: ethereum_types_1.AbiType.Function,
             name: 'ownerOf',
             payable: false,
             constant: true,
@@ -19,7 +20,7 @@ exports.EnjinItemSchema = Object.assign({}, ERC1155_1.ERC1155Schema, { version: 
         }), 
         // Parameters are flipped from 1155
         countOf: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'balanceOf',
             payable: false,
             constant: true,

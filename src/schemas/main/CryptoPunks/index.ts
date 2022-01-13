@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   EventInputKind,
@@ -34,7 +34,7 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
   },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'transferPunk',
       payable: false,
       constant: false,
@@ -47,7 +47,7 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'punkIndexToAddress',
       payable: false,
       constant: true,
@@ -64,7 +64,7 @@ export const CryptoPunksSchema: Schema<CryptoPunksType> = {
   },
   events: {
     transfer: [{
-      type: Web3.AbiType.Event,
+      type: AbiType.Event,
       name: 'PunkTransfer',
       target: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
       anonymous: false,

@@ -1,14 +1,16 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Web3 = require("web3");
+exports.ERC1155Schema = void 0;
+const ethereum_types_1 = require("ethereum-types");
 const types_1 = require("../../types");
 exports.ERC1155Schema = {
     version: 1,
@@ -32,7 +34,7 @@ exports.ERC1155Schema = {
         Address: asset.address,
         Quantity: asset.quantity,
     }),
-    formatter: (asset) => __awaiter(this, void 0, void 0, function* () {
+    formatter: (asset) => __awaiter(void 0, void 0, void 0, function* () {
         return {
             title: 'ERC1155 Asset: Token ID ' + asset.id + ' at ' + asset.address,
             description: 'Trading ' + asset.quantity.toString(),
@@ -43,7 +45,7 @@ exports.ERC1155Schema = {
     }),
     functions: {
         transfer: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'safeTransferFrom',
             payable: false,
             constant: false,
@@ -59,7 +61,7 @@ exports.ERC1155Schema = {
             outputs: [],
         }),
         countOf: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'balanceOf',
             payable: false,
             constant: true,
