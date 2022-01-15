@@ -6388,9 +6388,9 @@ ws@^3.0.0:
     safe-buffer "~5.1.0"
     ultron "~1.1.0"
 
-"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#1619555d538eda2a19c27d785fde93cffef92f36":
+"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#487f076f1445f711c6f43399705626891614fbcb":
   version "3.2.0"
-  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#1619555d538eda2a19c27d785fde93cffef92f36"
+  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#487f076f1445f711c6f43399705626891614fbcb"
   dependencies:
     "@0x/abi-gen" "^5.7.0"
     "@0x/assert" "^3.0.30"
