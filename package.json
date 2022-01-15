@@ -49,6 +49,6 @@
   "dependencies": {
     "@0x/utils": "^6.4.4",
     "axios": "^0.17.1",
-    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#1619555d538eda2a19c27d785fde93cffef92f36"
+    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#44c2a19e1ce86467bd0ae8473038939b3dd6ff70"
   }
 }
