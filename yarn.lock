@@ -106,6 +106,26 @@
     js-sha3 "^0.7.0"
     lodash "^4.17.11"
 
+"@0x/utils@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@0x/utils/-/utils-6.5.0.tgz#a75eda9a1cdc7cd2520056dbaec678f20f7f16c4"
+  integrity sha512-1+9nIagW9OQG0rcUaBvIOMolWgZHqSjNADQIJk+GmEMYnt7wUpokSkHPHxmw+/xVQs/da5dh1U0/nWsW+A1Nuw==
+  dependencies:
+    "@0x/types" "^3.3.4"
+    "@0x/typescript-typings" "^5.2.1"
+    "@types/mocha" "^5.2.7"
+    "@types/node" "12.12.54"
+    abortcontroller-polyfill "^1.1.9"
+    bignumber.js "~9.0.0"
+    chalk "^2.3.0"
+    detect-node "2.0.3"
+    ethereum-types "^3.6.0"
+    ethereumjs-util "^7.1.0"
+    ethers "~4.0.4"
+    isomorphic-fetch "2.2.1"
+    js-sha3 "^0.7.0"
+    lodash "^4.17.11"
+
 "@0x/web3-wrapper@^7.6.1":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@0x/web3-wrapper/-/web3-wrapper-7.6.1.tgz#f25bf394f1241e7455f179423d0525002a3517b6"
@@ -6388,15 +6408,15 @@ ws@^3.0.0:
     safe-buffer "~5.1.0"
     ultron "~1.1.0"
 
-"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#487f076f1445f711c6f43399705626891614fbcb":
+"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#962657e8c42672d302afeee95f55f23018d6242b":
   version "3.2.0"
-  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#487f076f1445f711c6f43399705626891614fbcb"
+  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#962657e8c42672d302afeee95f55f23018d6242b"
   dependencies:
     "@0x/abi-gen" "^5.7.0"
     "@0x/assert" "^3.0.30"
     "@0x/base-contract" "^6.4.4"
     "@0x/json-schemas" "^6.4.0"
-    "@0x/utils" "^6.4.4"
+    "@0x/utils" "^6.5.0"
     "@0x/web3-wrapper" "^7.6.1"
     bn.js "^4.11.8"
     ethereumjs-abi "https://github.com/ProjectWyvern/ethereumjs-abi.git"
