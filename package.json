@@ -47,7 +47,7 @@
     "web3-provider-engine": "^13.6.5"
   },
   "dependencies": {
-    "@0x/utils": "^6.5.0",
+    "@0x/utils": "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz",
     "axios": "^0.17.1",
     "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#3d4930aa2ec434653c4b857a93fd7ca7abddbb0b"
   }
