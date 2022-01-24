@@ -8,7 +8,7 @@ const namehash = (name) => {
         const labels = name.split('.');
         for (let i = labels.length - 1; i >= 0; i--) {
             const labelHash = (0, ethereumjs_util_1.sha3)(labels[i]).toString('hex');
-            node = (0, ethereumjs_util_1.sha3)(new Buffer(node + labelHash, 'hex')).toString('hex');
+            node = (0, ethereumjs_util_1.sha3)(Buffer.from(node + labelHash, 'hex')).toString('hex');
         }
     }
     return '0x' + node.toString();

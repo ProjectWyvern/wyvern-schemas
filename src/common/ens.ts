@@ -14,7 +14,7 @@ export const namehash = (name: string) => {
     const labels = name.split('.');
     for (let i = labels.length - 1; i >= 0; i--) {
       const labelHash = sha3(labels[i]).toString('hex');
-      node = sha3(new Buffer(node + labelHash, 'hex')).toString('hex');
+      node = sha3(Buffer.from(node + labelHash, 'hex')).toString('hex');
     }
   }
   return '0x' + node.toString();
@@ -30,10 +30,7 @@ export const nodehash = (name: string) => {
 };
 
 export const ENSNameBaseSchema: Required<
-  Pick<
-    Schema<ENSName>,
-    'fields' | 'assetFromFields' | 'checkAsset' | 'hash'
-  >
+  Pick<Schema<ENSName>, 'fields' | 'assetFromFields' | 'checkAsset' | 'hash'>
 > = {
   fields: [
     { name: 'Name', type: 'string', description: 'ENS Name' },

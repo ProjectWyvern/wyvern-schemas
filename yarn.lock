@@ -86,19 +86,14 @@
     ethereum-types "^3.6.0"
     popper.js "1.14.3"
 
-"@0x/utils@^6.4.4", "@0x/utils@^6.5.0", "@0x/utils@https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz":
+"@0x/utils@^6.4.4", "@0x/utils@https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz":
   version "6.5.0"
-  resolved "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz#c52b0eaac2d8250387535730306124e4f752aedf"
+  resolved "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz#49cc5308ac0a5a7d5e3ae25288971c3bf0f9ee16"
   dependencies:
-    "@0x/types" "^3.3.4"
-    "@0x/typescript-typings" "^5.2.1"
-    "@types/mocha" "^5.2.7"
-    "@types/node" "12.12.54"
     abortcontroller-polyfill "^1.1.9"
     bignumber.js "~9.0.0"
     chalk "^2.3.0"
     detect-node "2.0.3"
-    ethereum-types "^3.6.0"
     ethereumjs-util "^7.1.0"
     ethers "~4.0.4"
     isomorphic-fetch "2.2.1"
@@ -359,11 +354,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/mocha@^5.2.7":
-  version "5.2.7"
-  resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
-  integrity sha512-NYrtPht0wGzhwe9+/idPaBB+TqkY9AhTvOLMkThm0IoEfLaiVQZwBwyJ5puCkO3AUCWrmcoePjp2mbFocKy4SQ==
-
 "@types/node@*":
   version "17.0.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.8.tgz#50d680c8a8a78fe30abe6906453b21ad8ab0ad7b"
@@ -374,15 +364,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.54.tgz#a4b58d8df3a4677b6c08bfbc94b7ad7a7a5f82d1"
   integrity sha512-ge4xZ3vSBornVYlDnk7yZ0gK6ChHf/CHB7Gl1I0Jhah8DDnEQqBzgohYG4FX4p81TNirSETOiSyn+y1r9/IR6w==
 
+"@types/node@16.11.0":
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.0.tgz#4b95f2327bacd1ef8f08d8ceda193039c5d7f52e"
+  integrity sha512-8MLkBIYQMuhRBQzGN9875bYsOhPnf/0rgXGo66S2FemHkhbn9qtsz9ywV1iCG+vbjigE4WUNVvw37Dx+L0qsPg==
+
 "@types/node@^12.12.6":
   version "12.20.41"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.41.tgz#81d7734c5257da9f04354bd9084a6ebbdd5198a5"
   integrity sha512-f6xOqucbDirG7LOzedpvzjP3UTmHttRou3Mosx3vL9wr9AIQGhcPgVnqa8ihpZYnxyM1rxeNCvTyukPKZtq10Q==
-
-"@types/node@^9.3.0":
-  version "9.6.61"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.61.tgz#29f124eddd41c4c74281bd0b455d689109fc2a2d"
-  integrity sha512-/aKAdg5c8n468cYLy2eQrcR5k6chlbNwZNGUj3TboyPa2hcO2QAJcfymlqPzMiRj8B6nYKXjzQz36minFE0RwQ==
 
 "@types/pbkdf2@^3.0.0":
   version "3.1.0"
@@ -6387,15 +6377,15 @@ ws@^3.0.0:
     safe-buffer "~5.1.0"
     ultron "~1.1.0"
 
-"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#3d4930aa2ec434653c4b857a93fd7ca7abddbb0b":
+"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#57967e70114ad523e306ed8da52cf5494f6e7008":
   version "3.2.0"
-  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#3d4930aa2ec434653c4b857a93fd7ca7abddbb0b"
+  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#57967e70114ad523e306ed8da52cf5494f6e7008"
   dependencies:
     "@0x/abi-gen" "^5.7.0"
     "@0x/assert" "^3.0.30"
     "@0x/base-contract" "^6.4.4"
     "@0x/json-schemas" "^6.4.0"
-    "@0x/utils" "^6.5.0"
+    "@0x/utils" "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz"
     "@0x/web3-wrapper" "^7.6.1"
     bn.js "^4.11.8"
     ethereumjs-abi "https://github.com/ProjectWyvern/ethereumjs-abi.git"
