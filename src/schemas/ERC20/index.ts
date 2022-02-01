@@ -1,10 +1,9 @@
 import * as Web3 from 'web3';
-
 import {
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
-  StateMutability,
+  StateMutability
 } from '../../types';
 
 export interface FungibleTradeType {
