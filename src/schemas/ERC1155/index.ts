@@ -1,11 +1,11 @@
 import * as Web3 from 'web3';
-
 import {
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
   StateMutability,
 } from '../../types';
+
 
 export interface SemiFungibleTradeType {
   id: string;
@@ -59,6 +59,24 @@ export const ERC1155Schema: Schema<SemiFungibleTradeType> = {
         {kind: FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id},
         {kind: FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity},
         {kind: FunctionInputKind.Data, name: '_data', type: 'bytes', value: ''},
+      ],
+      outputs: [],
+    }),
+    checkAndTransfer: (asset, validatorAddress, merkle) => ({
+      type: Web3.AbiType.Function,
+      name: 'matchERC1155UsingCriteria',
+      payable: false,
+      constant: false,
+      stateMutability: StateMutability.Nonpayable,
+      target: validatorAddress,
+      inputs: [
+        { kind: FunctionInputKind.Owner, name: 'from', type: 'address' },
+        { kind: FunctionInputKind.Replaceable, name: 'to', type: 'address' },
+        { kind: FunctionInputKind.Asset, name: 'token', type: 'address', value: asset.address },
+        { kind: FunctionInputKind.Asset, name: 'tokenId', type: 'uint256', value: asset.id },
+        { kind: FunctionInputKind.Count, name: 'amount', type: 'uint256', value: asset.quantity },
+        { kind: FunctionInputKind.Data, name: 'root', type: 'bytes32', value: merkle ? merkle.root : "" },
+        { kind: FunctionInputKind.Data, name: 'proof', type: 'bytes32[]', value: merkle ? merkle.proof : "[]" },
       ],
       outputs: [],
     }),
