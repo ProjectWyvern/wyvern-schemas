@@ -3,7 +3,7 @@ import {
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
-  StateMutability
+  StateMutability,
 } from '../../types';
 
 

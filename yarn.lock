@@ -4043,9 +4043,9 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#adb0b5ceb8616ce1414096a27c0a8a953120c0aa":
+"wyvern-js@git+https://github.com/ProjectOpenSea/wyvern-js.git#v4.0.0":
   version "3.2.0"
-  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#adb0b5ceb8616ce1414096a27c0a8a953120c0aa"
+  resolved "git+https://github.com/ProjectOpenSea/wyvern-js.git#cdff8a631e1a06fa3b694cc399d1e46fa67b1f9f"
   dependencies:
     "0x.js" "^0.29.2"
     "@0xproject/assert" "^0.0.11"
