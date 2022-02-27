@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/ProjectWyvern/wyvern-schemas#readme",
   "devDependencies": {
+    "@0x/types": "^3.3.5",
     "@types/node": "16.11.0",
     "buffer": "^5.0.8",
     "ethereum-types": "^3.6.0",
@@ -49,6 +50,6 @@
   "dependencies": {
     "@0x/utils": "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz",
     "axios": "^0.17.1",
-    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#57967e70114ad523e306ed8da52cf5494f6e7008"
+    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#f7704ad2571f05136f9a42735966dcd3f1485474"
   }
 }

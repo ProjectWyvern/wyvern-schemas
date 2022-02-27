@@ -4,7 +4,7 @@ import {
   FunctionInputKind,
   FunctionOutputKind,
   Schema,
-  StateMutability,
+  StateMutability
 } from '../../types';
 
 export interface FungibleTradeType {

@@ -2,7 +2,7 @@ import { AbiType } from 'ethereum-types';
 import {
   AnnotatedFunctionABI,
   AnnotatedFunctionInput,
-  FunctionInputKind,
+  FunctionInputKind
 } from 'wyvern-js/lib/types';
 
 export {
@@ -81,8 +81,14 @@ export interface AnnotatedEventABI<T> {
   assetFromInputs: (inputs: any, web3: any) => Promise<T>;
 }
 
+export interface MerkleProof {
+  root: string;
+  proof: string[];
+}
+
 export interface SchemaFunctions<T> {
   transfer: (asset: T) => AnnotatedFunctionABI;
+  checkAndTransfer?: (asset: T, validatorAddress: string, proof?: MerkleProof) => AnnotatedFunctionABI;
   ownerOf?: (asset: T) => AnnotatedFunctionABI;
   countOf?: (asset: T) => AnnotatedFunctionABIReturning<number>;
   assetsOfOwnerByIndex: Array<AnnotatedFunctionABIReturning<T | null>>;

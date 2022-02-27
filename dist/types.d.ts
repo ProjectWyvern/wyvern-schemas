@@ -60,8 +60,13 @@ export interface AnnotatedEventABI<T> {
     inputs: AnnotatedEventInput[];
     assetFromInputs: (inputs: any, web3: any) => Promise<T>;
 }
+export interface MerkleProof {
+    root: string;
+    proof: string[];
+}
 export interface SchemaFunctions<T> {
     transfer: (asset: T) => AnnotatedFunctionABI;
+    checkAndTransfer?: (asset: T, validatorAddress: string, proof?: MerkleProof) => AnnotatedFunctionABI;
     ownerOf?: (asset: T) => AnnotatedFunctionABI;
     countOf?: (asset: T) => AnnotatedFunctionABIReturning<number>;
     assetsOfOwnerByIndex: Array<AnnotatedFunctionABIReturning<T | null>>;
