@@ -1,4 +1,4 @@
-import { BigNumber } from '@0xproject/utils';
+import { BigNumber } from '@0x/utils';
 import * as ethABI from 'ethereumjs-abi';
 import { WyvernProtocol } from 'wyvern-js';
 import { WyvernAtomicizerContract } from 'wyvern-js/lib/abi_gen/wyvern_atomicizer';
@@ -108,12 +108,16 @@ export const encodeAtomicizedSell: AtomicizedSellEncoder<any> = (schema, assets,
     };
   });
 
-  const atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(
-    transactions.map(t => t.address),
-    transactions.map(t => t.value),
-    transactions.map(t => new BigNumber((t.calldata.length - 2) / 2)), // subtract 2 for '0x', divide by 2 for hex
-    transactions.map(t => t.calldata).reduce((x, y) => x + y.slice(2)), // cut off the '0x'
-  );
+  const atomicizedCalldata = atomicizer
+    .atomicize(
+      transactions.map(t => t.address),
+      transactions.map(t => t.value),
+      transactions.map(t => new BigNumber((t.calldata.length - 2) / 2)), // subtract 2 for '0x', divide by 2 for hex
+      transactions.map(t => t.calldata).reduce((x, y) => {
+        return x + y.slice(2);
+      }), // cut off the '0x'
+    )
+    .getABIEncodedTransactionData();
 
   const atomicizedReplacementPattern = WyvernProtocol.encodeAtomicizedReplacementPattern(transactions.map(t => t.abi));
 
@@ -136,12 +140,16 @@ export const encodeAtomicizedBuy: AtomicizedBuyEncoder<any> = (schema, assets, a
     };
   });
 
-  const atomicizedCalldata = atomicizer.atomicize.getABIEncodedTransactionData(
-    transactions.map(t => t.address),
-    transactions.map(t => t.value),
-    transactions.map(t => new BigNumber((t.calldata.length - 2) / 2)), // subtract 2 for '0x', divide by 2 for hex
-    transactions.map(t => t.calldata).reduce((x, y) => x + y.slice(2)), // cut off the '0x'
-  );
+  const atomicizedCalldata = atomicizer
+    .atomicize(
+      transactions.map(t => t.address),
+      transactions.map(t => t.value),
+      transactions.map(t => new BigNumber((t.calldata.length - 2) / 2)), // subtract 2 for '0x', divide by 2 for hex
+      transactions.map(t => t.calldata).reduce((x, y) => {
+        return x + y.slice(2);
+      }), // cut off the '0x'
+    )
+    .getABIEncodedTransactionData();
 
   const atomicizedReplacementPattern = WyvernProtocol.encodeAtomicizedReplacementPattern(transactions.map(t => t.abi), FunctionInputKind.Owner);
 

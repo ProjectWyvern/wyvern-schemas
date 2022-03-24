@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   FunctionInputKind,
@@ -48,7 +48,7 @@ export const ContractRoleSchema: Schema<ContractRoleType> = {
   },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: asset.roleSetter,
       payable: false,
       constant: false,
@@ -60,7 +60,7 @@ export const ContractRoleSchema: Schema<ContractRoleType> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: asset.roleGetter,
       payable: false,
       constant: true,

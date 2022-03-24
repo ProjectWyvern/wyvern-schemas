@@ -1,14 +1,16 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Web3 = require("web3");
+exports.ERC721v3Schema = exports.ERC721Schema = void 0;
+const ethereum_types_1 = require("ethereum-types");
 const types_1 = require("../../types");
 exports.ERC721Schema = {
     version: 2,
@@ -29,7 +31,7 @@ exports.ERC721Schema = {
         ID: asset.id,
         Address: asset.address,
     }),
-    formatter: (asset) => __awaiter(this, void 0, void 0, function* () {
+    formatter: (asset) => __awaiter(void 0, void 0, void 0, function* () {
         return {
             title: 'ERC721 Asset: Token ID ' + asset.id + ' at ' + asset.address,
             description: '',
@@ -40,7 +42,7 @@ exports.ERC721Schema = {
     }),
     functions: {
         transfer: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'transferFrom',
             payable: false,
             constant: false,
@@ -54,7 +56,7 @@ exports.ERC721Schema = {
             outputs: [],
         }),
         checkAndTransfer: (asset, validatorAddress, merkle) => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'matchERC721UsingCriteria',
             payable: false,
             constant: false,
@@ -71,7 +73,7 @@ exports.ERC721Schema = {
             outputs: [],
         }),
         ownerOf: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'ownerOf',
             payable: false,
             constant: true,
@@ -91,8 +93,8 @@ exports.ERC721Schema = {
     },
     hash: asset => asset.address + '-' + asset.id,
 };
-exports.ERC721v3Schema = Object.assign({}, exports.ERC721Schema, { version: 3, name: 'ERC721v3', description: 'Items conforming to the ERC721 v3 spec, using safeTransferFrom.', functions: Object.assign({}, exports.ERC721Schema.functions, { transfer: asset => ({
-            type: Web3.AbiType.Function,
+exports.ERC721v3Schema = Object.assign(Object.assign({}, exports.ERC721Schema), { version: 3, name: 'ERC721v3', description: 'Items conforming to the ERC721 v3 spec, using safeTransferFrom.', functions: Object.assign(Object.assign({}, exports.ERC721Schema.functions), { transfer: asset => ({
+            type: ethereum_types_1.AbiType.Function,
             name: 'safeTransferFrom',
             payable: false,
             constant: false,
@@ -105,7 +107,7 @@ exports.ERC721v3Schema = Object.assign({}, exports.ERC721Schema, { version: 3, n
             ],
             outputs: [],
         }), checkAndTransfer: (asset, validatorAddress, merkle) => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'matchERC721WithSafeTransferUsingCriteria',
             payable: false,
             constant: false,

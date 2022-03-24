@@ -1,14 +1,16 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Web3 = require("web3");
+exports.ERC1155Schema = void 0;
+const ethereum_types_1 = require("ethereum-types");
 const types_1 = require("../../types");
 exports.ERC1155Schema = {
     version: 1,
@@ -27,12 +29,12 @@ exports.ERC1155Schema = {
         address: fields.Address,
         quantity: fields.Quantity,
     }),
-    assetToFields: asset => ({
+    assetToFields: (asset) => ({
         ID: asset.id,
         Address: asset.address,
         Quantity: asset.quantity,
     }),
-    formatter: (asset) => __awaiter(this, void 0, void 0, function* () {
+    formatter: (asset) => __awaiter(void 0, void 0, void 0, function* () {
         return {
             title: 'ERC1155 Asset: Token ID ' + asset.id + ' at ' + asset.address,
             description: 'Trading ' + asset.quantity.toString(),
@@ -42,8 +44,8 @@ exports.ERC1155Schema = {
         };
     }),
     functions: {
-        transfer: asset => ({
-            type: Web3.AbiType.Function,
+        transfer: (asset) => ({
+            type: ethereum_types_1.AbiType.Function,
             name: 'safeTransferFrom',
             payable: false,
             constant: false,
@@ -52,14 +54,29 @@ exports.ERC1155Schema = {
             inputs: [
                 { kind: types_1.FunctionInputKind.Owner, name: '_from', type: 'address' },
                 { kind: types_1.FunctionInputKind.Replaceable, name: '_to', type: 'address' },
-                { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id },
-                { kind: types_1.FunctionInputKind.Count, name: '_value', type: 'uint256', value: asset.quantity },
-                { kind: types_1.FunctionInputKind.Data, name: '_data', type: 'bytes', value: '' },
+                {
+                    kind: types_1.FunctionInputKind.Asset,
+                    name: '_id',
+                    type: 'uint256',
+                    value: asset.id,
+                },
+                {
+                    kind: types_1.FunctionInputKind.Count,
+                    name: '_value',
+                    type: 'uint256',
+                    value: asset.quantity,
+                },
+                {
+                    kind: types_1.FunctionInputKind.Data,
+                    name: '_data',
+                    type: 'bytes',
+                    value: '',
+                },
             ],
             outputs: [],
         }),
         checkAndTransfer: (asset, validatorAddress, merkle) => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'matchERC1155UsingCriteria',
             payable: false,
             constant: false,
@@ -68,16 +85,41 @@ exports.ERC1155Schema = {
             inputs: [
                 { kind: types_1.FunctionInputKind.Owner, name: 'from', type: 'address' },
                 { kind: types_1.FunctionInputKind.Replaceable, name: 'to', type: 'address' },
-                { kind: types_1.FunctionInputKind.Asset, name: 'token', type: 'address', value: asset.address },
-                { kind: types_1.FunctionInputKind.Asset, name: 'tokenId', type: 'uint256', value: asset.id },
-                { kind: types_1.FunctionInputKind.Count, name: 'amount', type: 'uint256', value: asset.quantity },
-                { kind: types_1.FunctionInputKind.Data, name: 'root', type: 'bytes32', value: merkle ? merkle.root : "" },
-                { kind: types_1.FunctionInputKind.Data, name: 'proof', type: 'bytes32[]', value: merkle ? merkle.proof : "[]" },
+                {
+                    kind: types_1.FunctionInputKind.Asset,
+                    name: 'token',
+                    type: 'address',
+                    value: asset.address,
+                },
+                {
+                    kind: types_1.FunctionInputKind.Asset,
+                    name: 'tokenId',
+                    type: 'uint256',
+                    value: asset.id,
+                },
+                {
+                    kind: types_1.FunctionInputKind.Count,
+                    name: 'amount',
+                    type: 'uint256',
+                    value: asset.quantity,
+                },
+                {
+                    kind: types_1.FunctionInputKind.Data,
+                    name: 'root',
+                    type: 'bytes32',
+                    value: merkle ? merkle.root : '',
+                },
+                {
+                    kind: types_1.FunctionInputKind.Data,
+                    name: 'proof',
+                    type: 'bytes32[]',
+                    value: merkle ? merkle.proof : '[]',
+                },
             ],
             outputs: [],
         }),
-        countOf: asset => ({
-            type: Web3.AbiType.Function,
+        countOf: (asset) => ({
+            type: ethereum_types_1.AbiType.Function,
             name: 'balanceOf',
             payable: false,
             constant: true,
@@ -85,7 +127,12 @@ exports.ERC1155Schema = {
             target: asset.address,
             inputs: [
                 { kind: types_1.FunctionInputKind.Owner, name: '_owner', type: 'address' },
-                { kind: types_1.FunctionInputKind.Asset, name: '_id', type: 'uint256', value: asset.id },
+                {
+                    kind: types_1.FunctionInputKind.Asset,
+                    name: '_id',
+                    type: 'uint256',
+                    value: asset.id,
+                },
             ],
             outputs: [
                 { kind: types_1.FunctionOutputKind.Count, name: 'balance', type: 'uint' },
@@ -97,6 +144,6 @@ exports.ERC1155Schema = {
     events: {
         transfer: [],
     },
-    hash: asset => asset.address + '-' + asset.id,
+    hash: (asset) => asset.address + '-' + asset.id,
 };
 //# sourceMappingURL=index.js.map

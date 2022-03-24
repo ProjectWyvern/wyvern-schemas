@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import { ENSName, ENSNameBaseSchema } from '../../../common/ens';
 import {
@@ -28,7 +28,7 @@ export const rinkebyENSNameSchema: Schema<ENSName> = {
   },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'setOwner',
       payable: false,
       constant: false,
@@ -41,7 +41,7 @@ export const rinkebyENSNameSchema: Schema<ENSName> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'owner',
       payable: false,
       constant: true,

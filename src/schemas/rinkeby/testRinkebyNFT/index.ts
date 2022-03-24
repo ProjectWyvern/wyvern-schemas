@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   EventInputKind,
@@ -34,7 +34,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
   },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'transfer',
       payable: false,
       constant: false,
@@ -47,7 +47,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'ownerOf',
       payable: false,
       constant: true,
@@ -64,7 +64,7 @@ export const testRinkebyNFTSchema: Schema<TestRinkebyNFTType> = {
   },
   events: {
     transfer: [{
-      type: Web3.AbiType.Event,
+      type: AbiType.Event,
       name: 'Transfer',
       target: '0x07a6dc6e3f1120ca03658d473d10aee3af5f8abb',
       anonymous: false,

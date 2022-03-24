@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   EventInputKind,
@@ -58,7 +58,7 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
   },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'transfer',
       payable: false,
       constant: false,
@@ -71,7 +71,7 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
       outputs: [],
     }),
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'ownerOf',
       payable: false,
       constant: true,
@@ -88,7 +88,7 @@ export const CryptoKittiesSchema: Schema<CryptoKittiesType> = {
   },
   events: {
     transfer: [{
-      type: Web3.AbiType.Event,
+      type: AbiType.Event,
       name: 'Transfer',
       target: '0x06012c8cf97bead5deae237070f9587f8e7a266d',
       anonymous: false,

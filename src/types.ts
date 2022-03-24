@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 import {
   AnnotatedFunctionABI,
   AnnotatedFunctionInput,
@@ -18,8 +18,8 @@ export enum Network {
 }
 
 export enum ABIType {
-  Function = Web3.AbiType.Function,
-  Event = Web3.AbiType.Event,
+  Function = AbiType.Function,
+  Event = AbiType.Event,
 }
 
 export interface Token {
@@ -73,7 +73,7 @@ export interface AnnotatedEventInput {
 }
 
 export interface AnnotatedEventABI<T> {
-  type: Web3.AbiType.Event;
+  type: AbiType.Event;
   name: string;
   target: string;
   anonymous: boolean;

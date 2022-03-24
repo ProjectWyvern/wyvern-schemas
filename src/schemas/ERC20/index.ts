@@ -1,4 +1,5 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
+
 import {
   FunctionInputKind,
   FunctionOutputKind,
@@ -42,7 +43,7 @@ export const ERC20Schema: Schema<FungibleTradeType> = {
   },
   functions: {
     transfer: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'transferFrom',
       payable: false,
       constant: false,
@@ -56,7 +57,7 @@ export const ERC20Schema: Schema<FungibleTradeType> = {
       outputs: [],
     }),
     countOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'balanceOf',
       payable: false,
       constant: true,

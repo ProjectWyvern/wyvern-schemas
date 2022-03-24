@@ -1,4 +1,4 @@
-import { AbiType } from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   ENSName,

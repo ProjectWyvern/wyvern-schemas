@@ -1,14 +1,16 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Web3 = require("web3");
+exports.CryptoPunksSchema = void 0;
+const ethereum_types_1 = require("ethereum-types");
 const types_1 = require("../../../types");
 exports.CryptoPunksSchema = {
     version: 1,
@@ -22,7 +24,7 @@ exports.CryptoPunksSchema = {
     ],
     assetFromFields: (fields) => fields.ID,
     assetToFields: asset => ({ ID: asset }),
-    formatter: (asset) => __awaiter(this, void 0, void 0, function* () {
+    formatter: (asset) => __awaiter(void 0, void 0, void 0, function* () {
         return {
             thumbnail: 'https://www.larvalabs.com/cryptopunks/cryptopunk' + asset + '.png',
             title: 'CryptoPunk #' + asset,
@@ -33,7 +35,7 @@ exports.CryptoPunksSchema = {
     }),
     functions: {
         transfer: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'transferPunk',
             payable: false,
             constant: false,
@@ -46,7 +48,7 @@ exports.CryptoPunksSchema = {
             outputs: [],
         }),
         ownerOf: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'punkIndexToAddress',
             payable: false,
             constant: true,
@@ -63,7 +65,7 @@ exports.CryptoPunksSchema = {
     },
     events: {
         transfer: [{
-                type: Web3.AbiType.Event,
+                type: ethereum_types_1.AbiType.Event,
                 name: 'PunkTransfer',
                 target: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
                 anonymous: false,
@@ -72,7 +74,7 @@ exports.CryptoPunksSchema = {
                     { kind: types_1.EventInputKind.Destination, indexed: true, name: 'to', type: 'address' },
                     { kind: types_1.EventInputKind.Asset, indexed: false, name: 'punkIndex', type: 'uint256' },
                 ],
-                assetFromInputs: (inputs) => __awaiter(this, void 0, void 0, function* () { return inputs.punkIndex; }),
+                assetFromInputs: (inputs) => __awaiter(void 0, void 0, void 0, function* () { return inputs.punkIndex; }),
             }],
     },
     hash: a => a,

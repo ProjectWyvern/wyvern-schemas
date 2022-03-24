@@ -1,17 +1,19 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Web3 = require("web3");
+exports.ENSNameSchema = void 0;
+const ethereum_types_1 = require("ethereum-types");
 const ens_1 = require("../../../common/ens");
 const types_1 = require("../../../types");
-exports.ENSNameSchema = Object.assign({}, ens_1.ENSNameBaseSchema, { version: 2, deploymentBlock: 3605331, name: 'ENSName', description: 'Ethereum Name Service Name (EIP 137)', thumbnail: 'https://ens.domains/img/ens.svg', website: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md', formatter: (asset) => __awaiter(this, void 0, void 0, function* () {
+exports.ENSNameSchema = Object.assign(Object.assign({}, ens_1.ENSNameBaseSchema), { version: 2, deploymentBlock: 3605331, name: 'ENSName', description: 'Ethereum Name Service Name (EIP 137)', thumbnail: 'https://ens.domains/img/ens.svg', website: 'https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md', formatter: (asset) => __awaiter(void 0, void 0, void 0, function* () {
         return {
             thumbnail: 'https://ens.domains/img/ens.svg',
             title: 'ENS Name ' +
@@ -22,7 +24,7 @@ exports.ENSNameSchema = Object.assign({}, ens_1.ENSNameBaseSchema, { version: 2,
         };
     }), functions: {
         transfer: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'transfer',
             payable: false,
             constant: false,
@@ -44,7 +46,7 @@ exports.ENSNameSchema = Object.assign({}, ens_1.ENSNameBaseSchema, { version: 2,
             outputs: [],
         }),
         ownerOf: asset => ({
-            type: Web3.AbiType.Function,
+            type: ethereum_types_1.AbiType.Function,
             name: 'owner',
             payable: false,
             constant: true,

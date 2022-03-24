@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 
 import {
   FunctionInputKind,
@@ -18,7 +18,7 @@ export const EnjinItemSchema: Schema<SemiFungibleTradeType> = {
   functions: {
     ...ERC1155Schema.functions,
     ownerOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'ownerOf',
       payable: false,
       constant: true,
@@ -33,7 +33,7 @@ export const EnjinItemSchema: Schema<SemiFungibleTradeType> = {
     }),
     // Parameters are flipped from 1155
     countOf: asset => ({
-      type: Web3.AbiType.Function,
+      type: AbiType.Function,
       name: 'balanceOf',
       payable: false,
       constant: true,

@@ -29,8 +29,10 @@
   },
   "homepage": "https://github.com/ProjectWyvern/wyvern-schemas#readme",
   "devDependencies": {
-    "@types/node": "^9.3.0",
+    "@0x/types": "^3.3.5",
+    "@types/node": "16.11.0",
     "buffer": "^5.0.8",
+    "ethereum-types": "^3.6.0",
     "ethereumjs-abi": "https://github.com/ProjectWyvern/ethereumjs-abi.git",
     "ethereumjs-util": "^5.1.3",
     "js-yaml": "^3.10.0",
@@ -41,16 +43,13 @@
     "tslint-eslint-rules": "^4.1.1",
     "types-bn": "^0.0.1",
     "types-ethereumjs-util": "^0.0.5",
-    "typescript": "^2.6.2",
+    "typescript": "^4.5.4",
     "web3": "^0.20.4",
-    "web3-typescript-typings": "^0.9.4"
+    "web3-provider-engine": "^13.6.5"
   },
   "dependencies": {
-    "@0xproject/utils": "^0.3.4",
+    "@0x/utils": "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz",
     "axios": "^0.17.1",
-    "bignumber.js": "^6.0.0",
-    "typed-promisify": "^0.4.0",
-    "web3-provider-engine": "^13.6.5",
-    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#v4.0.1"
+    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#f7704ad2571f05136f9a42735966dcd3f1485474"
   }
 }

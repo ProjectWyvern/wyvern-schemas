@@ -1,4 +1,4 @@
-import * as Web3 from 'web3';
+import { AbiType } from 'ethereum-types';
 import { AnnotatedFunctionABI, AnnotatedFunctionInput, FunctionInputKind } from 'wyvern-js/lib/types';
 export { AnnotatedFunctionInput, AnnotatedFunctionABI, FunctionInputKind, };
 export declare enum Network {
@@ -53,7 +53,7 @@ export interface AnnotatedEventInput {
     kind: EventInputKind;
 }
 export interface AnnotatedEventABI<T> {
-    type: Web3.AbiType.Event;
+    type: AbiType.Event;
     name: string;
     target: string;
     anonymous: boolean;
