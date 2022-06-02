@@ -50,6 +50,6 @@
   "dependencies": {
     "@0x/utils": "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz",
     "axios": "^0.17.1",
-    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#f7704ad2571f05136f9a42735966dcd3f1485474"
+    "wyvern-js": "git+https://github.com/ProjectOpenSea/wyvern-js.git#80fec352a4307a4ff3e27a5a47aa8642288a71f1"
   }
 }
